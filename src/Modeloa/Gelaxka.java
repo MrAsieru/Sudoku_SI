@@ -7,8 +7,9 @@ public class Gelaxka {
 	private int errenkada;
 	private int zenbakia;
 	private List<Integer> zerAukerak;
+	private boolean hasierakoBalioa;
 	
-	public Gelaxka(int pEr, int pZu) {
+	public Gelaxka(int pEr, int pZu, boolean pHas, int pBal) {
 		//TODO
 	}
 	
