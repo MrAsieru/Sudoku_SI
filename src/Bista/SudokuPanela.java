@@ -146,13 +146,13 @@ public class SudokuPanela extends JFrame implements Observer{
 	}
 	
 	//GUI gelaxka aldatu
-	private void taulaBalioaAldatu(int er, int zu, int balioa) {
+	private void taulaBalioaAldatu(int pEr, int pZu, int pBalioa) {
 		String balioBerria = "";
-		if (1 <= balioa && balioa <= 9) {
-			balioBerria = Integer.toString(balioa);
+		if (1 <= pBalioa && pBalioa <= 9) {
+			balioBerria = Integer.toString(pBalioa);
 		}
-		gelaxkaMatrizea[er][zu].setText(balioBerria);
-		System.out.println("[BISTA]: Gelaxka aldatuta - er:%s, zu:%s, balioa:%s".formatted(er, zu, balioBerria));
+		gelaxkaMatrizea[pEr][pZu].setText(balioBerria);
+		System.out.println("[BISTA]: Gelaxka aldatuta - er:%s, zu:%s, balioa:%s".formatted(pEr, pZu, balioBerria));
 	}
 	
 	//Sudoku-n garbitu

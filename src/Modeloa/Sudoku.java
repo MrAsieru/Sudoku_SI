@@ -101,7 +101,7 @@ public class Sudoku extends Observable{
 
 	}
 
-	public void sudokuAldatuDa(){
+	private void sudokuAldatuDa(){
 		setChanged();
 		notifyObservers(NotifikazioMotak.TAULA_EGUNERATU);
 	}
