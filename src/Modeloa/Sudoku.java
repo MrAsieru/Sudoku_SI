@@ -114,7 +114,9 @@ public class Sudoku extends Observable{
 	public void aldatuGelaxka(int z, int e, int pBalioa) {
 		//TODO
 		//Onartzen bada, GUI abisatu
-		this.zerGelaxkak[z][e].setZenbakia(pBalioa);
+		if (this.zerGelaxkak[z][e].setZenbakia(pBalioa)){
+			sudokuAldatuDa();
+		}
 	}
 	
 	//public int getGelaxkaBalioak(){

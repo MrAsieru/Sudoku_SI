@@ -20,10 +20,12 @@ public class Gelaxka {
 		//TODO(another sprint)
 	}
 	
-	public void setZenbakia(int pZenbakia) {
+	public boolean setZenbakia(int pZenbakia) {
 		if (!(this.hasierakoBalioa)){
 			this.zenbakia=pZenbakia;
+			return true;
 		}
+	return false;
 	}
 	
 	public int getBalioa(){
