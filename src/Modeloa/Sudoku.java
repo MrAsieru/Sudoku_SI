@@ -2,6 +2,9 @@ package Modeloa;
 
 import javax.annotation.processing.FilerException;
 import javax.swing.plaf.synth.SynthTextAreaUI;
+
+import org.omg.CORBA.PRIVATE_MEMBER;
+
 import java.io.FileNotFoundException;
 import java.util.Observable;
 import java.io.File;
@@ -85,23 +88,53 @@ public class Sudoku extends Observable{
 		}
 	}
 	
-	public boolean ondoDago() {
+	public void ondoDago() {
 		//TODO
-		return false;
+		boolean konproba=true;
+		int i=0;
+		while (i<9 || !konproba){
+			int j=0;
+			while (j<9 || !konproba){
+				if(zerGelaxkak[i][j].getBalioa()!=soluzioaIntegers[i][j]){
+					konproba=false;
+				}
+				j++;
+			}
+			i++;
+		}
+		setChanged();
+		if (konproba){
+			notifyObservers(NotifikazioMotak.EMAITZA_ONDO_DAGO);
+		}else{
+			notifyObservers(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
+			}
+		
 	}
 	
 	public void aldatuGelaxka(int z, int e, int pBalioa) {
 		//TODO
 		//Onartzen bada, GUI abisatu
+		this.zerGelaxkak[z][e].setZenbakia(pBalioa);
 	}
 	
-	public int[][] getGelaxkaBalioak(){
+	//public int getGelaxkaBalioak(){
 		//TODO
-		return null;
-	}
+		//return 
 	
 	public boolean[][] getHasierakoBalioMaskara(){
 		//TODO
-		return null;
+		boolean[][] matrizea = new boolean[9][9];
+		int i=0;
+		while (i<9){
+		    int j=0;
+			while (j<9){
+				if (this.zerGelaxkak[i][j].hasBalio()){
+					matrizea[i][j]=true;
+				}
+			j++;	
+			}
+		i++;
+		}
+		return matrizea;
 	}
 }

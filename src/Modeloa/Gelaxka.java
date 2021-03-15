@@ -10,14 +10,26 @@ public class Gelaxka {
 	private boolean hasierakoBalioa;
 	
 	public Gelaxka(int pEr, int pZu, boolean pHas, int pBal) {
-		//TODO
+		this.errenkada=pEr;
+		this.zutabe=pZu;
+		this.hasierakoBalioa=pHas;
+		this.zenbakia=pBal;
 	}
 	
 	public void aukerakGehitu(List<Integer> aukerak) {
-		//TODO
+		//TODO(another sprint)
 	}
 	
 	public void setZenbakia(int pZenbakia) {
-		//TODO
+		if (!(this.hasierakoBalioa)){
+			this.zenbakia=pZenbakia;
+	}
+	}
+	public int getBalioa(){
+		return this.zenbakia;	
+	}
+	
+	public boolean hasBalio(){
+		return this.hasierakoBalioa;
 	}
 }
