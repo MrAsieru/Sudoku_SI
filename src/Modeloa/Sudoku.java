@@ -3,8 +3,6 @@ package Modeloa;
 import javax.annotation.processing.FilerException;
 import javax.swing.plaf.synth.SynthTextAreaUI;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -77,7 +75,7 @@ public class Sudoku extends Observable{
 		ArrayList<Scanner> matrizeGuztiak = new ArrayList<>();
 		try{
 			//txt fitxategiko zailtazun berdineko matrizeak lortuko ditugu
-			File txtFitxategia = new File("/res/sudoku.txt");
+			File txtFitxategia = new File("res/sudoku.txt");
 			Scanner irakurle = new Scanner(txtFitxategia);
 
 			String linea = irakurle.next();
@@ -139,9 +137,15 @@ public class Sudoku extends Observable{
 		}
 	}
 	
-	//public int getGelaxkaBalioak(){
-		//TODO
-		//return
+	public int[][] getGelaxkaBalioak(){
+		int [][] emaitza = new int[9][9];
+		for (int i = 0; i < 9; i++){
+			for (int j = 0; j < 9; j++){
+				emaitza[i][j] = this.zerGelaxkak[i][j].getBalioa();
+			}
+		}
+		return emaitza;
+	}
 	
 	public boolean[][] getHasierakoBalioMaskara(){
 		//TODO

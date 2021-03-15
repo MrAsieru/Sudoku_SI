@@ -45,7 +45,6 @@ public class SudokuPanela extends JFrame implements Observer{
 	private JPanel contentPane;
 	private JPanel pnlTaula;
 	private JLabel[][] gelaxkaMatrizea;
-	private Aukeratuta auk;
 	private JPanel pnlAukerak;
 	private JPanel pnlBalioa;
 	private JLabel lblBalioa;
@@ -57,6 +56,12 @@ public class SudokuPanela extends JFrame implements Observer{
 	private JButton btnGarbitu;
 	private JPanel pnlGarbitu;
 	private JPanel pnlGelaxka;
+	
+	private int aukX = -1;
+	private int aukY = -1;
+	private int aukI = -1;
+	private int aukJ = -1;
+	
 
 	/*
 	 * Gelaxkak identifikatzeko erabilitako erak:
@@ -75,7 +80,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SudokuPanela frame = new SudokuPanela(new Random().nextInt(2)+1);
+					SudokuPanela frame = new SudokuPanela(new Random().nextInt(3)+1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -89,7 +94,6 @@ public class SudokuPanela extends JFrame implements Observer{
 	 */
 	public SudokuPanela(int pZailtasuna) {
 		gelaxkaMatrizea = new JLabel[9][9];
-		auk = new Aukeratuta();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -129,15 +133,15 @@ public class SudokuPanela extends JFrame implements Observer{
 	}
 	
 	private void ertzakGarbitu() {
-		if (auk.x != -1 && auk.y != -1 && auk.i != -1 && auk.j != -1) {
-			gelaxkaMatrizea[3*auk.x+auk.i][3*auk.y+auk.j].setBorder(new LineBorder(Color.GRAY, 1));
+		if (aukX != -1 && aukY != -1 && aukI != -1 && aukJ != -1) {
+			gelaxkaMatrizea[3*aukX+aukI][3*aukY+aukJ].setBorder(new LineBorder(Color.GRAY, 1));
 			System.out.println("[BISTA]: Ertzak garbituta");
 		}		
 	}
 	
 	private void aukeratutakoGelaxkaAhaztu() {
 		ertzakGarbitu();
-		auk = new Aukeratuta();
+		aukX = -1; aukY = -1; aukI = -1; aukJ = -1;
 		System.out.println("[BISTA]: Aukeratutako gelaxka ahaztuta");
 	}
 	
@@ -157,8 +161,8 @@ public class SudokuPanela extends JFrame implements Observer{
 	}
 	//Sudoku-n aldatu
 	private void eskatuGelaxkaAldatu(int pBalioa) {
-		if (auk.x != -1 && auk.y != -1 && auk.i != -1 && auk.j != -1) {
-			eskatuGelaxkaAldatu(3*auk.x+auk.i, 3*auk.y+auk.j, pBalioa);
+		if (aukX != -1 && aukY != -1 && aukI != -1 && aukJ != -1) {
+			eskatuGelaxkaAldatu(3*aukX+aukI, 3*aukY+aukJ, pBalioa);
 		}
 	}
 	//Sudoku-n aldatu
@@ -169,30 +173,19 @@ public class SudokuPanela extends JFrame implements Observer{
 		aukeratutakoGelaxkaAhaztu();
 	}
 	
-	private static class Aukeratuta{
-		public int x;
-		public int y;
-		public int i;
-		public int j;
-		/*
-		 * x eta y: Blokea identifikatzeko
-		 * i eta j: Bloke barruko lekua identifikatzeko
-		 */
-		public Aukeratuta() {
-			x = -1;
-			y = -1;
-			i = -1;
-			j = -1;
-		}
-	}
-	
 	@Override
 	public void update(Observable o, Object arg) {
 		//Beharrezkoa: balioen matrizea, hasierako zenbakien maskara matrizea
-		if (o instanceof Sudoku) {
+		if (o instanceof Sudoku && arg instanceof NotifikazioMotak) {
 			switch ((NotifikazioMotak) arg) {
 			case TAULA_EGUNERATU:
 				taulaEguneratu(((Sudoku) o).getGelaxkaBalioak(), ((Sudoku) o).getHasierakoBalioMaskara());
+				break;
+			case EMAITZA_ONDO_DAGO:
+				JOptionPane.showMessageDialog(contentPane, "Sudokua ondo ebatzi da", "Zorionak!", JOptionPane.PLAIN_MESSAGE);
+				break;
+			case EMAITZA_TXARTO_DAGO:
+				JOptionPane.showMessageDialog(contentPane, "Sudokua ez dago ondo ebatzita", "Errorea", JOptionPane.ERROR_MESSAGE);
 				break;
 			default:
 				break;
@@ -239,10 +232,10 @@ public class SudokuPanela extends JFrame implements Observer{
 				// TODO Auto-generated method stub
 				super.mousePressed(e);
 				ertzakGarbitu();
-				auk.x = x;
-				auk.y = y;
-				auk.i = i;
-				auk.j = j;
+				aukX = x;
+				aukY = y;
+				aukI = i;
+				aukJ = j;
 				lblGelaxka.setBorder(new LineBorder(Color.RED, 1));
 				System.out.println("[BISTA]: Gelaxka aukeratuta - zu:%s, er:%s".formatted(3*x+i,3*y+j));
 			}
