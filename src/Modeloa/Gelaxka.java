@@ -23,13 +23,22 @@ public class Gelaxka {
 	public void setZenbakia(int pZenbakia) {
 		if (!(this.hasierakoBalioa)){
 			this.zenbakia=pZenbakia;
+		}
 	}
-	}
+	
 	public int getBalioa(){
 		return this.zenbakia;	
 	}
 	
 	public boolean hasBalio(){
 		return this.hasierakoBalioa;
+	}
+	
+	public boolean konprobatu(int pZenb){
+		boolean ondo=false;
+		if (0<=pZenb && pZenb<=9){
+			ondo=true;
+		}
+	return ondo;
 	}
 }
