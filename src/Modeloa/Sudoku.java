@@ -3,12 +3,12 @@ package Modeloa;
 import javax.annotation.processing.FilerException;
 import javax.swing.plaf.synth.SynthTextAreaUI;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.io.File;
 import java.util.Scanner;
 import java.util.Random;
+
 
 public class Sudoku extends Observable{
 	private Gelaxka[][] zerGelaxkak;
@@ -38,10 +38,17 @@ public class Sudoku extends Observable{
 		int zutabZenb = 9;
 		int ilaraZenb = 9;
 
-		Scanner irakurle;
-		irakurle = bilatuMatrizeIrakurlea();
 
-		String linea = irakurle.next();
+		Integer irakurleLerroa = bilatuMatrizeIrakurlea();
+		Scanner irakurle = new Scanner("res/sudoku.txt");
+
+		//Bilatu nahi dugun matrizearen lerroa
+		while (irakurle.hasNextLine() && irakurleLerroa!=0){
+			irakurle.nextLine();
+			irakurleLerroa--;
+		}
+
+		String linea = irakurle.nextLine().toString();
 
 		//Agian txt-ko fitxategia ez du 9x9-ko matrizea ondo sortua (bi aldiz)
 		try {
@@ -71,22 +78,23 @@ public class Sudoku extends Observable{
 		}
 	}
 
-	private Scanner bilatuMatrizeIrakurlea(){
-		ArrayList<Scanner> matrizeGuztiak = new ArrayList<>();
+	private Integer bilatuMatrizeIrakurlea(){
+		ArrayList<Integer> matrizeGuztiak = new ArrayList<>();
+		int lineCount = 0;
 		try{
 			//txt fitxategiko zailtazun berdineko matrizeak lortuko ditugu
 			File txtFitxategia = new File("res/sudoku.txt");
-			Scanner irakurle = new Scanner(txtFitxategia);
+			BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
 
-			String linea = irakurle.next();
-			while (irakurle.hasNext()){
+			String linea;
+			while ((linea = irakurle.readLine()) != null){
 				if (linea.length()==1 && linea.equals(this.zailtasuna + "")){
-					matrizeGuztiak.add(irakurle);
+					matrizeGuztiak.add(lineCount);
 				}
-				linea = irakurle.next();
+				lineCount++;
 			}
 		}
-		catch (FileNotFoundException e){
+		catch (IOException e){
 			System.out.println("Ez da lortu txt fitxategia.");
 			e.printStackTrace();
 		}
