@@ -1,22 +1,22 @@
 package Modeloa;
 
-import javax.annotation.processing.FilerException;
-import javax.swing.plaf.synth.SynthTextAreaUI;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Scanner;
 import java.util.Random;
 
 
 public class Sudoku extends Observable{
 	private Gelaxka[][] zerGelaxkak;
+	private int array = 9; //9x9 bada 9, 25x25 bada 25
 	private int[][] soluzioaIntegers;
 	private int zailtasuna;
+	private String txtFitxategiaPath = "res/sudoku.txt";
 	private static Sudoku nireSudoku;
 	
 	private Sudoku(int pZailtasuna) {
+		this.zerGelaxkak = new Gelaxka[this.array][this.array];
+		this.soluzioaIntegers = new int[this.array][this.array];
 		this.zailtasuna = pZailtasuna;
 		this.sudokuSortu();
 	}
@@ -33,51 +33,63 @@ public class Sudoku extends Observable{
 	}
 
 	private void sudokuSortu() {
-		//TODO
 		//Suposatuz Sudokua 9x9-koa izango dela
-		int zutabZenb = 9;
-		int ilaraZenb = 9;
-
+		int zutabZenb = this.array;
+		int ilaraZenb = this.array;
 
 		Integer irakurleLerroa = bilatuMatrizeIrakurlea();
-		Scanner irakurle = new Scanner("res/sudoku.txt");
 
-		//Bilatu nahi dugun matrizearen lerroa
-		while (irakurle.hasNextLine() && irakurleLerroa!=0){
-			irakurle.nextLine();
-			irakurleLerroa--;
+		try{
+			File txtFitxategia = new File(txtFitxategiaPath);
+			BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
+
+			try{
+				//Bilatu nahi dugun matrizearen lerroa
+				irakurle.readLine();
+				while (irakurleLerroa!=0){
+					irakurleLerroa--;
+				}
+
+				String linea = irakurle.readLine();
+
+				try {
+					//Jokalariaren matrizea sortuko dugu
+					for (int i = 0; i < ilaraZenb; i++ ) {
+						for (int jota = 0; jota < zutabZenb; jota++) {
+							Gelaxka gel = new Gelaxka(i, jota, true, linea.charAt(i));
+							this.zerGelaxkak[i][jota] = gel;
+						}
+						linea = irakurle.readLine();
+					}
+					//Matrize finala sortuko dugu
+					for (int i = 0; i < ilaraZenb; i++) {
+						for (int jota = 0; jota < zutabZenb; jota++) {
+							this.soluzioaIntegers[i][jota] = linea.toCharArray()[i];
+						}
+						linea = irakurle.readLine();
+					}
+
+					//Sudokua sortu bada Panelari notifikatua izango da
+					sudokuAldatuDa();
+
+				} catch (ArrayIndexOutOfBoundsException a) {
+					System.out.println("txt-ko fitxategia ez dago zuzenki eginda.");
+					a.printStackTrace();
+				}
+			}catch (IOException e){
+				e.printStackTrace();
+			}
 		}
-
-		String linea = irakurle.nextLine().toString();
-
-		//Agian txt-ko fitxategia ez du 9x9-ko matrizea ondo sortua (bi aldiz)
-		try {
-			//Jokalariaren matrizea sortuko dugu
-			for (int i = 0; i < ilaraZenb; i++ ) {
-				for (int jota = 0; jota < zutabZenb; jota++) {
-					//TODO esto de ponerle de donde es un poco chapucilla????
-					Gelaxka gel = new Gelaxka(i, jota, true, (linea.toCharArray())[i]);
-					this.zerGelaxkak[i][jota] = gel;
-				}
-				linea = irakurle.next();
-			}
-			//Matrize finala sortuko dugu
-			for (int i = 0; i < ilaraZenb; i++) {
-				for (int jota = 0; jota < zutabZenb; jota++) {
-					this.soluzioaIntegers[i][jota] = linea.toCharArray()[i];
-				}
-				linea = irakurle.next();
-			}
-
-			//Sudokua sortu bada Panelari notifikatua izango da
-			sudokuAldatuDa();
-
-		} catch (ArrayIndexOutOfBoundsException a) {
-			System.out.println("txt-ko fitxategia ez dago zuzenki eginda.");
-			a.printStackTrace();
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * txt fitxategia irakurriko dugu eta zailtasunaren zenbakia bilatuko dugu.
+	 * Zenbaki hauen lerro zenbakia gordeko da eta Random erabiliz bat hartu egingo da,
+	 * ondoren lerro zenbaki hori return egiteko.
+	 */
 	private Integer bilatuMatrizeIrakurlea(){
 		ArrayList<Integer> matrizeGuztiak = new ArrayList<>();
 		int lineCount = 0;
@@ -106,7 +118,6 @@ public class Sudoku extends Observable{
 
 		//matrizea zoriz hartuko dugu eta bidali
 		return matrizeGuztiak.get(new Random().nextInt(matrizeGuztiak.size()));
-
 	}
 
 	private void sudokuAldatuDa(){
