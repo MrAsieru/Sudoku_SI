@@ -7,16 +7,16 @@ import java.util.Random;
 
 
 public class Sudoku extends Observable{
-	private Gelaxka[][] zerGelaxkak;
-	private int array = 9; //9x9 bada 9, 25x25 bada 25
-	private int[][] soluzioaIntegers;
+	private Gelaxka[][] gelaxkaMat;
+	private int tamaina = 9; //9x9 bada 9, 25x25 bada 25
+	private int[][] soluzioa;
 	private int zailtasuna;
 	private String txtFitxategiaPath = "res/sudoku.txt";
 	private static Sudoku nireSudoku;
 	
 	private Sudoku(int pZailtasuna) {
-		this.zerGelaxkak = new Gelaxka[this.array][this.array];
-		this.soluzioaIntegers = new int[this.array][this.array];
+		this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];
+		this.soluzioa = new int[this.tamaina][this.tamaina];
 		this.zailtasuna = pZailtasuna;
 		this.sudokuSortu();
 	}
@@ -34,8 +34,8 @@ public class Sudoku extends Observable{
 
 	private void sudokuSortu() {
 		//Suposatuz Sudokua 9x9-koa izango dela
-		int zutabZenb = this.array;
-		int ilaraZenb = this.array;
+		int zutabZenb = this.tamaina;
+		int ilaraZenb = this.tamaina;
 
 		Integer irakurleLerroa = bilatuMatrizeIrakurlea();
 
@@ -55,16 +55,16 @@ public class Sudoku extends Observable{
 				try {
 					//Jokalariaren matrizea sortuko dugu
 					for (int i = 0; i < ilaraZenb; i++ ) {
-						for (int jota = 0; jota < zutabZenb; jota++) {
-							Gelaxka gel = new Gelaxka(i, jota, true, linea.charAt(i));
-							this.zerGelaxkak[i][jota] = gel;
+						for (int j = 0; j < zutabZenb; j++) {
+							Gelaxka gel = new Gelaxka(i, j, true, linea.charAt(i));
+							this.gelaxkaMat[i][j] = gel;
 						}
 						linea = irakurle.readLine();
 					}
 					//Matrize finala sortuko dugu
 					for (int i = 0; i < ilaraZenb; i++) {
-						for (int jota = 0; jota < zutabZenb; jota++) {
-							this.soluzioaIntegers[i][jota] = linea.toCharArray()[i];
+						for (int j = 0; j < zutabZenb; j++) {
+							this.soluzioa[i][j] = linea.toCharArray()[i];
 						}
 						linea = irakurle.readLine();
 					}
@@ -132,7 +132,7 @@ public class Sudoku extends Observable{
 		while (i<9 || !konproba){
 			int j=0;
 			while (j<9 || !konproba){
-				if(zerGelaxkak[i][j].getBalioa()!=soluzioaIntegers[i][j]){
+				if(gelaxkaMat[i][j].getBalioa()!=soluzioa[i][j]){
 					konproba=false;
 				}
 				j++;
@@ -151,7 +151,7 @@ public class Sudoku extends Observable{
 	public void aldatuGelaxka(int z, int e, int pBalioa) {
 		//TODO
 		//Onartzen bada, GUI abisatu
-		if (this.zerGelaxkak[z][e].setZenbakia(pBalioa)){
+		if (this.gelaxkaMat[z][e].setZenbakia(pBalioa)){
 			sudokuAldatuDa();
 		}
 	}
@@ -160,7 +160,7 @@ public class Sudoku extends Observable{
 		int [][] emaitza = new int[9][9];
 		for (int i = 0; i < 9; i++){
 			for (int j = 0; j < 9; j++){
-				emaitza[i][j] = this.zerGelaxkak[i][j].getBalioa();
+				emaitza[i][j] = this.gelaxkaMat[i][j].getBalioa();
 			}
 		}
 		return emaitza;
@@ -173,7 +173,7 @@ public class Sudoku extends Observable{
 		while (i<9){
 		    int j=0;
 			while (j<9){
-				if (this.zerGelaxkak[i][j].hasBalio()){
+				if (this.gelaxkaMat[i][j].hasBalio()){
 					matrizea[i][j]=true;
 				}
 			j++;

@@ -152,7 +152,7 @@ public class SudokuPanela extends JFrame implements Observer{
 			balioBerria = Integer.toString(pBalioa);
 		}
 		gelaxkaMatrizea[pEr][pZu].setText(balioBerria);
-		System.out.println("[BISTA]: Gelaxka aldatuta - er:%s, zu:%s, balioa:%s".formatted(pEr, pZu, balioBerria));
+		System.out.println("[BISTA]: Gelaxka aldatuta - er:%s, zu:%s, balioa:%s".format(""+pEr, ""+pZu, ""+balioBerria));
 	}
 	
 	//Sudoku-n garbitu
@@ -224,7 +224,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		return pnlBlk;
 	}
 	private JLabel getLblGelaxka_xy_ij(int x, int y, int i, int j) {
-		JLabel lblGelaxka = new JLabel(Integer.toString(3*x+i)+Integer.toString(3*y+j));
+		JLabel lblGelaxka = new JLabel(" ");
 		lblGelaxka.setBorder(new LineBorder(Color.GRAY, 1));
 		lblGelaxka.addMouseListener(new MouseAdapter() {
 			@Override
@@ -237,7 +237,7 @@ public class SudokuPanela extends JFrame implements Observer{
 				aukI = i;
 				aukJ = j;
 				lblGelaxka.setBorder(new LineBorder(Color.RED, 1));
-				System.out.println("[BISTA]: Gelaxka aukeratuta - zu:%s, er:%s".formatted(3*x+i,3*y+j));
+				System.out.println("[BISTA]: Gelaxka aukeratuta - zu:%s, er:%s".format(""+3*x+i,""+3*y+j));
 			}
 		});
 		gelaxkaMatrizea[3*x+i][3*y+j] = lblGelaxka; //Gelaxka matrizean gorde
