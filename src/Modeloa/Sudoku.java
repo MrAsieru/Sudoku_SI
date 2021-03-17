@@ -123,38 +123,19 @@ public class Sudoku extends Observable{
 		//matrizea zoriz hartuko dugu eta bidali
 		return matrizeGuztiak.get(new Random().nextInt(matrizeGuztiak.size()));
 	}
-
-	private void sudokuAldatuDa(){
-		setChanged();
-		notifyObservers(NotifikazioMotak.TAULA_EGUNERATU);
-		System.out.println("[MODELOA]: Sudoku-k Bistari aldaketa notifikatu");
-	}
 	
 	public void ondoDago() {
-		//TODO
-		boolean konproba=true;
-		int i=0;
-		while (i<9 || !konproba){
-			int j=0;
-			while (j<9 || !konproba){
+		for(int i = 0; i<this.tamaina; i++){
+			for (int j = 0; j<this.tamaina; j++){
 				if(gelaxkaMat[i][j].getBalioa()!=soluzioa[i][j]){
-					konproba=false;
+					this.sudokuTxartoDago();
 				}
-				j++;
 			}
-			i++;
 		}
-		setChanged();
-		if (konproba){
-			notifyObservers(NotifikazioMotak.EMAITZA_ONDO_DAGO);
-		}else{
-			notifyObservers(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
-			}
-
+		this.sudokuZuzenDago();
 	}
 	
 	public void aldatuGelaxka(int z, int e, int pBalioa) {
-		//TODO
 		//Onartzen bada, GUI abisatu
 		if (this.gelaxkaMat[z][e].setZenbakia(pBalioa)){
 			sudokuAldatuDa();
@@ -162,7 +143,7 @@ public class Sudoku extends Observable{
 	}
 	
 	public int[][] getGelaxkaBalioak(){
-		int [][] emaitza = new int[9][9];
+		int [][] emaitza = new int[this.tamaina][this.tamaina];
 		for (int i = 0; i < 9; i++){
 			for (int j = 0; j < 9; j++){
 				emaitza[i][j] = this.gelaxkaMat[i][j].getBalioa();
@@ -173,7 +154,7 @@ public class Sudoku extends Observable{
 	
 	public boolean[][] getHasierakoBalioMaskara(){
 		//TODO
-		boolean[][] matrizea = new boolean[9][9];
+		boolean[][] matrizea = new boolean[this.tamaina][this.tamaina];
 		int i=0;
 		while (i<9){
 		    int j=0;
@@ -186,5 +167,21 @@ public class Sudoku extends Observable{
 		i++;
 		}
 		return matrizea;
+	}
+
+	private void sudokuAldatuDa(){
+		setChanged();
+		notifyObservers(NotifikazioMotak.TAULA_EGUNERATU);
+		System.out.println("[MODELOA]: Sudoku-k Bistari aldaketa notifikatu");
+	}
+
+	private void sudokuZuzenDago(){
+		setChanged();
+		notifyObservers(NotifikazioMotak.EMAITZA_ONDO_DAGO);
+	}
+
+	private void sudokuTxartoDago(){
+		setChanged();
+		notifyObservers(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
 	}
 }

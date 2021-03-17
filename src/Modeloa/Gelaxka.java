@@ -25,7 +25,7 @@ public class Gelaxka {
 			this.zenbakia=pZenbakia;
 			return true;
 		}
-	return false;
+		return false;
 	}
 	
 	public int getBalioa(){
