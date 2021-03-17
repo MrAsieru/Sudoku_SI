@@ -48,11 +48,11 @@ public class Sudoku extends Observable{
 				//Bilatu nahi dugun matrizearen lerroa
 				irakurle.readLine();
 				while (irakurleLerroa!=0){
+					irakurle.readLine();
 					irakurleLerroa--;
 				}
 
 				String linea = irakurle.readLine();
-				linea = irakurle.readLine();
 
 				try {
 					//Jokalariaren matrizea sortuko dugu
