@@ -10,26 +10,27 @@ public class Sudoku extends Observable{
 	private Gelaxka[][] gelaxkaMat;
 	private int tamaina = 9; //9x9 bada 9, 25x25 bada 25
 	private int[][] soluzioa;
-	private int zailtasuna;
+	private int zailtasuna = -1;
 	private String txtFitxategiaPath = "res/sudoku.txt";
 	private static Sudoku nireSudoku;
 	
-	private Sudoku(int pZailtasuna) {
+	private Sudoku() {
 		this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];
 		this.soluzioa = new int[this.tamaina][this.tamaina];
-		this.zailtasuna = 1;
-		this.sudokuSortu();
-	}
-	
-	public static Sudoku getNireSudoku(int pZailtasuna) {
-		if (nireSudoku == null) {
-			nireSudoku = new Sudoku(pZailtasuna);
-		}
-		return nireSudoku;
 	}
 	
 	public static Sudoku getNireSudoku() {
+		if (nireSudoku == null) {
+			nireSudoku = new Sudoku();
+		}
 		return nireSudoku;
+	}
+
+	public void eraiki(int pZailtasuna){
+		if (this.zailtasuna == -1){
+			this.zailtasuna = pZailtasuna;
+			sudokuSortu();
+		}
 	}
 
 	private void sudokuSortu() {
@@ -72,6 +73,7 @@ public class Sudoku extends Observable{
 					}
 
 					//Sudokua sortu bada Panelari notifikatua izango da
+
 					sudokuAldatuDa();
 
 				} catch (ArrayIndexOutOfBoundsException a) {
@@ -125,6 +127,7 @@ public class Sudoku extends Observable{
 	private void sudokuAldatuDa(){
 		setChanged();
 		notifyObservers(NotifikazioMotak.TAULA_EGUNERATU);
+		System.out.println("[MODELOA]: Sudoku-k Bistari aldaketa notifikatu");
 	}
 	
 	public void ondoDago() {

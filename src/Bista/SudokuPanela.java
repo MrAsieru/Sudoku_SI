@@ -109,7 +109,8 @@ public class SudokuPanela extends JFrame implements Observer{
 		
 		sortuTaula();
 		
-		Sudoku.getNireSudoku(pZailtasuna).addObserver(this);
+		Sudoku.getNireSudoku().addObserver(this);
+		Sudoku.getNireSudoku().eraiki(pZailtasuna);
 	}
 	
 	//Logika
@@ -180,6 +181,7 @@ public class SudokuPanela extends JFrame implements Observer{
 			switch ((NotifikazioMotak) arg) {
 			case TAULA_EGUNERATU:
 				taulaEguneratu(((Sudoku) o).getGelaxkaBalioak(), ((Sudoku) o).getHasierakoBalioMaskara());
+				System.out.println("Eguneratu");
 				break;
 			case EMAITZA_ONDO_DAGO:
 				JOptionPane.showMessageDialog(contentPane, "Sudokua ondo ebatzi da", "Zorionak!", JOptionPane.PLAIN_MESSAGE);
