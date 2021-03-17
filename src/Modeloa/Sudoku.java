@@ -17,7 +17,7 @@ public class Sudoku extends Observable{
 	private Sudoku(int pZailtasuna) {
 		this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];
 		this.soluzioa = new int[this.tamaina][this.tamaina];
-		this.zailtasuna = pZailtasuna;
+		this.zailtasuna = 1;
 		this.sudokuSortu();
 	}
 	
@@ -51,12 +51,14 @@ public class Sudoku extends Observable{
 				}
 
 				String linea = irakurle.readLine();
+				linea = irakurle.readLine();
 
 				try {
 					//Jokalariaren matrizea sortuko dugu
-					for (int i = 0; i < ilaraZenb; i++ ) {
-						for (int j = 0; j < zutabZenb; j++) {
-							Gelaxka gel = new Gelaxka(i, j, true, linea.charAt(i));
+					for (int i = 0; i < zutabZenb; i++ ) {
+						for (int j = 0; j < ilaraZenb; j++) {
+							char zenbakia = linea.toCharArray()[j];
+							Gelaxka gel = new Gelaxka(i, j, true, Character.getNumericValue(zenbakia));
 							this.gelaxkaMat[i][j] = gel;
 						}
 						linea = irakurle.readLine();
