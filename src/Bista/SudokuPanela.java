@@ -111,6 +111,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		
 		Sudoku.getNireSudoku().addObserver(this);
 		Sudoku.getNireSudoku().eraiki(pZailtasuna);
+		System.out.println("[BISTA]: Aukeratutako zailtasuna: "+pZailtasuna);
 	}
 	
 	//Logika
@@ -153,7 +154,7 @@ public class SudokuPanela extends JFrame implements Observer{
 			balioBerria = Integer.toString(pBalioa);
 		}
 		gelaxkaMatrizea[pEr][pZu].setText(balioBerria);
-		System.out.println("[BISTA]: Gelaxka aldatuta - er:%s, zu:%s, balioa:%s".format(""+pEr, ""+pZu, ""+balioBerria));
+		System.out.println("[BISTA]: Gelaxka aldatuta - er:"+pEr+", zu:"+pZu+", balioa:"+balioBerria);
 	}
 	
 	//Sudoku-n garbitu
@@ -164,6 +165,8 @@ public class SudokuPanela extends JFrame implements Observer{
 	private void eskatuGelaxkaAldatu(int pBalioa) {
 		if (aukX != -1 && aukY != -1 && aukI != -1 && aukJ != -1) {
 			eskatuGelaxkaAldatu(3*aukX+aukI, 3*aukY+aukJ, pBalioa);
+		} else {
+			JOptionPane.showMessageDialog(contentPane, "Balio bat aldatzeko gelaxka bat aukeratu", "Zorionak!", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	//Sudoku-n aldatu
@@ -176,12 +179,11 @@ public class SudokuPanela extends JFrame implements Observer{
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		//Beharrezkoa: balioen matrizea, hasierako zenbakien maskara matrizea
 		if (o instanceof Sudoku && arg instanceof NotifikazioMotak) {
+			System.out.println("[BISTA]: Observer update deituta, "+((NotifikazioMotak) arg).name()+" komandoa");
 			switch ((NotifikazioMotak) arg) {
 			case TAULA_EGUNERATU:
 				taulaEguneratu(((Sudoku) o).getGelaxkaBalioak(), ((Sudoku) o).getHasierakoBalioMaskara());
-				System.out.println("Eguneratu");
 				break;
 			case EMAITZA_ONDO_DAGO:
 				JOptionPane.showMessageDialog(contentPane, "Sudokua ondo ebatzi da", "Zorionak!", JOptionPane.PLAIN_MESSAGE);
@@ -196,8 +198,8 @@ public class SudokuPanela extends JFrame implements Observer{
 	}
 	
 	private void taulaEguneratu(int[][] pBal, boolean[][] pHasMask) {
-		for (int er = 0; er < 3; er++) {
-			for (int zu = 0; zu < 3; zu++) {
+		for (int er = 0; er < 9; er++) {
+			for (int zu = 0; zu < 9; zu++) {
 				JLabel lblGelaxka = gelaxkaMatrizea[er][zu];
 				if (pHasMask[er][zu]) {
 					lblGelaxka.setFont(lblGelaxka.getFont().deriveFont(lblGelaxka.getFont().getStyle() | Font.BOLD)); //Beltzan jarri
@@ -239,7 +241,7 @@ public class SudokuPanela extends JFrame implements Observer{
 				aukI = i;
 				aukJ = j;
 				lblGelaxka.setBorder(new LineBorder(Color.RED, 1));
-				System.out.println("[BISTA]: Gelaxka aukeratuta - zu:%s, er:%s".format(""+3*x+i,""+3*y+j));
+				System.out.println("[BISTA]: Gelaxka aukeratuta - zu:"+3*x*i+", er:"+3*y*j);
 			}
 		});
 		gelaxkaMatrizea[3*x+i][3*y+j] = lblGelaxka; //Gelaxka matrizean gorde
@@ -340,7 +342,7 @@ public class SudokuPanela extends JFrame implements Observer{
 					try {
 						int balioa = Integer.parseInt(ftfBalioa.getText());
 						eskatuGelaxkaAldatu(balioa);
-						System.out.println("[KONTROLATZAILEA]: ftfBalioa-n enter sakatu, gelaxka aldatzeko eskatu");
+						System.out.println("[KONTROLATZAILEA]: ftfBalioa-n enter sakatu, gelaxka aldatzeko eskatu, balioa:"+balioa);
 					} catch (NumberFormatException nfe) {
 						JOptionPane.showMessageDialog(contentPane, "Mesedez, 1-9 tartean dagoen zenbaki bat sartu");
 					}
@@ -368,7 +370,7 @@ public class SudokuPanela extends JFrame implements Observer{
 					try {
 						int balioa = Integer.parseInt(ftfBalioa.getText());
 						eskatuGelaxkaAldatu(balioa);
-						System.out.println("[KONTROLATZAILEA]: btnAldatu klikatuta, gelaxka aldatzeko eskatu");
+						System.out.println("[KONTROLATZAILEA]: btnAldatu klikatuta, gelaxka aldatzeko eskatu, balioa:"+balioa);
 					} catch (NumberFormatException nfe) {
 						JOptionPane.showMessageDialog(contentPane, "Mesedez, 1-9 tartean dagoen zenbaki bat sartu");
 					}

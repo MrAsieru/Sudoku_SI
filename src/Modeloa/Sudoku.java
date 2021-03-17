@@ -58,8 +58,8 @@ public class Sudoku extends Observable{
 					//Jokalariaren matrizea sortuko dugu
 					for (int i = 0; i < zutabZenb; i++ ) {
 						for (int j = 0; j < ilaraZenb; j++) {
-							char zenbakia = linea.toCharArray()[j];
-							Gelaxka gel = new Gelaxka(i, j, true, Character.getNumericValue(zenbakia));
+							int zenbakia = Character.getNumericValue(linea.toCharArray()[j]);
+							Gelaxka gel = new Gelaxka(i, j, zenbakia != 0, zenbakia);
 							this.gelaxkaMat[i][j] = gel;
 						}
 						linea = irakurle.readLine();
