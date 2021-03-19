@@ -33,97 +33,29 @@ public class Sudoku extends Observable{
 		}
 	}
 
-	private void sudokuSortu() {
-		//Suposatuz Sudokua 9x9-koa izango dela
-		int zutabZenb = this.tamaina;
-		int ilaraZenb = this.tamaina;
-
-		Integer irakurleLerroa = bilatuMatrizeIrakurlea();
-
-		try{
-			File txtFitxategia = new File(txtFitxategiaPath);
-			BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
-
-			try{
-				//Bilatu nahi dugun matrizearen lerroa
-				irakurle.readLine();
-				while (irakurleLerroa!=0){
-					irakurle.readLine();
-					irakurleLerroa--;
-				}
-
-				String linea = irakurle.readLine();
-
-				try {
-					//Jokalariaren matrizea sortuko dugu
-					for (int i = 0; i < zutabZenb; i++ ) {
-						for (int j = 0; j < ilaraZenb; j++) {
-							int zenbakia = Character.getNumericValue(linea.toCharArray()[j]);
-							Gelaxka gel = GelaxkaFactory.getInstantzia().gelaxkaSortu(
-									(zenbakia != 0)?GelaxkaMotak.HASIERAKOA:GelaxkaMotak.EDITAGARRIA,
-									j, i, zenbakia);
-							this.gelaxkaMat[i][j] = gel;
-						}
-						linea = irakurle.readLine();
-					}
-					//Matrize finala sortuko dugu
-					for (int i = 0; i < ilaraZenb; i++) {
-						for (int j = 0; j < zutabZenb; j++) {
-							this.soluzioa[i][j] = Character.getNumericValue(linea.toCharArray()[j]);
-						}
-						linea = irakurle.readLine();
-					}
-
-					//Sudokua sortu bada Panelari notifikatua izango da
-
-					bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU);
-
-				} catch (ArrayIndexOutOfBoundsException a) {
-					System.out.println("txt-ko fitxategia ez dago zuzenki eginda.");
-					a.printStackTrace();
-				}
-			}catch (IOException e){
-				e.printStackTrace();
-			}
-		}
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
-	 * txt fitxategia irakurriko dugu eta zailtasunaren zenbakia bilatuko dugu.
-	 * Zenbaki hauen lerro zenbakia gordeko da eta Random erabiliz bat hartu egingo da,
-	 * ondoren lerro zenbaki hori return egiteko.
+	 * Metodo honen bidez, zailtazunaren arabera sudokuak matrize bat hartu eta bere balio bezala gordeko ditu.
 	 */
-	private Integer bilatuMatrizeIrakurlea(){
-		ArrayList<Integer> matrizeGuztiak = new ArrayList<>();
-		int lineCount = 0;
-		try{
-			//txt fitxategiko zailtazun berdineko matrizeak lortuko ditugu
-			File txtFitxategia = new File("res/sudoku.txt");
-			BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
+	private void sudokuSortu() {
+		//Matrizea erabaki egingo dugu hasieratik eta ondoren honen matrizeak hartuko ditugu
+		int sudokuMatrizeaLortu = Irakurlea.getIrakurlea().getZailtazunLerroa(this.zailtasuna);
+		int[][] hasierakoSudokua = Irakurlea.getIrakurlea().getSudokuArrayHasiera(sudokuMatrizeaLortu);
 
-			String linea;
-			while ((linea = irakurle.readLine()) != null){
-				if (linea.length()==1 && linea.equals(this.zailtasuna + "")){
-					matrizeGuztiak.add(lineCount);
-				}
-				lineCount++;
+		//Gelaxka matrizea sortu
+		for (int i = 0; i < this.tamaina; i++) {
+			for (int j = 0; j < this.tamaina; j++) {
+				int balioa = hasierakoSudokua[i][j];
+				Gelaxka gelaxka = GelaxkaFactory.getInstantzia().gelaxkaSortu(
+						(balioa != 0) ? GelaxkaMotak.HASIERAKOA : GelaxkaMotak.EDITAGARRIA,
+						j, i, balioa);
+				this.gelaxkaMat[i][j] = gelaxka;
 			}
 		}
-		catch (IOException e){
-			System.out.println("Ez da lortu txt fitxategia.");
-			e.printStackTrace();
-		}
 
-		//Begiratuko dugu matrizerik aurkitu ez dugun
-		if(matrizeGuztiak.size()==0){
-			System.exit(0);
-		}
+		//Soluzio matrizea sortu
+		this.soluzioa = Irakurlea.getIrakurlea().getSudokuArrayZuzena(sudokuMatrizeaLortu);
 
-		//matrizea zoriz hartuko dugu eta bidali
-		return matrizeGuztiak.get(new Random().nextInt(matrizeGuztiak.size()));
+		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU);
 	}
 	
 	public void ondoDago() {
@@ -181,5 +113,9 @@ public class Sudoku extends Observable{
 		setChanged();
 		notifyObservers(pMota);
 		System.out.println("[MODELOA]: Sudoku-k Bistari aldaketa notifikatu, mota: "+pMota.name());
+	}
+
+	public int getTamaina() {
+		return tamaina;
 	}
 }
