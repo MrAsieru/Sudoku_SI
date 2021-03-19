@@ -18,10 +18,7 @@ import Modeloa.Sudoku;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Observable;
@@ -56,12 +53,13 @@ public class SudokuPanela extends JFrame implements Observer{
 	private JButton btnGarbitu;
 	private JPanel pnlGarbitu;
 	private JPanel pnlGelaxka;
-	
+
 	private int aukX = -1;
 	private int aukY = -1;
 	private int aukI = -1;
 	private int aukJ = -1;
-	
+
+
 
 	/*
 	 * Gelaxkak identifikatzeko erabilitako erak:
@@ -112,6 +110,30 @@ public class SudokuPanela extends JFrame implements Observer{
 		Sudoku.getNireSudoku().addObserver(this);
 		Sudoku.getNireSudoku().eraiki(pZailtasuna);
 		System.out.println("[BISTA]: Aukeratutako zailtasuna: "+pZailtasuna);
+
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent keyEvent) {
+				switch (keyEvent.getKeyCode()){
+					case KeyEvent.VK_LEFT:
+					case KeyEvent.VK_KP_LEFT:
+						//Eskuina
+						break;
+					case KeyEvent.VK_RIGHT:
+					case KeyEvent.VK_KP_RIGHT:
+						//Ezkerra
+						break;
+					case KeyEvent.VK_UP:
+					case KeyEvent.VK_KP_UP:
+						//Gora
+						break;
+					case KeyEvent.VK_DOWN:
+					case KeyEvent.VK_KP_DOWN:
+						//Behera
+						break;
+				}
+			}
+		});
 	}
 	
 	//Logika
@@ -139,6 +161,14 @@ public class SudokuPanela extends JFrame implements Observer{
 			gelaxkaMatrizea[3*aukX+aukI][3*aukY+aukJ].setBorder(new LineBorder(Color.GRAY, 1));
 			System.out.println("[BISTA]: Ertzak garbituta");
 		}		
+	}
+
+	private void aukeratutakoGelaxkaMugitu(int pEr, int pZu){
+		if (aukX != -1 && aukY != -1 && aukI != -1 && aukJ != -1) {
+			//TODO
+		} else {
+			//TODO
+		}
 	}
 	
 	private void aukeratutakoGelaxkaAhaztu() {
@@ -191,6 +221,8 @@ public class SudokuPanela extends JFrame implements Observer{
 			case EMAITZA_TXARTO_DAGO:
 				JOptionPane.showMessageDialog(contentPane, "Sudokua ez dago ondo ebatzita", "Errorea", JOptionPane.ERROR_MESSAGE);
 				break;
+			case EZIN_DA_BALIOA_ALDATU:
+				JOptionPane.showMessageDialog(contentPane, "Aukeratu duzun gelaxka ezin da aldatu", "Errorea", JOptionPane.ERROR_MESSAGE);
 			default:
 				break;
 			}			
@@ -233,7 +265,6 @@ public class SudokuPanela extends JFrame implements Observer{
 		lblGelaxka.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mousePressed(e);
 				ertzakGarbitu();
 				aukX = x;
@@ -241,7 +272,7 @@ public class SudokuPanela extends JFrame implements Observer{
 				aukI = i;
 				aukJ = j;
 				lblGelaxka.setBorder(new LineBorder(Color.RED, 1));
-				System.out.println("[BISTA]: Gelaxka aukeratuta - zu:"+3*x*i+", er:"+3*y*j);
+				System.out.println("[BISTA]: Gelaxka aukeratuta - er:"+(3*x+i)+", zu:"+(3*y+j));
 			}
 		});
 		gelaxkaMatrizea[3*x+i][3*y+j] = lblGelaxka; //Gelaxka matrizean gorde
@@ -341,8 +372,8 @@ public class SudokuPanela extends JFrame implements Observer{
 				public void actionPerformed(ActionEvent e) {
 					try {
 						int balioa = Integer.parseInt(ftfBalioa.getText());
-						eskatuGelaxkaAldatu(balioa);
 						System.out.println("[KONTROLATZAILEA]: ftfBalioa-n enter sakatu, gelaxka aldatzeko eskatu, balioa:"+balioa);
+						eskatuGelaxkaAldatu(balioa);
 					} catch (NumberFormatException nfe) {
 						JOptionPane.showMessageDialog(contentPane, "Mesedez, 1-9 tartean dagoen zenbaki bat sartu");
 					}
@@ -369,8 +400,8 @@ public class SudokuPanela extends JFrame implements Observer{
 				public void actionPerformed(ActionEvent e) {
 					try {
 						int balioa = Integer.parseInt(ftfBalioa.getText());
-						eskatuGelaxkaAldatu(balioa);
 						System.out.println("[KONTROLATZAILEA]: btnAldatu klikatuta, gelaxka aldatzeko eskatu, balioa:"+balioa);
+						eskatuGelaxkaAldatu(balioa);
 					} catch (NumberFormatException nfe) {
 						JOptionPane.showMessageDialog(contentPane, "Mesedez, 1-9 tartean dagoen zenbaki bat sartu");
 					}
@@ -398,8 +429,8 @@ public class SudokuPanela extends JFrame implements Observer{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					eskatuGelaxkaGarbitu();
 					System.out.println("[KONTROLATZAILEA]: btnGarbitu sakatu, gelaxka garbitzeko eskatu");
+					eskatuGelaxkaGarbitu();
 				}
 			});
 		}
@@ -421,8 +452,8 @@ public class SudokuPanela extends JFrame implements Observer{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Sudoku.getNireSudoku().ondoDago();
 					System.out.println("[KONTROLATZAILEA]: btnKonprobatu klikatuta, sudokua konprobatzeko eskatu");
+					Sudoku.getNireSudoku().ondoDago();
 				}
 			});
 		}

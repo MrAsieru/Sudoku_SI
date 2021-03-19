@@ -59,7 +59,9 @@ public class Sudoku extends Observable{
 					for (int i = 0; i < zutabZenb; i++ ) {
 						for (int j = 0; j < ilaraZenb; j++) {
 							int zenbakia = Character.getNumericValue(linea.toCharArray()[j]);
-							Gelaxka gel = new Gelaxka(i, j, zenbakia != 0, zenbakia);
+							Gelaxka gel = GelaxkaFactory.getInstantzia().gelaxkaSortu(
+									(zenbakia != 0)?GelaxkaMotak.HASIERAKOA:GelaxkaMotak.EDITAGARRIA,
+									j, i, zenbakia);
 							this.gelaxkaMat[i][j] = gel;
 						}
 						linea = irakurle.readLine();
@@ -67,14 +69,14 @@ public class Sudoku extends Observable{
 					//Matrize finala sortuko dugu
 					for (int i = 0; i < ilaraZenb; i++) {
 						for (int j = 0; j < zutabZenb; j++) {
-							this.soluzioa[i][j] = linea.toCharArray()[i];
+							this.soluzioa[i][j] = Character.getNumericValue(linea.toCharArray()[j]);
 						}
 						linea = irakurle.readLine();
 					}
 
 					//Sudokua sortu bada Panelari notifikatua izango da
 
-					sudokuAldatuDa();
+					bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU);
 
 				} catch (ArrayIndexOutOfBoundsException a) {
 					System.out.println("txt-ko fitxategia ez dago zuzenki eginda.");
@@ -125,20 +127,33 @@ public class Sudoku extends Observable{
 	}
 	
 	public void ondoDago() {
-		for(int i = 0; i<this.tamaina; i++){
-			for (int j = 0; j<this.tamaina; j++){
-				if(gelaxkaMat[i][j].getBalioa()!=soluzioa[i][j]){
-					this.sudokuTxartoDago();
+		boolean ondo = true;
+		int i = 0;
+		while(i<9 && ondo){
+			int j = 0;
+			while(j<9 && ondo){
+				if(gelaxkaMat[i][j].getBalioa() != soluzioa[i][j]){
+					ondo = false;
 				}
+				j++;
 			}
+			i++;
 		}
-		this.sudokuZuzenDago();
+
+		if (ondo) {
+			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_ONDO_DAGO);
+		} else {
+			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
+		}
 	}
 	
 	public void aldatuGelaxka(int z, int e, int pBalioa) {
-		//Onartzen bada, GUI abisatu
-		if (this.gelaxkaMat[z][e].setZenbakia(pBalioa)){
-			sudokuAldatuDa();
+		try{
+			this.gelaxkaMat[z][e].setZenbakia(pBalioa);
+			//Onartzen bada
+			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU);
+		} catch (GelaxkaEditagarriezinaException gee){
+			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
 		}
 	}
 	
@@ -153,35 +168,18 @@ public class Sudoku extends Observable{
 	}
 	
 	public boolean[][] getHasierakoBalioMaskara(){
-		//TODO
-		boolean[][] matrizea = new boolean[this.tamaina][this.tamaina];
-		int i=0;
-		while (i<9){
-		    int j=0;
-			while (j<9){
-				if (this.gelaxkaMat[i][j].hasBalio()){
-					matrizea[i][j]=true;
-				}
-			j++;
+		boolean[][] emaitza = new boolean[this.tamaina][this.tamaina];
+		for (int i = 0; i < 9; i++){
+			for (int j = 0; j < 9; j++){
+				emaitza[i][j] = this.gelaxkaMat[i][j] instanceof GelaxkaHasierakoa;
 			}
-		i++;
 		}
-		return matrizea;
+		return emaitza;
 	}
 
-	private void sudokuAldatuDa(){
+	private void bistaNotifikatu(NotifikazioMotak pMota){
 		setChanged();
-		notifyObservers(NotifikazioMotak.TAULA_EGUNERATU);
-		System.out.println("[MODELOA]: Sudoku-k Bistari aldaketa notifikatu");
-	}
-
-	private void sudokuZuzenDago(){
-		setChanged();
-		notifyObservers(NotifikazioMotak.EMAITZA_ONDO_DAGO);
-	}
-
-	private void sudokuTxartoDago(){
-		setChanged();
-		notifyObservers(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
+		notifyObservers(pMota);
+		System.out.println("[MODELOA]: Sudoku-k Bistari aldaketa notifikatu, mota: "+pMota.name());
 	}
 }
