@@ -54,10 +54,8 @@ public class SudokuPanela extends JFrame implements Observer{
 	private JPanel pnlGarbitu;
 	private JPanel pnlGelaxka;
 
-	private int aukX = -1;
-	private int aukY = -1;
-	private int aukI = -1;
-	private int aukJ = -1;
+	private int aukZ = -1;
+	private int aukE = -1;
 
 
 
@@ -114,24 +112,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent keyEvent) {
-				switch (keyEvent.getKeyCode()){
-					case KeyEvent.VK_LEFT:
-					case KeyEvent.VK_KP_LEFT:
-						//Eskuina
-						break;
-					case KeyEvent.VK_RIGHT:
-					case KeyEvent.VK_KP_RIGHT:
-						//Ezkerra
-						break;
-					case KeyEvent.VK_UP:
-					case KeyEvent.VK_KP_UP:
-						//Gora
-						break;
-					case KeyEvent.VK_DOWN:
-					case KeyEvent.VK_KP_DOWN:
-						//Behera
-						break;
-				}
+				aukeratutakoGelaxkaMugituTeklatuarekin(keyEvent);
 			}
 		});
 	}
@@ -157,23 +138,55 @@ public class SudokuPanela extends JFrame implements Observer{
 	}
 	
 	private void ertzakGarbitu() {
-		if (aukX != -1 && aukY != -1 && aukI != -1 && aukJ != -1) {
-			gelaxkaMatrizea[3*aukX+aukI][3*aukY+aukJ].setBorder(new LineBorder(Color.GRAY, 1));
+		if (aukZ != -1 && aukE != -1){
+			gelaxkaMatrizea[aukE][aukZ].setBorder(new LineBorder(Color.GRAY, 1));
 			System.out.println("[BISTA]: Ertzak garbituta");
 		}		
 	}
 
-	private void aukeratutakoGelaxkaMugitu(int pEr, int pZu){
-		if (aukX != -1 && aukY != -1 && aukI != -1 && aukJ != -1) {
-			//TODO
+	private void aukeratutakoGelaxkaMugituTeklatuarekin(KeyEvent keyEvent){
+		System.out.println(keyEvent.getKeyCode());
+		if (aukZ == -1 && aukE == -1) {
+			aukeratutakoGelaxkaAldatu(0,0);
 		} else {
-			//TODO
+			switch (keyEvent.getKeyCode()){
+				case KeyEvent.VK_LEFT:
+				case KeyEvent.VK_KP_LEFT:
+					aukeratutakoGelaxkaAldatu(aukE,aukZ-1);
+					System.out.println("[BISTA]: Teklatuan eskuinako gezia pultsatuta");
+					break;
+				case KeyEvent.VK_RIGHT:
+				case KeyEvent.VK_KP_RIGHT:
+					aukeratutakoGelaxkaAldatu(aukE,aukZ+1);
+					System.out.println("[BISTA]: Teklatuan ezkerreko gezia pultsatuta");
+					break;
+				case KeyEvent.VK_UP:
+				case KeyEvent.VK_KP_UP:
+					aukeratutakoGelaxkaAldatu(aukE-1,aukZ);
+					System.out.println("[BISTA]: Teklatuan goiko gezia pultsatuta");
+					break;
+				case KeyEvent.VK_DOWN:
+				case KeyEvent.VK_KP_DOWN:
+					aukeratutakoGelaxkaAldatu(aukE+1,aukZ);
+					System.out.println("[BISTA]: Teklatuan beheko gezia pultsatuta");
+					break;
+			}
+		}
+	}
+
+	private void aukeratutakoGelaxkaAldatu(int pEr, int pZu){
+		if (0 <= pEr && pEr <= 8 && 0 <= pZu && pZu <= 8){
+			ertzakGarbitu();
+			aukZ = pZu;
+			aukE = pEr;
+			gelaxkaMatrizea[aukE][aukZ].setBorder(new LineBorder(Color.RED, 1));
+			System.out.println("[BISTA]: Gelaxka aukeratuta - er:"+aukE+", zu:"+aukZ);
 		}
 	}
 	
 	private void aukeratutakoGelaxkaAhaztu() {
 		ertzakGarbitu();
-		aukX = -1; aukY = -1; aukI = -1; aukJ = -1;
+		aukZ = -1; aukE = -1;
 		System.out.println("[BISTA]: Aukeratutako gelaxka ahaztuta");
 	}
 	
@@ -193,8 +206,8 @@ public class SudokuPanela extends JFrame implements Observer{
 	}
 	//Sudoku-n aldatu
 	private void eskatuGelaxkaAldatu(int pBalioa) {
-		if (aukX != -1 && aukY != -1 && aukI != -1 && aukJ != -1) {
-			eskatuGelaxkaAldatu(3*aukX+aukI, 3*aukY+aukJ, pBalioa);
+		if (aukZ != -1 && aukE != -1){
+			eskatuGelaxkaAldatu(aukE, aukZ, pBalioa);
 		} else {
 			JOptionPane.showMessageDialog(contentPane, "Balio bat aldatzeko gelaxka bat aukeratu", "Zorionak!", JOptionPane.PLAIN_MESSAGE);
 		}
@@ -204,7 +217,6 @@ public class SudokuPanela extends JFrame implements Observer{
 		Sudoku.getNireSudoku().aldatuGelaxka(pEr, pZu, pBalioa);
 		ftfBalioa.setText("");
 		ftfBalioa.requestFocus();
-		aukeratutakoGelaxkaAhaztu();
 	}
 	
 	@Override
@@ -266,13 +278,7 @@ public class SudokuPanela extends JFrame implements Observer{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				super.mousePressed(e);
-				ertzakGarbitu();
-				aukX = x;
-				aukY = y;
-				aukI = i;
-				aukJ = j;
-				lblGelaxka.setBorder(new LineBorder(Color.RED, 1));
-				System.out.println("[BISTA]: Gelaxka aukeratuta - er:"+(3*x+i)+", zu:"+(3*y+j));
+				aukeratutakoGelaxkaAldatu(3*x+i, 3*y+j);
 			}
 		});
 		gelaxkaMatrizea[3*x+i][3*y+j] = lblGelaxka; //Gelaxka matrizean gorde
@@ -377,6 +383,12 @@ public class SudokuPanela extends JFrame implements Observer{
 					} catch (NumberFormatException nfe) {
 						JOptionPane.showMessageDialog(contentPane, "Mesedez, 1-9 tartean dagoen zenbaki bat sartu");
 					}
+				}
+			});
+			ftfBalioa.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyPressed(KeyEvent keyEvent) {
+					aukeratutakoGelaxkaMugituTeklatuarekin(keyEvent);
 				}
 			});
 		}

@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="028336b0-c475-41a2-9c2d-aff6c34f7ee2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarriezinaException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Modeloa/GelaxkaFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Modeloa/GelaxkaHasierakoa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Modeloa/GelaxkaMotak.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/sudoku.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/sudoku.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Bista/SudokuPanela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bista/SudokuPanela.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Gelaxka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Gelaxka.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/NotifikazioMotak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/NotifikazioMotak.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +20,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1po6OUWzNhmw3SODMTFMP2U6zgL" />
   <component name="ProjectLevelVcsManager">
@@ -63,17 +63,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.SudokuPanela" />
@@ -93,7 +82,8 @@
       <workItem from="1615968347668" duration="156000" />
       <workItem from="1615968510047" duration="1836000" />
       <workItem from="1615978280182" duration="582000" />
-      <workItem from="1616159262238" duration="5124000" />
+      <workItem from="1616159262238" duration="5422000" />
+      <workItem from="1616184181395" duration="3392000" />
     </task>
     <task id="LOCAL-00001" summary="Aldaketa txikiak">
       <created>1615839838813</created>
@@ -116,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615978841015</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Hainbat aldaketa&#10;&#10;-Simple Factory patroia erabili&#10;-Gelaxkak tekatuaren bidez aukeratzeko prestatu (amaitu barik)&#10;-Gelaxkaren balioa ezin dela aldatu mezua gehitu&#10;-Sudoku-ko hainbat metodo egokitu eta hobetu">
+      <created>1616164672903</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1616164672903</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +122,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Aldaketa txikiak" />
     <MESSAGE value="Bista observer-a gehitu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bista observer-a gehitu" />
+    <MESSAGE value="Hainbat aldaketa&#10;&#10;-Simple Factory patroia erabili&#10;-Gelaxkak tekatuaren bidez aukeratzeko prestatu (amaitu barik)&#10;-Gelaxkaren balioa ezin dela aldatu mezua gehitu&#10;-Sudoku-ko hainbat metodo egokitu eta hobetu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hainbat aldaketa&#10;&#10;-Simple Factory patroia erabili&#10;-Gelaxkak tekatuaren bidez aukeratzeko prestatu (amaitu barik)&#10;-Gelaxkaren balioa ezin dela aldatu mezua gehitu&#10;-Sudoku-ko hainbat metodo egokitu eta hobetu" />
   </component>
 </project>
