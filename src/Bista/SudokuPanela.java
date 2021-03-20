@@ -36,12 +36,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
-@SuppressWarnings("serial")
 public class SudokuPanela extends JFrame implements Observer{
 
-	private JPanel contentPane;
+	private final JPanel contentPane;
 	private JPanel pnlTaula;
-	private JLabel[][] gelaxkaMatrizea;
+	private final JLabel[][] gelaxkaMatrizea;
 	private JPanel pnlAukerak;
 	private JPanel pnlBalioa;
 	private JLabel lblBalioa;
@@ -61,8 +60,9 @@ public class SudokuPanela extends JFrame implements Observer{
 
 	/*
 	 * Gelaxkak identifikatzeko erabilitako erak:
-	 * (i,j) eta (x,y): erlatiboa
-	 * 		i eta j blokea adierazten dute, x eta y blokearen barruko kokapena
+	 * (x,y) eta (i,j): erlatiboa
+	 * 		x eta y blokea adierazten dute, i eta j blokearen barruko kokapena
+	 * 		x eta i errenkada adierazten dute, y eta j zutabea
 	 * 
 	 * (zu, er): absolutua
 	 * 		zuzenki gelaxkaren kokapena adierazten du
@@ -76,7 +76,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SudokuPanela frame = new SudokuPanela(new Random().nextInt(3)+1);
+					SudokuPanela frame = new SudokuPanela(new Random().nextInt(3)+1); //Ausaz zailtasun bat aueratu
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -102,13 +102,16 @@ public class SudokuPanela extends JFrame implements Observer{
 		setLocationRelativeTo(null);
 		contentPane.add(getPnlTaula(), BorderLayout.CENTER);
 		contentPane.add(getPnlAukerak(), BorderLayout.EAST);
-		
+
+		//GUI taula sortu
 		sortuTaula();
-		
+
+		//Sudoku sortu eta eraiki
 		Sudoku.getNireSudoku().addObserver(this);
 		Sudoku.getNireSudoku().eraiki(pZailtasuna);
 		System.out.println("[BISTA]: Aukeratutako zailtasuna: "+pZailtasuna);
 
+		//Teklatuko geziak erabiltzeko
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent keyEvent) {
@@ -139,38 +142,33 @@ public class SudokuPanela extends JFrame implements Observer{
 	
 	private void ertzakGarbitu() {
 		if (aukZ != -1 && aukE != -1){
-			gelaxkaMatrizea[aukE][aukZ].setBorder(new LineBorder(Color.GRAY, 1));
+			gelaxkaMatrizea[aukE][aukZ].setBorder(new LineBorder(Color.GRAY, 1)); //Defektuzko bordea jarri
 			System.out.println("[BISTA]: Ertzak garbituta");
 		}		
 	}
 
 	private void aukeratutakoGelaxkaMugituTeklatuarekin(KeyEvent keyEvent){
-		System.out.println(keyEvent.getKeyCode());
-		if (aukZ == -1 && aukE == -1) {
-			aukeratutakoGelaxkaAldatu(0,0);
-		} else {
-			switch (keyEvent.getKeyCode()){
-				case KeyEvent.VK_LEFT:
-				case KeyEvent.VK_KP_LEFT:
-					aukeratutakoGelaxkaAldatu(aukE,aukZ-1);
-					System.out.println("[BISTA]: Teklatuan eskuinako gezia pultsatuta");
-					break;
-				case KeyEvent.VK_RIGHT:
-				case KeyEvent.VK_KP_RIGHT:
-					aukeratutakoGelaxkaAldatu(aukE,aukZ+1);
-					System.out.println("[BISTA]: Teklatuan ezkerreko gezia pultsatuta");
-					break;
-				case KeyEvent.VK_UP:
-				case KeyEvent.VK_KP_UP:
-					aukeratutakoGelaxkaAldatu(aukE-1,aukZ);
-					System.out.println("[BISTA]: Teklatuan goiko gezia pultsatuta");
-					break;
-				case KeyEvent.VK_DOWN:
-				case KeyEvent.VK_KP_DOWN:
-					aukeratutakoGelaxkaAldatu(aukE+1,aukZ);
-					System.out.println("[BISTA]: Teklatuan beheko gezia pultsatuta");
-					break;
-			}
+		switch (keyEvent.getKeyCode()){
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_KP_LEFT:
+				aukeratutakoGelaxkaAldatu(aukE,aukZ-1);
+				System.out.println("[BISTA]: Teklatuan eskuinako gezia pultsatuta");
+				break;
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_KP_RIGHT:
+				aukeratutakoGelaxkaAldatu(aukE,aukZ+1);
+				System.out.println("[BISTA]: Teklatuan ezkerreko gezia pultsatuta");
+				break;
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_KP_UP:
+				aukeratutakoGelaxkaAldatu(aukE-1,aukZ);
+				System.out.println("[BISTA]: Teklatuan goiko gezia pultsatuta");
+				break;
+			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_KP_DOWN:
+				aukeratutakoGelaxkaAldatu(aukE+1,aukZ);
+				System.out.println("[BISTA]: Teklatuan beheko gezia pultsatuta");
+				break;
 		}
 	}
 
@@ -181,13 +179,9 @@ public class SudokuPanela extends JFrame implements Observer{
 			aukE = pEr;
 			gelaxkaMatrizea[aukE][aukZ].setBorder(new LineBorder(Color.RED, 1));
 			System.out.println("[BISTA]: Gelaxka aukeratuta - er:"+aukE+", zu:"+aukZ);
+		} else {
+			aukeratutakoGelaxkaAldatu(0,0);
 		}
-	}
-	
-	private void aukeratutakoGelaxkaAhaztu() {
-		ertzakGarbitu();
-		aukZ = -1; aukE = -1;
-		System.out.println("[BISTA]: Aukeratutako gelaxka ahaztuta");
 	}
 	
 	//GUI gelaxka aldatu
@@ -209,7 +203,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		if (aukZ != -1 && aukE != -1){
 			eskatuGelaxkaAldatu(aukE, aukZ, pBalioa);
 		} else {
-			JOptionPane.showMessageDialog(contentPane, "Balio bat aldatzeko gelaxka bat aukeratu", "Zorionak!", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(contentPane, "Balio bat aldatzeko gelaxka bat aukeratu", "Errorea", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	//Sudoku-n aldatu
@@ -235,6 +229,11 @@ public class SudokuPanela extends JFrame implements Observer{
 				break;
 			case EZIN_DA_BALIOA_ALDATU:
 				JOptionPane.showMessageDialog(contentPane, "Aukeratu duzun gelaxka ezin da aldatu", "Errorea", JOptionPane.ERROR_MESSAGE);
+				break;
+			case EZIN_IZAN_DA_SUDOKUA_SORTU:
+				JOptionPane.showMessageDialog(contentPane, "Ezin da sudokua sortu", "Errorea", JOptionPane.ERROR_MESSAGE);
+				System.exit(0);
+				break;
 			default:
 				break;
 			}			
@@ -251,6 +250,50 @@ public class SudokuPanela extends JFrame implements Observer{
 					lblGelaxka.setFont(lblGelaxka.getFont().deriveFont(lblGelaxka.getFont().getStyle() & ~Font.BOLD)); //Normal jarri
 				}
 				taulaBalioaAldatu(er, zu, pBal[er][zu]);
+
+				lblGelaxka.setForeground(Color.WHITE);
+				switch(pBal[er][zu]){
+					case 0:
+						lblGelaxka.setBackground(Color.decode("#FFFFFF"));
+						lblGelaxka.setForeground(Color.BLACK);
+						break;
+					case 1:
+						lblGelaxka.setBackground(Color.decode("#303F9F"));
+						lblGelaxka.setForeground(Color.WHITE);
+						break;
+					case 2:
+						lblGelaxka.setBackground(Color.decode("#D32F2F"));
+						lblGelaxka.setForeground(Color.WHITE);
+						break;
+					case 3:
+						lblGelaxka.setBackground(Color.decode("#4CAF50"));
+						lblGelaxka.setForeground(Color.BLACK);
+						break;
+					case 4:
+						lblGelaxka.setBackground(Color.decode("#7B1FA2"));
+						lblGelaxka.setForeground(Color.WHITE);
+						break;
+					case 5:
+						lblGelaxka.setBackground(Color.decode("#7C4DFF"));
+						lblGelaxka.setForeground(Color.WHITE);
+						break;
+					case 6:
+						lblGelaxka.setBackground(Color.decode("#1976D2"));
+						lblGelaxka.setForeground(Color.WHITE);
+						break;
+					case 7:
+						lblGelaxka.setBackground(Color.decode("#CDDC39"));
+						lblGelaxka.setForeground(Color.BLACK);
+						break;
+					case 8:
+						lblGelaxka.setBackground(Color.decode("#E64A19"));
+						lblGelaxka.setForeground(Color.WHITE);
+						break;
+					case 9:
+						lblGelaxka.setBackground(Color.decode("#795548"));
+						lblGelaxka.setForeground(Color.WHITE);
+						break;
+				}
 			}
 		}
 		System.out.println("[BISTA]: Taula eguneratuta");
@@ -274,11 +317,13 @@ public class SudokuPanela extends JFrame implements Observer{
 	private JLabel getLblGelaxka_xy_ij(int x, int y, int i, int j) {
 		JLabel lblGelaxka = new JLabel(" ");
 		lblGelaxka.setBorder(new LineBorder(Color.GRAY, 1));
+		lblGelaxka.setOpaque(true);
 		lblGelaxka.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				super.mousePressed(e);
 				aukeratutakoGelaxkaAldatu(3*x+i, 3*y+j);
+				getFtfBalioa().requestFocus();
 			}
 		});
 		gelaxkaMatrizea[3*x+i][3*y+j] = lblGelaxka; //Gelaxka matrizean gorde
