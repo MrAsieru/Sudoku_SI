@@ -65,7 +65,7 @@ public class Irakurlea {
      */
 
     public int getZailtazunLerroa(int zailtazuna){
-        ArrayList<Integer> lerroak = this.getZailtazLerroak(zailtazuna);
+        ArrayList<Integer> lerroak = this.getZailtazunLerroak(zailtazuna);
         return lerroak.get(new Random().nextInt(lerroak.size()));
     }
 
@@ -75,7 +75,7 @@ public class Irakurlea {
      * bat haurkitzen badu gorde egingo du ArrayList batean, gero hau bidaltzeko.
      */
 
-    private ArrayList<Integer> getZailtazLerroak(int zailtasuna){
+    private ArrayList<Integer> getZailtazunLerroak(int zailtasuna){
         ArrayList<Integer> lerroak = new ArrayList<>();
         int lineCount = 0;
         try{

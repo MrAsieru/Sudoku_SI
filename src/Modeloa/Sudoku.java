@@ -1,9 +1,6 @@
 package Modeloa;
 
-import java.io.*;
-import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Random;
 
 
 public class Sudoku extends Observable{
@@ -11,7 +8,6 @@ public class Sudoku extends Observable{
 	private int tamaina = 9; //9x9 bada 9, 25x25 bada 25
 	private int[][] soluzioa;
 	private int zailtasuna = -1;
-	private String txtFitxategiaPath = "res/sudoku.txt";
 	private static Sudoku nireSudoku;
 	
 	private Sudoku() {

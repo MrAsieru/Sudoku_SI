@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="028336b0-c475-41a2-9c2d-aff6c34f7ee2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bista/SudokuPanela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bista/SudokuPanela.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modeloa/Irakurlea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Irakurlea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +32,7 @@
   </component>
   <component name="ProjectId" id="1po6OUWzNhmw3SODMTFMP2U6zgL" />
   <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -84,6 +86,9 @@
       <workItem from="1615978280182" duration="582000" />
       <workItem from="1616159262238" duration="5422000" />
       <workItem from="1616184181395" duration="3392000" />
+      <workItem from="1616332247814" duration="708000" />
+      <workItem from="1617188492076" duration="214000" />
+      <workItem from="1617450292796" duration="7375000" />
     </task>
     <task id="LOCAL-00001" summary="Aldaketa txikiak">
       <created>1615839838813</created>
@@ -113,16 +118,44 @@
       <option name="project" value="LOCAL" />
       <updated>1616164672903</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat: klase berria sortu, Irakurlea&#10;honen bidez Sudoku klaseari txt fitxategiak irakurtzeko erresponsabilitatea kentzen zaio eta Irakurlea-ri ematen zaio">
+      <created>1616193872897</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1616193872897</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Aldaketa txikiak" />
     <MESSAGE value="Bista observer-a gehitu" />
     <MESSAGE value="Hainbat aldaketa&#10;&#10;-Simple Factory patroia erabili&#10;-Gelaxkak tekatuaren bidez aukeratzeko prestatu (amaitu barik)&#10;-Gelaxkaren balioa ezin dela aldatu mezua gehitu&#10;-Sudoku-ko hainbat metodo egokitu eta hobetu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hainbat aldaketa&#10;&#10;-Simple Factory patroia erabili&#10;-Gelaxkak tekatuaren bidez aukeratzeko prestatu (amaitu barik)&#10;-Gelaxkaren balioa ezin dela aldatu mezua gehitu&#10;-Sudoku-ko hainbat metodo egokitu eta hobetu" />
+    <MESSAGE value="feat: klase berria sortu, Irakurlea&#10;honen bidez Sudoku klaseari txt fitxategiak irakurtzeko erresponsabilitatea kentzen zaio eta Irakurlea-ri ematen zaio" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: klase berria sortu, Irakurlea&#10;honen bidez Sudoku klaseari txt fitxategiak irakurtzeko erresponsabilitatea kentzen zaio eta Irakurlea-ri ematen zaio" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Modeloa.GelaxkaEditagarria" memberName="zenbakia" />
+        <PinnedItemInfo parentTag="Modeloa.GelaxkaHasierakoa" memberName="zenbakia" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
