@@ -14,7 +14,7 @@ public abstract class Gelaxka {
 	}
 	
 	public void setZenbakia(int pZenbakia) throws GelaxkaEditagarriezinaException {
-		if (1 <= pZenbakia && pZenbakia <= 9){
+		if (0 <= pZenbakia && pZenbakia <= 9){
 			this.zenbakia = pZenbakia;
 		}
 	}
