@@ -1,5 +1,6 @@
 package Modeloa;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 
@@ -73,6 +74,50 @@ public class Sudoku extends Observable{
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
 		}
+	}
+
+	public void hautagaiakKalkulatu(int pZutabea, int pErrenkada){
+		boolean[] haukerak = new boolean[this.tamaina];
+		//Zutabeko zenbakiak deskartatu
+		for (int i = 0; i<this.tamaina; i++){
+			if(gelaxkaMat[pZutabea][i].getBalioa()!=0){
+				haukerak[gelaxkaMat[pZutabea][i].getBalioa()-1] = false;
+			}
+		}
+		//Errenkadeko zenbakiak deskartatu
+		for (int i = 0; i<this.tamaina; i++){
+			if(gelaxkaMat[i][pErrenkada].getBalioa()!=0){
+				haukerak[gelaxkaMat[pZutabea][i].getBalioa()-1] = false;
+			}
+		}
+		//Kuadranteko zenbakiak deskartatu
+		ArrayList<Integer> kBalioak = getKuadranteBalioak(pZutabea, pErrenkada);
+		for (Integer balioa : kBalioak) {
+			haukerak[balioa - 1] = false;
+		}
+	}
+
+	private int getKuadranteaZenbakia(int pZutabea, int pErrenkada){
+		int kZerrenda = pErrenkada/this.tamaina;
+		int kZutabea = pZutabea/this.tamaina;
+
+		return kZerrenda*kZutabea;
+	}
+
+	private ArrayList<Integer> getKuadranteBalioak(int pZutabea, int pErrenkada){
+		int pKuadrantea = getKuadranteaZenbakia(pZutabea, pErrenkada);
+		//TODO generalizarlo para todo tipo de sudokus, demomento solo para 9x9. No prioritario
+		ArrayList<Integer> gelaxkak = new ArrayList<>();
+		int hasierakoGelaxkaZutabea = pKuadrantea/this.tamaina * this.tamaina;
+		int hasierakoGelaxkaErrenkada = pKuadrantea%this.tamaina/this.tamaina * this.tamaina;
+		for (int i = hasierakoGelaxkaZutabea; i<3; i++){
+			for (int j = hasierakoGelaxkaErrenkada; j<3; j++){
+				if(this.gelaxkaMat[i][j]!=null){
+					gelaxkak.add(this.gelaxkaMat[i][j].getBalioa());
+				}
+			}
+		}
+		return gelaxkak;
 	}
 	
 	public void aldatuGelaxka(int z, int e, int pBalioa) {
