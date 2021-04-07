@@ -76,7 +76,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SudokuPanela frame = new SudokuPanela(new Random().nextInt(3)+1); //Ausaz zailtasun bat aueratu
+					SudokuPanela frame = new SudokuPanela("main", new Random().nextInt(3)+1); //Ausaz zailtasun bat aueratu
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -88,7 +88,7 @@ public class SudokuPanela extends JFrame implements Observer{
 	/**
 	 * Create the frame.
 	 */
-	public SudokuPanela(int pZailtasuna) {
+	public SudokuPanela(String pIzena, int pZailtasuna) {
 		gelaxkaMatrizea = new JLabel[9][9];
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,6 +102,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		setLocationRelativeTo(null);
 		contentPane.add(getPnlTaula(), BorderLayout.CENTER);
 		contentPane.add(getPnlAukerak(), BorderLayout.EAST);
+		this.setVisible(true);
 
 		//GUI taula sortu
 		sortuTaula();
