@@ -6,7 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="028336b0-c475-41a2-9c2d-aff6c34f7ee2" name="Default Changelist" comment="Hobekuntzak eta koloreen implementazioa" />
+    <list default="true" id="028336b0-c475-41a2-9c2d-aff6c34f7ee2" name="Default Changelist" comment="Hobekuntzak eta koloreen implementazioa">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diagramak/Sudoku.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/Diagramak/Sudoku.vpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,6 +74,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.SudokuPanela" />
@@ -94,6 +109,8 @@
       <workItem from="1616332247814" duration="708000" />
       <workItem from="1617188492076" duration="214000" />
       <workItem from="1617450292796" duration="7375000" />
+      <workItem from="1617728181421" duration="642000" />
+      <workItem from="1617786505574" duration="4268000" />
     </task>
     <task id="LOCAL-00001" summary="Aldaketa txikiak">
       <created>1615839838813</created>
@@ -137,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617470184456</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Gelaxka baten balioak ezabatzeko zuzenketa">
+      <created>1617728216414</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617728216414</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +172,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/1.Sprint" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -161,7 +197,8 @@
     <MESSAGE value="Hainbat aldaketa&#10;&#10;-Simple Factory patroia erabili&#10;-Gelaxkak tekatuaren bidez aukeratzeko prestatu (amaitu barik)&#10;-Gelaxkaren balioa ezin dela aldatu mezua gehitu&#10;-Sudoku-ko hainbat metodo egokitu eta hobetu" />
     <MESSAGE value="feat: klase berria sortu, Irakurlea&#10;honen bidez Sudoku klaseari txt fitxategiak irakurtzeko erresponsabilitatea kentzen zaio eta Irakurlea-ri ematen zaio" />
     <MESSAGE value="Diagrama zuzendu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Diagrama zuzendu" />
+    <MESSAGE value="Gelaxka baten balioak ezabatzeko zuzenketa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gelaxka baten balioak ezabatzeko zuzenketa" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
