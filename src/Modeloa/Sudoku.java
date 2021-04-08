@@ -122,7 +122,7 @@ public class Sudoku extends Observable{
 		for (int i = 0; i < this.tamaina; i++){
 			for (int j = 0; j < this.tamaina; j++){
 				GelaxkaEgitura gelaxka;
-				if (this.gelaxkaMat[i][j].getBalioa()==0){ //0 balioa badu hasierakoa dela esan nahi du
+				if (this.gelaxkaMat[i][j].getHautagiak()!=null){
 					gelaxka = new GelaxkaEgitura(this.hautagaiakKalkulatu(i, j));
 				}
 				else {

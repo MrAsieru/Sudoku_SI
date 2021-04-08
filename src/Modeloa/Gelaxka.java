@@ -17,14 +17,21 @@ public abstract class Gelaxka {
 	public void setZenbakia(int pZenbakia) throws GelaxkaEditagarriezinaException {
 		if (0 <= pZenbakia && pZenbakia <= 9){
 			this.zenbakia = pZenbakia;
+			this.hautagiak = null;
 		}
+	}
+
+	public int getBalioa(){
+		return this.zenbakia;
 	}
 
 	public void setHautagiak(boolean[] hautagiak) throws GelaxkaEditagarriezinaException {
 		this.hautagiak = hautagiak;
 	}
 
-	public int getBalioa(){
-		return this.zenbakia;
+	public boolean[] getHautagiak(){
+		return this.hautagiak;
 	}
+
+
 }
