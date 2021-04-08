@@ -23,7 +23,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 
-public class Login extends JFrame {
+public class LoginPanela extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel pnlDatuak;
@@ -45,7 +45,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					LoginPanela frame = new LoginPanela();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +57,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public LoginPanela() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 417, 160);
 		setTitle("Sudoku");

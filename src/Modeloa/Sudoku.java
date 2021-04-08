@@ -1,7 +1,10 @@
 package Modeloa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
+
+import Egitura.GelaxkaEgitura;
 
 
 public class Sudoku extends Observable{
@@ -52,7 +55,7 @@ public class Sudoku extends Observable{
 		//Soluzio matrizea sortu
 		this.soluzioa = Irakurlea.getIrakurlea().getSudokuArrayZuzena(sudokuMatrizeaLortu);
 
-		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU);
+		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 	}
 	
 	public void ondoDago() {
@@ -75,8 +78,24 @@ public class Sudoku extends Observable{
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
 		}
 	}
+	
+	public void aldatuGelaxkaBalioa(int e, int z, int pBalioa) {
+		try{
+			this.gelaxkaMat[e][z].setZenbakia(pBalioa);
+			//Onartzen bada
+			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU);
+		} catch (GelaxkaEditagarriezinaException gee){
+			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
+		}
+	}
+	
+	public void aldatuGelaxkaHautagaiak(int e, int z, boolean[] pHautagaiak) {
+		//TODO aldatuGelaxkaBalioa-rekin batu ahal da GelaxkaEgitura erabiliz
+		// Taula aldatzen bada TAULA_EGUNERATU eta beharrezko balioak bidali
+	}
 
-	public void hautagaiakKalkulatu(int pZutabea, int pErrenkada){
+	//TODO es al reves, [errenkada][zutabea], he cambiado el orden de los parametros para usarlo
+	public void hautagaiakKalkulatu(int pErrenkada, int pZutabea){
 		boolean[] haukerak = new boolean[this.tamaina];
 		//Zutabeko zenbakiak deskartatu
 		for (int i = 0; i<this.tamaina; i++){
@@ -97,15 +116,15 @@ public class Sudoku extends Observable{
 		}
 	}
 
-	private int getKuadranteaZenbakia(int pZutabea, int pErrenkada){
+	private int getKuadranteaZenbakia(int pErrenkada, int pZutabea){
 		int kZerrenda = pErrenkada/this.tamaina;
 		int kZutabea = pZutabea/this.tamaina;
 
 		return kZerrenda*kZutabea;
 	}
 
-	private ArrayList<Integer> getKuadranteBalioak(int pZutabea, int pErrenkada){
-		int pKuadrantea = getKuadranteaZenbakia(pZutabea, pErrenkada);
+	private ArrayList<Integer> getKuadranteBalioak(int pErrenkada, int pZutabea){
+		int pKuadrantea = getKuadranteaZenbakia(pErrenkada, pZutabea);
 		//TODO generalizarlo para todo tipo de sudokus, demomento solo para 9x9. No prioritario
 		ArrayList<Integer> gelaxkak = new ArrayList<>();
 		int hasierakoGelaxkaZutabea = pKuadrantea/this.tamaina * this.tamaina;
@@ -120,27 +139,20 @@ public class Sudoku extends Observable{
 		return gelaxkak;
 	}
 	
-	public void aldatuGelaxka(int z, int e, int pBalioa) {
-		try{
-			this.gelaxkaMat[z][e].setZenbakia(pBalioa);
-			//Onartzen bada
-			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU);
-		} catch (GelaxkaEditagarriezinaException gee){
-			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
-		}
-	}
-	
-	public int[][] getGelaxkaBalioak(){
+	private GelaxkaEgitura[][] getGelaxkaBalioak(){
+		// TODO
+		// Balio bakarra bada: new GelaxkaEgitura(pBalioa); non pBalioa : Integer
+		// Hautagaiak baditu: new GelaxkaEgitura(pHautagaiak); non pHautagaiak : int[][]
 		int [][] emaitza = new int[this.tamaina][this.tamaina];
 		for (int i = 0; i < 9; i++){
 			for (int j = 0; j < 9; j++){
 				emaitza[i][j] = this.gelaxkaMat[i][j].getBalioa();
 			}
 		}
-		return emaitza;
+		return null;
 	}
 	
-	public boolean[][] getHasierakoBalioMaskara(){
+	private boolean[][] getHasierakoBalioMaskara(){
 		boolean[][] emaitza = new boolean[this.tamaina][this.tamaina];
 		for (int i = 0; i < 9; i++){
 			for (int j = 0; j < 9; j++){
@@ -150,9 +162,14 @@ public class Sudoku extends Observable{
 		return emaitza;
 	}
 
-	private void bistaNotifikatu(NotifikazioMotak pMota){
+	private void bistaNotifikatu(NotifikazioMotak pMota, Object ... pArg){
+		Object[] argumentuak = new Object[pArg.length + 1];
+		argumentuak[0] = pMota;
+		for (int i = 0; i < pArg.length; i++){
+			argumentuak[i+1] = pArg[i];
+		}
 		setChanged();
-		notifyObservers(pMota);
+		notifyObservers(argumentuak);
 		System.out.println("[MODELOA]: Sudoku-k Bistari aldaketa notifikatu, mota: "+pMota.name());
 	}
 
