@@ -9,7 +9,7 @@ public class GelaxkaEgitura {
 	public GelaxkaEgitura(Object pArg) {
 		if (pArg instanceof Integer) {
 			balioa = (Integer) pArg;
-		} else if (pArg instanceof int[][]) {
+		} else if (pArg instanceof boolean[]) {
 			hautagaiak = (boolean[]) pArg;
 		}
 	}

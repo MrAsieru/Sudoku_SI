@@ -6,10 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="028336b0-c475-41a2-9c2d-aff6c34f7ee2" name="Default Changelist" comment="Login panela sortu eta sudokuak birantolatu (zailtasunaren arabera)">
-      <change afterPath="$PROJECT_DIR$/Sudoku_SI.eml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+    <list default="true" id="028336b0-c475-41a2-9c2d-aff6c34f7ee2" name="Default Changelist" comment="fix: autagaiak lortu 9x9 sudokuetzako bakarrik">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Egitura/GelaxkaEgitura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Egitura/GelaxkaEgitura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modeloa/Gelaxka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Gelaxka.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,6 +51,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -59,6 +61,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
@@ -186,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617806009900</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix: autagaiak lortu 9x9 sudokuetzako bakarrik">
+      <created>1617879357245</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1617879357246</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,9 +235,23 @@
     <MESSAGE value="Gelaxka baten balioak ezabatzeko zuzenketa" />
     <MESSAGE value="Klase diagrama edukitu" />
     <MESSAGE value="Login panela sortu eta sudokuak birantolatu (zailtasunaren arabera)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login panela sortu eta sudokuak birantolatu (zailtasunaren arabera)" />
+    <MESSAGE value="fix: autagaiak lortu 9x9 sudokuetzako bakarrik" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: autagaiak lortu 9x9 sudokuetzako bakarrik" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="21" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Modeloa/Sudoku.java</url>
+          <line>133</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Modeloa.GelaxkaEditagarria" memberName="zenbakia" />

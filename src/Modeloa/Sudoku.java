@@ -28,7 +28,7 @@ public class Sudoku extends Observable{
 
 	public void eraiki(int pZailtasuna){
 		if (this.zailtasuna == -1){
-			this.zailtasuna = pZailtasuna;
+			this.zailtasuna = 1; //TODO aldatu debug bukatzean
 			sudokuSortu();
 		}
 	}
@@ -55,9 +55,11 @@ public class Sudoku extends Observable{
 		//Soluzio matrizea sortu
 		this.soluzioa = Irakurlea.getIrakurlea().getSudokuArrayZuzena(sudokuMatrizeaLortu);
 
+
 		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
+		System.out.println("Finished");
 	}
-	
+
 	public void ondoDago() {
 		boolean ondo = true;
 		int i = 0;
@@ -78,7 +80,70 @@ public class Sudoku extends Observable{
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
 		}
 	}
-	
+
+	//TODO es al reves, [errenkada][zutabea], he cambiado el orden de los parametros para usarlo
+	public boolean[] hautagaiakKalkulatu(int pErrenkada, int pZutabea){
+		boolean[] aukerak = new boolean[this.tamaina];
+		for (int i = 0; i<aukerak.length; i++) {aukerak[i] = true;}
+
+		//Zutabeko zenbakiak deskartatu
+		for (int i = 0; i<this.tamaina; i++){
+			if(gelaxkaMat[pZutabea][i].getBalioa()!=0){
+				aukerak[gelaxkaMat[pZutabea][i].getBalioa()-1] = false;
+			}
+		}
+		//Errenkadeko zenbakiak deskartatu
+		for (int i = 0; i<this.tamaina; i++){
+			if(gelaxkaMat[i][pErrenkada].getBalioa()!=0){
+				aukerak[gelaxkaMat[i][pErrenkada].getBalioa()-1] = false;
+			}
+		}
+		//Kuadranteko zenbakiak deskartatu
+		ArrayList<Integer> kBalioak = getKuadranteBalioak(pErrenkada, pZutabea);
+		for (Integer balioa : kBalioak) {
+			aukerak[balioa-1] = false;
+		}
+		return aukerak;
+	}
+
+
+	/********************************************* Set/Get-errak *********************************************************/
+
+	public int getTamaina() {
+		return tamaina;
+	}
+
+	/**GelaxkaBalioak**/
+	private GelaxkaEgitura[][] getGelaxkaBalioak(){
+		// ToDo
+		// Balio bakarra bada: new GelaxkaEgitura(pBalioa); non pBalioa : Integer
+		// Hautagaiak baditu: new GelaxkaEgitura(pHautagaiak); non pHautagaiak : boolean[]
+		GelaxkaEgitura[][] emaitza = new GelaxkaEgitura[this.tamaina][this.tamaina];
+		for (int i = 0; i < this.tamaina; i++){
+			for (int j = 0; j < this.tamaina; j++){
+				GelaxkaEgitura gelaxka;
+				if (this.gelaxkaMat[i][j].getBalioa()==0){ //0 balioa badu hasierakoa dela esan nahi du
+					gelaxka = new GelaxkaEgitura(this.hautagaiakKalkulatu(i, j));
+				}
+				else {
+					gelaxka = new GelaxkaEgitura(this.gelaxkaMat[i][j].getBalioa());
+				}
+				emaitza[i][j] = gelaxka;
+			}
+		}
+		return emaitza;
+	}
+
+	private boolean[][] getHasierakoBalioMaskara(){
+		boolean[][] emaitza = new boolean[this.tamaina][this.tamaina];
+		for (int i = 0; i < this.tamaina; i++){
+			for (int j = 0; j < this.tamaina; j++){
+				emaitza[i][j] = this.gelaxkaMat[i][j] instanceof GelaxkaHasierakoa;
+			}
+		}
+		return emaitza;
+	}
+
 	public void aldatuGelaxkaBalioa(int e, int z, int pBalioa) {
 		try{
 			this.gelaxkaMat[e][z].setZenbakia(pBalioa);
@@ -88,32 +153,26 @@ public class Sudoku extends Observable{
 			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
 		}
 	}
-	
-	public void aldatuGelaxkaHautagaiak(int e, int z, boolean[] pHautagaiak) {
-		//TODO aldatuGelaxkaBalioa-rekin batu ahal da GelaxkaEgitura erabiliz
-		// Taula aldatzen bada TAULA_EGUNERATU eta beharrezko balioak bidali
-	}
 
-	//TODO es al reves, [errenkada][zutabea], he cambiado el orden de los parametros para usarlo
-	public void hautagaiakKalkulatu(int pErrenkada, int pZutabea){
-		boolean[] haukerak = new boolean[this.tamaina];
-		//Zutabeko zenbakiak deskartatu
-		for (int i = 0; i<this.tamaina; i++){
-			if(gelaxkaMat[pZutabea][i].getBalioa()!=0){
-				haukerak[gelaxkaMat[pZutabea][i].getBalioa()-1] = false;
+
+	/**GelaxkaHautagiak**/
+	/*
+	HARDCODE-ado para 9x9
+	 */
+	private ArrayList<Integer> getKuadranteBalioak(int pErrenkada, int pZutabea){
+		int pKuadrantea = getKuadranteaZenbakia(pErrenkada, pZutabea);
+		//TODO generalizarlo para todo tipo de sudokus, demomento solo para 9x9. No prioritario
+		ArrayList<Integer> gelaxkak = new ArrayList<>();
+		int hasiZutabea = pKuadrantea/3 * 3;
+		int hasiErrenkada = pKuadrantea%3 * 3;//3 * 3;
+		for (int Errenkada = hasiZutabea; Errenkada < hasiZutabea+3; Errenkada++){
+			for (int Zutabea = hasiErrenkada; Zutabea < hasiErrenkada+3; Zutabea++){
+				if(this.gelaxkaMat[Errenkada][Zutabea].getBalioa()!=0){
+					gelaxkak.add(this.gelaxkaMat[Errenkada][Zutabea].getBalioa());
+				}
 			}
 		}
-		//Errenkadeko zenbakiak deskartatu
-		for (int i = 0; i<this.tamaina; i++){
-			if(gelaxkaMat[i][pErrenkada].getBalioa()!=0){
-				haukerak[gelaxkaMat[pZutabea][i].getBalioa()-1] = false;
-			}
-		}
-		//Kuadranteko zenbakiak deskartatu
-		ArrayList<Integer> kBalioak = getKuadranteBalioak(pZutabea, pErrenkada);
-		for (Integer balioa : kBalioak) {
-			haukerak[balioa - 1] = false;
-		}
+		return gelaxkak;
 	}
 
 	/*
@@ -123,47 +182,22 @@ public class Sudoku extends Observable{
 		int kZerrenda = pErrenkada/3;
 		int kZutabea = pZutabea/3;
 
-		return kZerrenda*kZutabea;
+		return kZerrenda+kZutabea*3;
 	}
 
-	private ArrayList<Integer> getKuadranteBalioak(int pErrenkada, int pZutabea){
-		int pKuadrantea = getKuadranteaZenbakia(pErrenkada, pZutabea);
-		//TODO generalizarlo para todo tipo de sudokus, demomento solo para 9x9. No prioritario
-		ArrayList<Integer> gelaxkak = new ArrayList<>();
-		int hasierakoGelaxkaZutabea = pKuadrantea/3 * 3;
-		int hasierakoGelaxkaErrenkada = pKuadrantea%3/3 * 3;
-		for (int i = hasierakoGelaxkaZutabea; i<3; i++){
-			for (int j = hasierakoGelaxkaErrenkada; j<3; j++){
-				if(this.gelaxkaMat[i][j].getBalioa()!=0){
-					gelaxkak.add(this.gelaxkaMat[i][j].getBalioa());
-				}
-			}
+	public void aldatuGelaxkaHautagaiak(int e, int z, boolean[] pHautagaiak) {
+		//TODO aldatuGelaxkaBalioa-rekin batu ahal da GelaxkaEgitura erabiliz
+		// Taula aldatzen bada TAULA_EGUNERATU eta beharrezko balioak bidali
+		try{
+			this.gelaxkaMat[e][z].setHautagiak(pHautagaiak);
+			//Onartzen bada
+			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU);
+		} catch (GelaxkaEditagarriezinaException gee){
+			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
 		}
-		return gelaxkak;
 	}
-	
-	private GelaxkaEgitura[][] getGelaxkaBalioak(){
-		// TODO
-		// Balio bakarra bada: new GelaxkaEgitura(pBalioa); non pBalioa : Integer
-		// Hautagaiak baditu: new GelaxkaEgitura(pHautagaiak); non pHautagaiak : int[][]
-		int [][] emaitza = new int[this.tamaina][this.tamaina];
-		for (int i = 0; i < 9; i++){
-			for (int j = 0; j < 9; j++){
-				emaitza[i][j] = this.gelaxkaMat[i][j].getBalioa();
-			}
-		}
-		return null;
-	}
-	
-	private boolean[][] getHasierakoBalioMaskara(){
-		boolean[][] emaitza = new boolean[this.tamaina][this.tamaina];
-		for (int i = 0; i < 9; i++){
-			for (int j = 0; j < 9; j++){
-				emaitza[i][j] = this.gelaxkaMat[i][j] instanceof GelaxkaHasierakoa;
-			}
-		}
-		return emaitza;
-	}
+
+	/*************************************** Bistarekin komunikatu *******************************************************/
 
 	private void bistaNotifikatu(NotifikazioMotak pMota, Object ... pArg){
 		Object[] argumentuak = new Object[pArg.length + 1];
@@ -174,9 +208,5 @@ public class Sudoku extends Observable{
 		setChanged();
 		notifyObservers(argumentuak);
 		System.out.println("[MODELOA]: Sudoku-k Bistari aldaketa notifikatu, mota: "+pMota.name());
-	}
-
-	public int getTamaina() {
-		return tamaina;
 	}
 }
