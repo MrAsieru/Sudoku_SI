@@ -116,9 +116,12 @@ public class Sudoku extends Observable{
 		}
 	}
 
+	/*
+	HARDCODE-ado para 9x9
+	 */
 	private int getKuadranteaZenbakia(int pErrenkada, int pZutabea){
-		int kZerrenda = pErrenkada/this.tamaina;
-		int kZutabea = pZutabea/this.tamaina;
+		int kZerrenda = pErrenkada/3;
+		int kZutabea = pZutabea/3;
 
 		return kZerrenda*kZutabea;
 	}
@@ -127,11 +130,11 @@ public class Sudoku extends Observable{
 		int pKuadrantea = getKuadranteaZenbakia(pErrenkada, pZutabea);
 		//TODO generalizarlo para todo tipo de sudokus, demomento solo para 9x9. No prioritario
 		ArrayList<Integer> gelaxkak = new ArrayList<>();
-		int hasierakoGelaxkaZutabea = pKuadrantea/this.tamaina * this.tamaina;
-		int hasierakoGelaxkaErrenkada = pKuadrantea%this.tamaina/this.tamaina * this.tamaina;
+		int hasierakoGelaxkaZutabea = pKuadrantea/3 * 3;
+		int hasierakoGelaxkaErrenkada = pKuadrantea%3/3 * 3;
 		for (int i = hasierakoGelaxkaZutabea; i<3; i++){
 			for (int j = hasierakoGelaxkaErrenkada; j<3; j++){
-				if(this.gelaxkaMat[i][j]!=null){
+				if(this.gelaxkaMat[i][j].getBalioa()!=0){
 					gelaxkak.add(this.gelaxkaMat[i][j].getBalioa());
 				}
 			}

@@ -7,10 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="028336b0-c475-41a2-9c2d-aff6c34f7ee2" name="Default Changelist" comment="Login panela sortu eta sudokuak birantolatu (zailtasunaren arabera)">
+      <change afterPath="$PROJECT_DIR$/Sudoku_SI.eml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bista/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bista/LoginPanela.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bista/SudokuPanela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bista/SudokuPanela.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/NotifikazioMotak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/NotifikazioMotak.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,29 +66,16 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Sudoku">
-    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Bista.Login" />
-      <module name="Sudoku_SI" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Bista.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Sudoku" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Modeloa.Sudoku" />
-      <module name="Sudoku_SI" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Modeloa.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -107,23 +93,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Sudoku" />
-        <item itemvalue="Application.Login" />
         <item itemvalue="Application.SudokuPanela" />
       </list>
     </recent_temporary>
