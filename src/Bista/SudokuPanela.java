@@ -102,7 +102,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 449, 346);
-		setTitle("Sudoku");
+		setTitle(String.format("Sudoku: %s jolasten %d. zailtasunarekin", pIzena, pZailtasuna));
 		setIconImage(new ImageIcon("res/icon.png").getImage()); //Icono sudoku by Jeremiah / CC BY
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -209,7 +209,7 @@ public class SudokuPanela extends JFrame implements Observer{
 
 	/**
 	 * Modeloari aukeratuta dagoen gelaxkaren balioa aldatzeko eskatu
-	 * @param pBalioa
+	 * @param pBalioa Balio berria
 	 */
 	private void eskatuBalioaAldatu(int pBalioa) {
 		if (aukE != -1 && aukZ != -1){
@@ -221,9 +221,9 @@ public class SudokuPanela extends JFrame implements Observer{
 
 	/**
 	 * Modeloari pEr eta pZu dagoen gelaxkaren balioa pBalioa izateko eskatu
-	 * @param pEr
-	 * @param pZu
-	 * @param pBalioa
+	 * @param pEr Errenkada
+	 * @param pZu Zutabea
+	 * @param pBalioa Balio berria
 	 */
 	private void eskatuBalioaAldatu(int pEr, int pZu, int pBalioa) {
 		System.out.println(String.format("[BISTA]: er:%d zu:%d gelaxkaren balioa %d izateko eskatuta", pEr, pZu, pBalioa));
@@ -234,8 +234,8 @@ public class SudokuPanela extends JFrame implements Observer{
 
 	/**
 	 * Modeloari pEr eta pZu dagoen gelaxkako existitzen diren hautagaiak eskatu (Kalkulatu barik)
-	 * @param pEr
-	 * @param pZu
+	 * @param pEr Errenkada
+	 * @param pZu Zutabea
 	 */
 	private void eskatuHautagaiakEguneratu(int pEr, int pZu) {
 		System.out.println(String.format("[BISTA]: er:%d zu:%d gelaxkaren hautagaiak eskatuta", pEr, pZu));
@@ -244,7 +244,7 @@ public class SudokuPanela extends JFrame implements Observer{
 
 	/**
 	 * Modeloari aukeratuta dagoen gelaxkako hautagaiak aldatzeko eskatu
-	 * @param pHautagaiak
+	 * @param pHautagaiak Hautagai berriak
 	 */
 	private void eskatuHautagaiakAldatu(boolean[] pHautagaiak) {
 		if (aukE != -1 && aukZ != -1){
@@ -306,9 +306,9 @@ public class SudokuPanela extends JFrame implements Observer{
 					break;
 				case HAUTAGAIAK_EGUNERATU:
 					if (((Object[])arg)[1] instanceof boolean[]){
-						System.out.println("[Bista]: Hautagaiak eguneratu dira");
+						System.out.println("[BISTA]: Hautagaiak eguneratu dira");
 						hautagaiakEguneratu((boolean[]) ((Object[])arg)[1]);
-					} else System.out.println("[Bista]: HAUTAGAIAK_EGUNERATU ez du eskatutakoa jaso");
+					} else System.out.println("[BISTA]: HAUTAGAIAK_EGUNERATU ez du eskatutakoa jaso");
 					break;
 				default:
 					break;
@@ -516,7 +516,15 @@ public class SudokuPanela extends JFrame implements Observer{
 			ftfBalioa.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent keyEvent) {
-					aukeratutakoGelaxkaMugituTeklatuarekin(keyEvent);
+					switch (keyEvent.getKeyCode()){
+						case KeyEvent.VK_DELETE:
+							System.out.println("[KONTROLATZAILEA]: ftfBalioa-n supr sakatu, gelaxka garbitzeko eskatu");
+							eskatuGelaxkaGarbitu();
+							break;
+						default:
+							aukeratutakoGelaxkaMugituTeklatuarekin(keyEvent);
+							break;
+					}
 				}
 			});
 		}
@@ -635,13 +643,6 @@ public class SudokuPanela extends JFrame implements Observer{
 				eskatuHautagaiakAldatu(hautagaiak);
 			}
 		});
-		/*tgbHaut.addItemListener(new ItemListener() {
-			
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-
-			}
-		});*/
 		return tgbHaut;
 	}
 	private JPanel getPnlAukHautagaiak() {
@@ -664,7 +665,7 @@ public class SudokuPanela extends JFrame implements Observer{
 						System.out.println(getBounds());
 						System.out.println("[KONTROLATZAILEA]: hautagaiak kalkulatzen...");
 						eskatuHautagaiakKalkulatu();
-					} else {System.out.println(getBounds());}
+					}
 				}
 			});
 		}
