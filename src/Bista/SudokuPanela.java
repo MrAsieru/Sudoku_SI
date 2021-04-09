@@ -32,7 +32,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.FlowLayout;
-import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -102,7 +101,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		tgbHautagaiak = new JToggleButton[3][3];
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 445, 339);
+		setBounds(100, 100, 449, 346);
 		setTitle("Sudoku");
 		setIconImage(new ImageIcon("res/icon.png").getImage()); //Icono sudoku by Jeremiah / CC BY
 		contentPane = new JPanel();
@@ -200,12 +199,18 @@ public class SudokuPanela extends JFrame implements Observer{
 			aukeratutakoGelaxkaAldatu(0,0);
 		}
 	}
-	
-	//Sudoku-n garbitu
+
+	/**
+	 * Modeloari aukeratuta dagoen gelaxkaren datuak ezabatzeko eskatu
+	 */
 	private void eskatuGelaxkaGarbitu() {
 		eskatuBalioaAldatu(0);
 	}
-	//Sudoku-n aldatu
+
+	/**
+	 * Modeloari aukeratuta dagoen gelaxkaren balioa aldatzeko eskatu
+	 * @param pBalioa
+	 */
 	private void eskatuBalioaAldatu(int pBalioa) {
 		if (aukE != -1 && aukZ != -1){
 			eskatuBalioaAldatu(aukE, aukZ, pBalioa);
@@ -213,19 +218,37 @@ public class SudokuPanela extends JFrame implements Observer{
 			JOptionPane.showMessageDialog(contentPane, "Balio bat aldatzeko gelaxka bat aukeratu", "Errorea", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	//Sudoku-n aldatu
+
+	/**
+	 * Modeloari pEr eta pZu dagoen gelaxkaren balioa pBalioa izateko eskatu
+	 * @param pEr
+	 * @param pZu
+	 * @param pBalioa
+	 */
 	private void eskatuBalioaAldatu(int pEr, int pZu, int pBalioa) {
+		System.out.println(String.format("[BISTA]: er:%d zu:%d gelaxkaren balioa %d izateko eskatuta", pEr, pZu, pBalioa));
 		Sudoku.getNireSudoku().aldatuGelaxkaBalioa(pEr, pZu, pBalioa);
 		ftfBalioa.setText("");
 		ftfBalioa.requestFocus();
 	}
-	
+
+	/**
+	 * Modeloari pEr eta pZu dagoen gelaxkako existitzen diren hautagaiak eskatu (Kalkulatu barik)
+	 * @param pEr
+	 * @param pZu
+	 */
 	private void eskatuHautagaiakEguneratu(int pEr, int pZu) {
-		
+		System.out.println(String.format("[BISTA]: er:%d zu:%d gelaxkaren hautagaiak eskatuta", pEr, pZu));
+		Sudoku.getNireSudoku().gelaxkaHautagaiaLortu(pEr, pZu);
 	}
-	
+
+	/**
+	 * Modeloari aukeratuta dagoen gelaxkako hautagaiak aldatzeko eskatu
+	 * @param pHautagaiak
+	 */
 	private void eskatuHautagaiakAldatu(boolean[] pHautagaiak) {
 		if (aukE != -1 && aukZ != -1){
+			System.out.println(String.format("[BISTA]: er:%d zu:%d gelaxkaren hautagaiak %s izatera eskatu", aukE, aukZ, pHautagaiak));
 			Sudoku.getNireSudoku().aldatuGelaxkaHautagaiak(aukE, aukZ, pHautagaiak);
 		} else {
 			JOptionPane.showMessageDialog(contentPane, "Hautagaiak aldatzeko gelaxka bat aukeratu", "Errorea", JOptionPane.ERROR_MESSAGE);
@@ -236,9 +259,13 @@ public class SudokuPanela extends JFrame implements Observer{
 			}
 		}
 	}
-	
-	private void eskatuHautagaiakLortu() {
+
+	/**
+	 * Modeloari aukeratuta dagoen gelaxkaren hautagaiak KALKULATZEKO eskatu
+	 */
+	private void eskatuHautagaiakKalkulatu() {
 		if (aukE != -1 && aukZ != -1){
+			System.out.println(String.format("[BISTA]: er:%d zu:%d gelaxkaren hautagaiak kalkulatzeko eskatuta", aukE, aukZ));
 			Sudoku.getNireSudoku().hautagaiakKalkulatu(aukE, aukZ);
 		} else {
 			JOptionPane.showMessageDialog(contentPane, "Hautagaiak lortzeko gelaxka bat aukeratu", "Errorea", JOptionPane.ERROR_MESSAGE);
@@ -260,8 +287,7 @@ public class SudokuPanela extends JFrame implements Observer{
 		if (o instanceof Sudoku && arg instanceof Object[] && ((Object[])arg).length > 0 && ((Object[])arg)[0] instanceof NotifikazioMotak) {
 			switch((NotifikazioMotak)((Object[])arg)[0]) {
 				case TAULA_EGUNERATU:
-					if (((Object[])arg)[1] instanceof GelaxkaEgitura[][] && ((Object[])arg)[2] instanceof boolean[]){
-						System.out.println("[Bista]: Taula eguneratu da");
+					if (((Object[])arg).length == 3 && ((Object[])arg)[1] instanceof GelaxkaEgitura[][] && ((Object[])arg)[2] instanceof boolean[][]){
 						taulaEguneratu((GelaxkaEgitura[][]) ((Object[])arg)[1], (boolean[][]) ((Object[])arg)[2]);
 					} else System.out.println("[Bista]: TAULA_EGUNERATU ez du eskatutakoa jaso");
 					break;
@@ -290,23 +316,19 @@ public class SudokuPanela extends JFrame implements Observer{
 		}
 	}
 	//GUI taula aldatu
-	private void taulaEguneratu(GelaxkaEgitura[][] pBal2, boolean[][] pHasMask) {
+	private void taulaEguneratu(GelaxkaEgitura[][] pBal, boolean[][] pHasMask) {
 		for (int er = 0; er < 9; er++) {
 			for (int zu = 0; zu < 9; zu++) {
-				GelaxkaPanela lblGelaxka = gelaxkaMatrizea[er][zu];
-				if (pBal2[er][zu].balioa != null) { //Balioa da
-					if (pHasMask[er][zu]) { //Hasierako balioa da
-						lblGelaxka.setFont(lblGelaxka.getFont().deriveFont(lblGelaxka.getFont().getStyle() | Font.BOLD)); //Beltzan jarri
-					} else {
-						lblGelaxka.setFont(lblGelaxka.getFont().deriveFont(lblGelaxka.getFont().getStyle() & ~Font.BOLD)); //Normal jarri
-					}
-					lblGelaxka.setZenbakia(pBal2[er][zu].balioa);
-					System.out.println("[BISTA]: Gelaxka aldatuta - er:"+er+", zu:"+zu+", balioa:"+pBal2[er][zu].balioa);
-				} else if (pBal2[er][zu].hautagaiak != null) { //Hautagaiak dira
-					lblGelaxka.setHautagaiak(pBal2[er][zu].hautagaiak);
-					System.out.println("[BISTA]: Gelaxka aldatuta - er:"+er+", zu:"+zu+", balioa:"+pBal2[er][zu].hautagaiak);
+				GelaxkaPanela gepGelaxka = gelaxkaMatrizea[er][zu];
+				if (pBal[er][zu].balioa != null) { //Balioa da
+					gepGelaxka.setZenbakia(pBal[er][zu].balioa, pHasMask[er][zu]);
+				} else if (pBal[er][zu].hautagaiak != null) { //Hautagaiak dira
+					gepGelaxka.setHautagaiak(pBal[er][zu].hautagaiak);
 				}
 			}
+		}
+		if (aukE != -1 && aukZ != -1){
+			hautagaiakEguneratu((pBal[aukE][aukZ].hautagaiak != null)?pBal[aukE][aukZ].hautagaiak:new boolean[9]);
 		}
 		System.out.println("[BISTA]: Taula eguneratuta");
 	}
@@ -318,6 +340,7 @@ public class SudokuPanela extends JFrame implements Observer{
 				tgbHautagaiak[i][j].setSelected(pHautagaiak[i*3+j]);
 			}
 		}
+		System.out.println("[BISTA]: Hautagai matrizea eguneratuta");
 	}
 	
 	//GUI elementuak
@@ -640,8 +663,8 @@ public class SudokuPanela extends JFrame implements Observer{
 					if (aukera == 0) {
 						System.out.println(getBounds());
 						System.out.println("[KONTROLATZAILEA]: hautagaiak kalkulatzen...");
-						eskatuHautagaiakLortu();
-					} else {}
+						eskatuHautagaiakKalkulatu();
+					} else {System.out.println(getBounds());}
 				}
 			});
 		}

@@ -10,4 +10,14 @@ public class GelaxkaHasierakoa extends Gelaxka {
 	public void setZenbakia(int pZenbakia) throws GelaxkaEditagarriezinaException {
 		throw new GelaxkaEditagarriezinaException();
 	}
+
+	@Override
+	public void setHautagiak(boolean[] hautagiak) throws GelaxkaEditagarriezinaException {
+		throw new GelaxkaEditagarriezinaException();
+	}
+
+	@Override
+	public boolean[] getHautagiak() {
+		return null;
+	}
 }
