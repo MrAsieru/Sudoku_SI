@@ -140,14 +140,14 @@ public class Sudoku extends Observable{
 
 		//Zutabeko zenbakiak deskartatu
 		for (int i = 0; i<this.tamaina; i++){
-			if(gelaxkaMat[pZutabea][i].getBalioa()!=0){
-				aukerak[gelaxkaMat[pZutabea][i].getBalioa()-1] = false;
+			if(gelaxkaMat[pErrenkada][i].getBalioa()!=0){
+				aukerak[gelaxkaMat[pErrenkada][i].getBalioa()-1] = false;
 			}
 		}
 		//Errenkadeko zenbakiak deskartatu
 		for (int i = 0; i<this.tamaina; i++){
-			if(gelaxkaMat[i][pErrenkada].getBalioa()!=0){
-				aukerak[gelaxkaMat[i][pErrenkada].getBalioa()-1] = false;
+			if(gelaxkaMat[i][pZutabea].getBalioa()!=0){
+				aukerak[gelaxkaMat[i][pZutabea].getBalioa()-1] = false;
 			}
 		}
 		//Kuadranteko zenbakiak deskartatu
