@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sudoku_SI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Sudoku_SI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Gelaxka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Gelaxka.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
@@ -48,5 +45,8 @@
       <updated>1617907367260</updated>
     </task>
     <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Sudoku_SI$SudokuPanela.ic" NAME="SudokuPanela Coverage Results" MODIFIED="1618081936713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -135,27 +135,38 @@ public class Sudoku extends Observable{
 	 * @param pZutabea
 	 */
 	public void hautagaiakKalkulatu(int pErrenkada, int pZutabea){
+		System.out.println("[MODELOA] Huatagaiak kalkulatuko ditugu:");
+		String errenkadaSekuentzia = "\t Errenkada: (";
+		String zutabeSekuentzia = "\t Zutabea: (";
+		String kuadranteSekuentzia = "\t Kuadrantea: (";
+
 		boolean[] aukerak = new boolean[this.tamaina];
 		for (int i = 0; i<aukerak.length; i++) {aukerak[i] = true;}
 
-		//Zutabeko zenbakiak deskartatu
+		//Errenkada zenbakiak deskartatu
 		for (int i = 0; i<this.tamaina; i++){
 			if(gelaxkaMat[pErrenkada][i].getBalioa()!=0){
 				aukerak[gelaxkaMat[pErrenkada][i].getBalioa()-1] = false;
 			}
+			errenkadaSekuentzia += " " + gelaxkaMat[pErrenkada][i].getBalioa();
 		}
-		//Errenkadeko zenbakiak deskartatu
+		//Zutabeko zenbakiak deskartatu
 		for (int i = 0; i<this.tamaina; i++){
 			if(gelaxkaMat[i][pZutabea].getBalioa()!=0){
 				aukerak[gelaxkaMat[i][pZutabea].getBalioa()-1] = false;
 			}
+			zutabeSekuentzia += " " + gelaxkaMat[i][pZutabea].getBalioa();
 		}
 		//Kuadranteko zenbakiak deskartatu
 		ArrayList<Integer> kBalioak = getKuadranteBalioak(pErrenkada, pZutabea);
 		for (Integer balioa : kBalioak) {
 			aukerak[balioa-1] = false;
+			kuadranteSekuentzia += " " + balioa;
 		}
 
+		System.out.println(errenkadaSekuentzia + " )");
+		System.out.println(zutabeSekuentzia + " )");
+		System.out.println(kuadranteSekuentzia + " )");
 		aldatuGelaxkaHautagaiak(pErrenkada, pZutabea, aukerak);
 	}
 
@@ -229,7 +240,7 @@ public class Sudoku extends Observable{
 		int kZerrenda = pErrenkada/3;
 		int kZutabea = pZutabea/3;
 
-		return kZerrenda+kZutabea*3;
+		return kZerrenda*3+kZutabea;
 	}
 
 	/*************************************** Bistarekin komunikatu *******************************************************/
