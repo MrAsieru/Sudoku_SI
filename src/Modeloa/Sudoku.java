@@ -3,61 +3,31 @@ package Modeloa;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Observable;
+import java.util.Observer;
 
 import Egitura.GelaxkaEgitura;
 
 
 public class Sudoku extends Observable{
 	private Gelaxka[][] gelaxkaMat;
-	private int tamaina = 9; //9x9 bada 9, 25x25 bada 25
-	private int[][] soluzioa;
-	private int zailtasuna = -1;
-	private static Sudoku nireSudoku;
+	private final int tamaina = 9; //9x9 bada 9, 25x25 bada 25
 	
-	private Sudoku() {
+	public Sudoku(int[][] pGelaxkak, Observer pObs) {
+		this.addObserver(pObs);
 		this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];
-		this.soluzioa = new int[this.tamaina][this.tamaina];
-	}
-	
-	public static Sudoku getNireSudoku() {
-		if (nireSudoku == null) {
-			nireSudoku = new Sudoku();
-		}
-		return nireSudoku;
-	}
-
-	public void eraiki(int pZailtasuna){
-		if (this.zailtasuna == -1){
-			this.zailtasuna = pZailtasuna;
-			sudokuSortu();
-		}
-	}
-
-	/**
-	 * Metodo honen bidez, zailtasunaren arabera sudokuak matrize bat hartu eta bere balio bezala gordeko ditu.
-	 */
-	private void sudokuSortu() {
-		//Matrizea erabaki egingo dugu hasieratik eta ondoren honen matrizeak hartuko ditugu
-		int sudokuMatrizeaLortu = Irakurlea.getIrakurlea().getZailtazunLerroa(this.zailtasuna);
-		int[][] hasierakoSudokua = Irakurlea.getIrakurlea().getSudokuArrayHasiera(sudokuMatrizeaLortu);
 
 		//Gelaxka matrizea sortu
 		for (int i = 0; i < this.tamaina; i++) {
 			for (int j = 0; j < this.tamaina; j++) {
-				int balioa = hasierakoSudokua[i][j];
+				int balioa = pGelaxkak[i][j];
 				Gelaxka gelaxka = GelaxkaFactory.getInstantzia().gelaxkaSortu(
 						(balioa != 0) ? GelaxkaMotak.HASIERAKOA : GelaxkaMotak.EDITAGARRIA,
 						j, i, balioa);
 				this.gelaxkaMat[i][j] = gelaxka;
 			}
 		}
-
-		//Soluzio matrizea sortu
-		this.soluzioa = Irakurlea.getIrakurlea().getSudokuArrayZuzena(sudokuMatrizeaLortu);
-
-		System.out.println("[MODELOA]: Sudoku taula sortuta");
-		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 	}
+
 
 	/******************************************* Bista erabilitako metodoak *******************************************/
 
@@ -65,20 +35,17 @@ public class Sudoku extends Observable{
 	 * Bista sudokua ondo ebatzita badagoen jakiteko
 	 */
 	public void ondoDago() {
-		boolean ondo = true;
-		int i = 0;
-		while(i<9 && ondo){
-			int j = 0;
-			while(j<9 && ondo){
-				if(gelaxkaMat[i][j].getBalioa() != soluzioa[i][j]){
-					ondo = false;
-				}
-				j++;
+		int[][] balioak = new int[this.tamaina][this.tamaina];
+
+		//Balioen matrizea lortu
+		for (int i = 0; i < this.tamaina; i++){
+			for (int j = 0; j < this.tamaina; j++) {
+				balioak[i][j] = gelaxkaMat[i][j].getBalioa();
 			}
-			i++;
 		}
 
-		if (ondo) {
+		//Partidari balioak bidali
+		if (Partida.getPartida().ondoDago(balioak)) {
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_ONDO_DAGO);
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_TXARTO_DAGO);

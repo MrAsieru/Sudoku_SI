@@ -26,6 +26,7 @@ public abstract class Gelaxka {
 	}
 
 	public void setHautagiak(boolean[] hautagiak) throws GelaxkaEditagarriezinaException {
+		this.zenbakia = 0;
 		this.hautagiak = hautagiak;
 	}
 
