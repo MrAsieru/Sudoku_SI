@@ -21,6 +21,7 @@ import Modeloa.Sudoku;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.event.*;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -127,6 +128,11 @@ public class SudokuPanela extends JFrame implements Observer{
 			public void keyPressed(KeyEvent keyEvent) {
 				aukeratutakoGelaxkaMugituTeklatuarekin(keyEvent);
 			}
+		});
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+		        amaieraPanelaIkustarazi(false);
+		    }
 		});
 	}
 
@@ -348,11 +354,17 @@ public class SudokuPanela extends JFrame implements Observer{
 	}
 	
 	private void amaieraPanelaIkustarazi(boolean pOndo) {
-		int aukera = JOptionPane.showConfirmDialog(this, new AmaieraPanela(), "Sortu erabiltzailea", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		AmaieraPanela panela = new AmaieraPanela(pOndo);
+		int aukera = JOptionPane.showConfirmDialog(this, panela, "Sortu erabiltzailea", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		if (aukera == 0) {
-			
+			if (panela.getZailtasuna() != 0) {
+				hasieraketa(panela.getZailtasuna());
+			} else {
+				JOptionPane.showMessageDialog(contentPane, "Zailtasun bat aukeratu", "Errorea", JOptionPane.ERROR_MESSAGE);
+				amaieraPanelaIkustarazi(pOndo);
+			}			
 		} else {
-			//Partida amaitu
+			System.exit(0);
 		}
 	}
 	

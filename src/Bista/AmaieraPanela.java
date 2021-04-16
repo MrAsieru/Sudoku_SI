@@ -2,41 +2,55 @@ package Bista;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 public class AmaieraPanela extends JPanel {
-	private JLabel lblNewLabel;
+	private JLabel lblIzenburua;
 	private JPanel pnlIpar;
 	private JPanel pnlHego;
-	private JLabel lblNewLabel_1;
+	private JLabel lblPartidaBerria;
 	private JPanel pnlHegoAukerak;
-	private JRadioButton rdbtnNewRadioButton;
-	private JRadioButton rdbtnNewRadioButton_1;
-	private JRadioButton rdbtnNewRadioButton_2;
+	private ButtonGroup btgZailtasuna;
+	private JRadioButton rdbErreza;
+	private JRadioButton rdbErtaina;
+	private JRadioButton rdbZaila;
 
 	/**
 	 * Create the panel.
 	 */
-	public AmaieraPanela() {
+	public AmaieraPanela(boolean pOndo) {
 		setLayout(new BorderLayout(0, 0));
 		add(getPnlIpar(), BorderLayout.NORTH);
 		add(getPnlHego(), BorderLayout.SOUTH);
 		
+		getLblIzenburua().setText((pOndo)?"Sudokua ondo ebatzi duzu!":"Ez duzu sudokua ebatzi.");
+	}
+	
+	public int getZailtasuna() {
+		int zailtasuna = 0;
+		
+		if (getRdbErreza().isSelected()) zailtasuna = 1;
+		else if (getRdbErtaina().isSelected()) zailtasuna = 2;
+		else if (getRdbZaila().isSelected()) zailtasuna = 3;
+		
+		return zailtasuna;
 	}
 
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("Partida amaitu da");
+	private JLabel getLblIzenburua() {
+		if (lblIzenburua == null) {
+			lblIzenburua = new JLabel("");
 		}
-		return lblNewLabel;
+		return lblIzenburua;
 	}
 	private JPanel getPnlIpar() {
 		if (pnlIpar == null) {
 			pnlIpar = new JPanel();
-			pnlIpar.add(getLblNewLabel());
+			pnlIpar.add(getLblIzenburua());
 		}
 		return pnlIpar;
 	}
@@ -44,43 +58,50 @@ public class AmaieraPanela extends JPanel {
 		if (pnlHego == null) {
 			pnlHego = new JPanel();
 			pnlHego.setLayout(new GridLayout(2, 1, 0, 0));
-			pnlHego.add(getLblNewLabel_1());
+			pnlHego.add(getLblPartidaBerria());
 			pnlHego.add(getPnlHegoAukerak());
 		}
 		return pnlHego;
 	}
-	private JLabel getLblNewLabel_1() {
-		if (lblNewLabel_1 == null) {
-			lblNewLabel_1 = new JLabel("Beste partida bat jokatu nahi duzu?");
-			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+	private JLabel getLblPartidaBerria() {
+		if (lblPartidaBerria == null) {
+			lblPartidaBerria = new JLabel("Beste partida bat jokatu nahi duzu?");
+			lblPartidaBerria.setHorizontalAlignment(SwingConstants.CENTER);
 		}
-		return lblNewLabel_1;
+		return lblPartidaBerria;
 	}
 	private JPanel getPnlHegoAukerak() {
 		if (pnlHegoAukerak == null) {
 			pnlHegoAukerak = new JPanel();
-			pnlHegoAukerak.add(getRdbtnNewRadioButton());
-			pnlHegoAukerak.add(getRdbtnNewRadioButton_1());
-			pnlHegoAukerak.add(getRdbtnNewRadioButton_2());
+			btgZailtasuna = new ButtonGroup();
+			pnlHegoAukerak.add(getRdbErreza());
+			pnlHegoAukerak.add(getRdbErtaina());
+			pnlHegoAukerak.add(getRdbZaila());
 		}
 		return pnlHegoAukerak;
 	}
-	private JRadioButton getRdbtnNewRadioButton() {
-		if (rdbtnNewRadioButton == null) {
-			rdbtnNewRadioButton = new JRadioButton("Erreza (1)");
+	private JRadioButton getRdbErreza() {
+		if (rdbErreza == null) {
+			rdbErreza = new JRadioButton("Erreza (1)");
+			rdbErreza.setName("1");
+			btgZailtasuna.add(rdbErreza);
 		}
-		return rdbtnNewRadioButton;
+		return rdbErreza;
 	}
-	private JRadioButton getRdbtnNewRadioButton_1() {
-		if (rdbtnNewRadioButton_1 == null) {
-			rdbtnNewRadioButton_1 = new JRadioButton("Ertaina (2)");
+	private JRadioButton getRdbErtaina() {
+		if (rdbErtaina == null) {
+			rdbErtaina = new JRadioButton("Ertaina (2)");
+			rdbErtaina.setName("2");
+			btgZailtasuna.add(rdbErtaina);
 		}
-		return rdbtnNewRadioButton_1;
+		return rdbErtaina;
 	}
-	private JRadioButton getRdbtnNewRadioButton_2() {
-		if (rdbtnNewRadioButton_2 == null) {
-			rdbtnNewRadioButton_2 = new JRadioButton("Zaila (3)");
+	private JRadioButton getRdbZaila() {
+		if (rdbZaila == null) {
+			rdbZaila = new JRadioButton("Zaila (3)");
+			rdbZaila.setName("3");
+			btgZailtasuna.add(rdbZaila);
 		}
-		return rdbtnNewRadioButton_2;
+		return rdbZaila;
 	}
 }
