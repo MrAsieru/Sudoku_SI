@@ -26,6 +26,8 @@ public class Sudoku extends Observable{
 				this.gelaxkaMat[i][j] = gelaxka;
 			}
 		}
+		//Aldakuntzak bistari notifikatu
+		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 	}
 
 

@@ -1,12 +1,10 @@
 package Modeloa;
 
-import java.util.List;
-
 public abstract class Gelaxka {
-	private int errenkada;
-	private int zutabe;
-	private int zenbakia;
-	private boolean[] hautagiak;
+	protected int errenkada;
+	protected int zutabe;
+	protected int zenbakia;
+	protected boolean[] hautagiak;
 	
 	public Gelaxka(int pEr, int pZu, int pBal) {
 		this.errenkada=pEr;
@@ -14,23 +12,13 @@ public abstract class Gelaxka {
 		this.zenbakia=pBal;
 	}
 	
-	public void setZenbakia(int pZenbakia) throws GelaxkaEditagarriezinaException {
-		if (0 <= pZenbakia && pZenbakia <= 9){
-			this.zenbakia = pZenbakia;
-			this.hautagiak = null;
-		}
-	}
+	public abstract void setZenbakia(int pZenbakia) throws GelaxkaEditagarriezinaException;
 
 	public int getBalioa(){
 		return this.zenbakia;
 	}
 
-	public void setHautagiak(boolean[] hautagiak) throws GelaxkaEditagarriezinaException {
-		this.zenbakia = 0;
-		this.hautagiak = hautagiak;
-	}
+	public abstract void setHautagiak(boolean[] hautagiak) throws GelaxkaEditagarriezinaException;
 
-	public boolean[] getHautagiak(){
-		return this.hautagiak;
-	}
+	public abstract boolean[] getHautagiak();
 }
