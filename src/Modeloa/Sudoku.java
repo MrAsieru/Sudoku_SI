@@ -11,7 +11,7 @@ import Egitura.GelaxkaEgitura;
 public class Sudoku extends Observable{
 	private Gelaxka[][] gelaxkaMat;
 	private final int tamaina = 9; //9x9 bada 9, 25x25 bada 25
-	
+
 	public Sudoku(int[][] pGelaxkak, Observer pObs) {
 		this.addObserver(pObs);
 		this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];
@@ -26,6 +26,8 @@ public class Sudoku extends Observable{
 				this.gelaxkaMat[i][j] = gelaxka;
 			}
 		}
+		//Aldakuntzak bistari notifikatu
+		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 	}
 
 
@@ -184,7 +186,7 @@ public class Sudoku extends Observable{
 	/*
 	HARDCODE-ado para 9x9
 	 */
-	public ArrayList<Integer> getKuadranteBalioak(int pErrenkada, int pZutabea){
+	private ArrayList<Integer> getKuadranteBalioak(int pErrenkada, int pZutabea){
 		int pKuadrantea = getKuadranteaZenbakia(pErrenkada, pZutabea);
 		//TODO generalizarlo para todo tipo de sudokus, demomento solo para 9x9. No prioritario
 		ArrayList<Integer> gelaxkak = new ArrayList<>();
@@ -203,7 +205,7 @@ public class Sudoku extends Observable{
 	/*
 	HARDCODE-ado para 9x9
 	 */
-	public int getKuadranteaZenbakia(int pErrenkada, int pZutabea){
+	private int getKuadranteaZenbakia(int pErrenkada, int pZutabea){
 		int kZerrenda = pErrenkada/3;
 		int kZutabea = pZutabea/3;
 

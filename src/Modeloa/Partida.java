@@ -28,7 +28,7 @@ public class Partida {
 
 	public void sudokuBerria(int pZailtasuna, Observer pObs) {
 		//Matrizea erabaki egingo dugu hasieratik eta ondoren honen matrizeak hartuko ditugu
-		int sudokuMatrizePointer = Irakurlea.getIrakurlea().getZailtazunLerroa(this.zailtasuna);
+		int sudokuMatrizePointer = Irakurlea.getIrakurlea().getZailtazunLerroa(pZailtasuna);
 
 		//Sudoku berria sortzeko Sudoku klaseari hasierako array-a eman
 		this.sudoku = new Sudoku(Irakurlea.getIrakurlea().getSudokuArrayHasiera(sudokuMatrizePointer), pObs);

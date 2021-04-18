@@ -7,6 +7,7 @@ import java.util.Random;
 public class Irakurlea {
     private static Irakurlea Irakurlea;
     private String path = "res/sudoku.txt";
+    private final int tamaina = 9;
 
     private Irakurlea(){}
 
@@ -23,7 +24,7 @@ public class Irakurlea {
      * @return int[][]
      */
     public int[][] getSudokuArrayHasiera(int hasierakoLerroa){
-        int[][] sudokua = new int [Sudoku.getNireSudoku().getTamaina()] [Sudoku.getNireSudoku().getTamaina()];
+        int[][] sudokua = new int [tamaina] [tamaina];
 
         try{
             int hasieraLerroaZenbakia = hasierakoLerroa;
@@ -38,8 +39,8 @@ public class Irakurlea {
                 }
 
                 lerroa = irakurle.readLine();
-                for (int i = 0; i<Sudoku.getNireSudoku().getTamaina(); i++){
-                    for(int j = 0; j<Sudoku.getNireSudoku().getTamaina(); j++){
+                for (int i = 0; i<tamaina; i++){
+                    for(int j = 0; j<tamaina; j++){
 
                         sudokua[i][j] = Character.getNumericValue(lerroa.toCharArray()[j]);
 
@@ -56,7 +57,7 @@ public class Irakurlea {
     }
 
     public int[][] getSudokuArrayZuzena(int hasiera){
-        int[][] sudokuZuzendua = getSudokuArrayHasiera(hasiera+Sudoku.getNireSudoku().getTamaina());
+        int[][] sudokuZuzendua = getSudokuArrayHasiera(hasiera+tamaina);
         return sudokuZuzendua;
     }
 
@@ -76,6 +77,7 @@ public class Irakurlea {
      */
 
     private ArrayList<Integer> getZailtazunLerroak(int zailtasuna){
+        //TODO ez apurtu zailtasuna = 0 izatean
         ArrayList<Integer> lerroak = new ArrayList<>();
         int lineCount = 0;
         try{
