@@ -32,4 +32,8 @@ public abstract class Gelaxka {
 	public boolean[] getHautagiak(){
 		return this.hautagiak;
 	}
+	
+	public int getHautagaiLuzeera() {
+		return this.hautagiak.length;
+	}
 }
