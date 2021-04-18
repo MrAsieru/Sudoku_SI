@@ -184,7 +184,7 @@ public class Sudoku extends Observable{
 	/*
 	HARDCODE-ado para 9x9
 	 */
-	private ArrayList<Integer> getKuadranteBalioak(int pErrenkada, int pZutabea){
+	public ArrayList<Integer> getKuadranteBalioak(int pErrenkada, int pZutabea){
 		int pKuadrantea = getKuadranteaZenbakia(pErrenkada, pZutabea);
 		//TODO generalizarlo para todo tipo de sudokus, demomento solo para 9x9. No prioritario
 		ArrayList<Integer> gelaxkak = new ArrayList<>();
@@ -203,7 +203,7 @@ public class Sudoku extends Observable{
 	/*
 	HARDCODE-ado para 9x9
 	 */
-	private int getKuadranteaZenbakia(int pErrenkada, int pZutabea){
+	public int getKuadranteaZenbakia(int pErrenkada, int pZutabea){
 		int kZerrenda = pErrenkada/3;
 		int kZutabea = pZutabea/3;
 
