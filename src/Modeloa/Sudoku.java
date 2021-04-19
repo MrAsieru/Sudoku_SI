@@ -11,7 +11,7 @@ import Egitura.GelaxkaEgitura;
 public class Sudoku extends Observable{
 	private Gelaxka[][] gelaxkaMat;
 	private final int tamaina = 9; //9x9 bada 9, 25x25 bada 25
-	
+
 	public Sudoku(int[][] pGelaxkak, Observer pObs) {
 		this.addObserver(pObs);
 		this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];

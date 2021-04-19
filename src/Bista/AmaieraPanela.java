@@ -27,17 +27,17 @@ public class AmaieraPanela extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		add(getPnlIpar(), BorderLayout.NORTH);
 		add(getPnlHego(), BorderLayout.SOUTH);
-		
+
 		getLblIzenburua().setText((pOndo)?"Sudokua ondo ebatzi duzu!":"Ez duzu sudokua ebatzi.");
 	}
-	
+
 	public int getZailtasuna() {
 		int zailtasuna = 0;
-		
+
 		if (getRdbErreza().isSelected()) zailtasuna = 1;
 		else if (getRdbErtaina().isSelected()) zailtasuna = 2;
 		else if (getRdbZaila().isSelected()) zailtasuna = 3;
-		
+
 		return zailtasuna;
 	}
 
