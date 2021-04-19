@@ -49,14 +49,14 @@ public class SudokuTest implements Observer {
 	public void testGetKoadrantearenZenbakia() {
 		int espero1 = 1;
 		int notespero1 = 2;
-		int emaitza1 = Sudoku.getNireSudoku().getKuadranteaZenbakia(1, 1);
+		int emaitza1 = Partida.getPartida().getSudoku().getKuadranteaZenbakia(1, 1);
 		
 		assertEquals(espero1, emaitza1);
 		assertNotEquals(notespero1, emaitza1);
 		
 		int espero2 = 2;
 		int notespero2 = 4;
-		int emaitza2 = Sudoku.getNireSudoku().getKuadranteaZenbakia(4, 1);
+		int emaitza2 = Partida.getPartida().getSudoku().getKuadranteaZenbakia(4, 1);
 		
 		assertEquals(espero2, emaitza2);
 		assertNotEquals(notespero2, emaitza2);
@@ -67,7 +67,7 @@ public class SudokuTest implements Observer {
 		
 		Gelaxka[][] esperotakoa = null;
 		
-		ArrayList<Integer> emaitza = Sudoku.getNireSudoku().getKuadranteBalioak(0, 0);
+		ArrayList<Integer> emaitza = Partida.getPartida().getSudoku().getKuadranteBalioak(0, 0);
 	
 		int err,zut;
 		zut = 0;
