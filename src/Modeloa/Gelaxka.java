@@ -12,13 +12,7 @@ public abstract class Gelaxka {
 		this.zenbakia=pBal;
 	}
 
-	public abstract void setZenbakia(int pZenbakia) throws GelaxkaEditagarriezinaException;
-
 	public int getBalioa(){
 		return this.zenbakia;
 	}
-
-	public abstract void setHautagiak(boolean[] hautagiak) throws GelaxkaEditagarriezinaException;
-
-	public abstract boolean[] getHautagiak();
 }

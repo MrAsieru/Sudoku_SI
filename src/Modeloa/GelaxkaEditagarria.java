@@ -6,21 +6,18 @@ public class GelaxkaEditagarria extends Gelaxka{
 		super(pEr, pZu, pBal);
 	}
 
-	@Override
-	public void setZenbakia(int pZenbakia) throws GelaxkaEditagarriezinaException {
+	public void setZenbakia(int pZenbakia) {
 		if (0 <= pZenbakia && pZenbakia <= 9){
 			this.zenbakia = pZenbakia;
 			this.hautagiak = null;
 		}
 	}
 
-	@Override
-	public void setHautagiak(boolean[] hautagiak) throws GelaxkaEditagarriezinaException {
+	public void setHautagiak(boolean[] hautagiak) {
 		this.zenbakia = 0;
 		this.hautagiak = hautagiak;
 	}
 
-	@Override
 	public boolean[] getHautagiak(){
 		return this.hautagiak;
 	}

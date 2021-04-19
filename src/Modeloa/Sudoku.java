@@ -61,11 +61,10 @@ public class Sudoku extends Observable{
 	 * @param pBalioa
 	 */
 	public void aldatuGelaxkaBalioa(int e, int z, int pBalioa) {
-		try{
-			this.gelaxkaMat[e][z].setZenbakia(pBalioa);
-			//Onartzen bada
+		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria){
+			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setZenbakia(pBalioa);
 			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
-		} catch (GelaxkaEditagarriezinaException gee){
+		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
 		}
 	}
@@ -76,8 +75,11 @@ public class Sudoku extends Observable{
 	 * @param z
 	 */
 	public void gelaxkaHautagaiaLortu(int e, int z){
-		boolean[] hautagaiak = gelaxkaMat[e][z].getHautagiak();
-		this.bistaNotifikatu(NotifikazioMotak.HAUTAGAIAK_EGUNERATU, (hautagaiak == null)?new boolean[9]:hautagaiak);
+		boolean[] hautagaiak = new boolean[9];
+		if (gelaxkaMat[e][z] instanceof GelaxkaEditagarria) {
+			hautagaiak = ((GelaxkaEditagarria) gelaxkaMat[e][z]).getHautagiak();
+		}
+		this.bistaNotifikatu(NotifikazioMotak.HAUTAGAIAK_EGUNERATU, hautagaiak);
 	}
 
 	/**
@@ -89,11 +91,10 @@ public class Sudoku extends Observable{
 	public void aldatuGelaxkaHautagaiak(int e, int z, boolean[] pHautagaiak) {
 		//TODO aldatuGelaxkaBalioa-rekin batu ahal da GelaxkaEgitura erabiliz
 		// Taula aldatzen bada TAULA_EGUNERATU eta beharrezko balioak bidali
-		try{
-			this.gelaxkaMat[e][z].setHautagiak(pHautagaiak);
-			//Onartzen bada
+		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria) {
+			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setHautagiak(pHautagaiak);
 			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
-		} catch (GelaxkaEditagarriezinaException gee){
+		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
 		}
 	}
@@ -154,10 +155,9 @@ public class Sudoku extends Observable{
 		for (int i = 0; i < this.tamaina; i++){
 			for (int j = 0; j < this.tamaina; j++){
 				GelaxkaEgitura gelaxka;
-				if (this.gelaxkaMat[i][j].getHautagiak()!=null){
-					gelaxka = new GelaxkaEgitura(this.gelaxkaMat[i][j].getHautagiak());
-				}
-				else {
+				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagiak() != null){
+					gelaxka = new GelaxkaEgitura(((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagiak());
+				} else {
 					gelaxka = new GelaxkaEgitura(this.gelaxkaMat[i][j].getBalioa());
 				}
 				emaitza[i][j] = gelaxka;
