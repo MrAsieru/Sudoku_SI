@@ -52,7 +52,7 @@ public class GelaxkaTest {
 	public void testGetHautagiak() {
 		
 		Gelaxka gel = null;
-		int luzeera = gel.getHautagaiLuzeera();
+		int luzeera = 9;
 		boolean[] espero1 = new boolean[luzeera];
 		boolean[] notEspero1= new boolean[luzeera];;
 		boolean[] emaitza1 = gel.getHautagiak();
