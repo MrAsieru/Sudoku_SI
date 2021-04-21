@@ -1,14 +1,15 @@
 package Bista;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
+
+import Modeloa.Login;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,7 +24,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 
-public class LoginPanela extends JFrame {
+public class LoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel pnlDatuak;
@@ -39,26 +40,9 @@ public class LoginPanela extends JFrame {
 	private JButton btnHasi;
 
 	/**
-	 * Launch the application.
-	 */
-	//TODO main sortu
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginPanela frame = new LoginPanela();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public LoginPanela() {
+	public LoginFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 417, 160);
 		setTitle("Sudoku");
@@ -70,6 +54,7 @@ public class LoginPanela extends JFrame {
 		contentPane.add(getPnlDatuak(), BorderLayout.CENTER);
 		contentPane.add(getPnlHasi(), BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 
 	private JPanel getPnlDatuak() {
@@ -179,9 +164,10 @@ public class LoginPanela extends JFrame {
 						if (getRdbErreza().isSelected()) zailtasuna = 1;
 						else if (getRdbErtaina().isSelected()) zailtasuna = 2;
 						else if (getRdbZaila().isSelected()) zailtasuna = 3;
-						System.out.println(String.format("[Bista.Login]: Saio berria hasi, izena:%s, zailtasuna:%d", txfIzena.getText(), zailtasuna));
+						
+						System.out.println(String.format("[BISTA.Login]: Saio berria hasi, izena:%s, zailtasuna:%d", txfIzena.getText(), zailtasuna));
 						setVisible(false);
-						new Bista.SudokuPanela(txfIzena.getText(), zailtasuna);
+						Login.getInstantzia().logeatu(txfIzena.getText(), zailtasuna);
 					} else JOptionPane.showMessageDialog(contentPane, "Sudokua hasteko izen bat sartu eta zailtasun bat aukeratu!", "Errorea", JOptionPane.ERROR_MESSAGE);
 				}
 			});

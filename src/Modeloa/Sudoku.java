@@ -1,7 +1,6 @@
 package Modeloa;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -37,6 +36,7 @@ public class Sudoku extends Observable{
 	 * Bista sudokua ondo ebatzita badagoen jakiteko
 	 */
 	public void ondoDago() {
+		System.out.println("[MODELOA]: Sudokua konprobatuko da");
 		int[][] balioak = new int[this.tamaina][this.tamaina];
 
 		//Balioen matrizea lortu
@@ -49,6 +49,7 @@ public class Sudoku extends Observable{
 		//Partidari balioak bidali
 		if (Partida.getPartida().ondoDago(balioak)) {
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_ONDO_DAGO);
+			new Amaiera();
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
 		}
@@ -89,8 +90,6 @@ public class Sudoku extends Observable{
 	 * @param pHautagaiak
 	 */
 	public void aldatuGelaxkaHautagaiak(int e, int z, boolean[] pHautagaiak) {
-		//TODO aldatuGelaxkaBalioa-rekin batu ahal da GelaxkaEgitura erabiliz
-		// Taula aldatzen bada TAULA_EGUNERATU eta beharrezko balioak bidali
 		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria) {
 			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setHautagiak(pHautagaiak);
 			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
@@ -139,6 +138,7 @@ public class Sudoku extends Observable{
 		System.out.println(kuadranteSekuentzia + " )");
 		aldatuGelaxkaHautagaiak(pErrenkada, pZutabea, aukerak);
 	}
+	
 
 	/********************************************* Set/Get-errak *********************************************************/
 
@@ -183,12 +183,8 @@ public class Sudoku extends Observable{
 
 
 	/**GelaxkaHautagiak**/
-	/*
-	HARDCODE-ado para 9x9
-	 */
 	private ArrayList<Integer> getKuadranteBalioak(int pErrenkada, int pZutabea){
 		int pKuadrantea = getKuadranteaZenbakia(pErrenkada, pZutabea);
-		//TODO generalizarlo para todo tipo de sudokus, demomento solo para 9x9. No prioritario
 		ArrayList<Integer> gelaxkak = new ArrayList<>();
 		int hasiZutabea = pKuadrantea/3 * 3;
 		int hasiErrenkada = pKuadrantea%3 * 3;//3 * 3;
@@ -202,9 +198,6 @@ public class Sudoku extends Observable{
 		return gelaxkak;
 	}
 
-	/*
-	HARDCODE-ado para 9x9
-	 */
 	private int getKuadranteaZenbakia(int pErrenkada, int pZutabea){
 		int kZerrenda = pErrenkada/3;
 		int kZutabea = pZutabea/3;
@@ -216,8 +209,8 @@ public class Sudoku extends Observable{
 
 	/**
 	 * Modeloa Bistarekin komunikatzeko
-	 * @param pMota
-	 * @param pArg
+	 * @param pMota Bidali nahi den notifikazioa
+	 * @param pArg Notifikazioarekin joango diren objektuak
 	 */
 	private void bistaNotifikatu(NotifikazioMotak pMota, Object ... pArg){
 		Object[] argumentuak = new Object[pArg.length + 1];
