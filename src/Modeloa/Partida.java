@@ -3,6 +3,7 @@ package Modeloa;
 import Bista.SudokuFrame;
 
 import javax.swing.JFrame;
+import java.util.ArrayList;
 import java.util.Observer;
 
 public class Partida {
@@ -59,7 +60,7 @@ public class Partida {
 		SudokuRetrasado sudokuaGuztia = SudokuLista.getSudokuLista().getSudokua(this.zailtasuna);
 		this.sudoku = new Sudoku(sudokuaGuztia.getHasierakoMatrizea(), (Observer) this.sudokuFrame);
 		this.soluzioa = sudokuaGuztia.getSoluzioa();
-		 */
+
 
 
 		//Matrizea erabaki egingo dugu hasieratik eta ondoren honen matrizeak hartuko ditugu
@@ -72,8 +73,11 @@ public class Partida {
 		this.soluzioa = Irakurlea.getIrakurlea().getSudokuArrayZuzena(sudokuMatrizePointer);
 
 		System.out.println("[MODELOA.Partida]: Sudoku berria sortuta");
+		 */
 
-
+		SudokuaGorde sudokua = SudokuLista.getSudokuLista().getSudokuaZailtazunes(zailtasuna);
+		this.sudoku = new Sudoku(sudokua.getHasierakoMatrizea(), (Observer) this.sudokuFrame);
+		this.soluzioa = sudokua.getSoluzioa();
 	}
 
 	public boolean ondoDago(int[][] pBalioak) {

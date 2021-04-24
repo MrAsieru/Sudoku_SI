@@ -4,11 +4,20 @@ import java.util.ArrayList;
 
 public class SudokuLista {
     private static SudokuLista sudokuLista;
-    private ArrayList<SudokuRetrasado>   sudokuak;
+    private ArrayList<SudokuaGorde>  sudokuak;
 
 
     private SudokuLista(){
-        sudokuak = Irakurlea.getIrakurlea().getHasierakoSudokuGuztiak();
+        this.sudokuak = new ArrayList<>();
+        System.out.printf("Kaixo");
+        ArrayList<Integer> zailtazunLerroak = Irakurlea.getIrakurlea().getZailtazunLerroak(1);
+        System.out.printf("hey");
+        for (int i=1; i<3 && zailtazunLerroak.size()>=0; i++){
+            for (Integer pointer: zailtazunLerroak){
+                addSudoku(new SudokuaGorde(i, Irakurlea.getIrakurlea().getSudokuArrayHasiera(pointer), Irakurlea.getIrakurlea().getSudokuArrayZuzena(pointer)));
+            }
+            zailtazunLerroak = Irakurlea.getIrakurlea().getZailtazunLerroak(i+1);;
+        }
     }
 
     public static SudokuLista getSudokuLista(){
@@ -18,8 +27,12 @@ public class SudokuLista {
         return sudokuLista;
     }
 
-    public SudokuRetrasado getSudokua(int pZailtasuna){
-        SudokuRetrasado nahiDugunSudokua = new SudokuRetrasado(0, null, null);
+    public void addSudoku(SudokuaGorde pSudoku){
+        this.sudokuak.add(pSudoku);
+    }
+
+    public SudokuaGorde getSudokuaZailtazunes(int pZailtasuna){
+        SudokuaGorde nahiDugunSudokua = null;
 
         boolean aurkitua = false;
         for (int i=0; i<sudokuak.size(); i++){
@@ -30,6 +43,4 @@ public class SudokuLista {
 
         return nahiDugunSudokua;
     }
-
-
 }

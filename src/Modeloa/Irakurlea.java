@@ -18,6 +18,7 @@ public class Irakurlea {
         return Irakurlea;
     }
 
+    /**
     public ArrayList<SudokuRetrasado> getHasierakoSudokuGuztiak(){
         ArrayList<SudokuRetrasado> sudukuak = new ArrayList<>();
 
@@ -97,7 +98,7 @@ public class Irakurlea {
         }
         return sudukuak;
     }
-
+     */
 
 
     @Deprecated
@@ -161,7 +162,7 @@ public class Irakurlea {
      * Hau egiteko nahi dugu txt hartu eta karaktere bakarreko zenbakiak bilatuko ditu eta
      * bat haurkitzen badu gorde egingo du ArrayList batean, gero hau bidaltzeko.
      */
-    private ArrayList<Integer> getZailtazunLerroak(int zailtasuna){
+    public ArrayList<Integer> getZailtazunLerroak(int zailtasuna){
         //TODO ez apurtu zailtasuna = 0 izatean
         ArrayList<Integer> lerroak = new ArrayList<>();
         int lineCount = 0;
@@ -181,11 +182,6 @@ public class Irakurlea {
         catch (IOException e){
             System.out.println("Ez da lortu txt fitxategia.");
             e.printStackTrace();
-        }
-
-        //Begiratuko dugu matrizerik aurkitu ez dugun
-        if(lerroak.size()==0){
-            System.exit(0);
         }
 
         //matrizea zoriz hartuko dugu eta bidali
