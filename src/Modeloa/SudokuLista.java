@@ -1,14 +1,17 @@
 package Modeloa;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class SudokuLista {
     private static SudokuLista sudokuLista;
-    private ArrayList<SudokuRetrasado>   sudokuak;
+    private List<SudokuInformazioa> lista;
 
 
     private SudokuLista(){
-        sudokuak = Irakurlea.getIrakurlea().getHasierakoSudokuGuztiak();
+        lista = new ArrayList<>();
     }
 
     public static SudokuLista getSudokuLista(){
@@ -18,18 +21,16 @@ public class SudokuLista {
         return sudokuLista;
     }
 
-    public SudokuRetrasado getSudokua(int pZailtasuna){
-        SudokuRetrasado nahiDugunSudokua = new SudokuRetrasado(0, null, null);
-
-        boolean aurkitua = false;
-        for (int i=0; i<sudokuak.size(); i++){
-            if(sudokuak.get(i).getZailtasuna()>=pZailtasuna && !aurkitua){
-                nahiDugunSudokua = sudokuak.get(i);
-            }
-        }
-
-        return nahiDugunSudokua;
+    public void add(SudokuInformazioa pSudokua){
+        lista.add(pSudokua);
     }
 
-
+    public SudokuInformazioa getSudokua(int pZailtasuna){
+        if (lista.size() > 0){
+            List<SudokuInformazioa> posibleak = lista.stream().filter(p -> p.getZailtasuna() == pZailtasuna).collect(Collectors.toList());
+            return posibleak.get(new Random().nextInt(posibleak.size()));
+        } else {
+            return null;
+        }
+    }
 }

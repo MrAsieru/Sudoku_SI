@@ -54,34 +54,19 @@ public class Partida {
 	 * Gordeta dagoen zailtasunarekin sudoku berria sortzen da.
 	 */
 	public void sudokuBerria() {
-
-		/**
-		SudokuRetrasado sudokuaGuztia = SudokuLista.getSudokuLista().getSudokua(this.zailtasuna);
+		SudokuInformazioa sudokuaGuztia = SudokuLista.getSudokuLista().getSudokua(this.zailtasuna);
 		this.sudoku = new Sudoku(sudokuaGuztia.getHasierakoMatrizea(), (Observer) this.sudokuFrame);
 		this.soluzioa = sudokuaGuztia.getSoluzioa();
-		 */
-
-
-		//Matrizea erabaki egingo dugu hasieratik eta ondoren honen matrizeak hartuko ditugu
-		int sudokuMatrizePointer = Irakurlea.getIrakurlea().getZailtazunLerroa(this.zailtasuna);
-
-		//Sudoku berria sortzeko Sudoku klaseari hasierako array-a eman
-		this.sudoku = new Sudoku(Irakurlea.getIrakurlea().getSudokuArrayHasiera(sudokuMatrizePointer), (Observer) this.sudokuFrame);
-
-		//Soluzio matrizea sortu
-		this.soluzioa = Irakurlea.getIrakurlea().getSudokuArrayZuzena(sudokuMatrizePointer);
 
 		System.out.println("[MODELOA.Partida]: Sudoku berria sortuta");
-
-
 	}
 
 	public boolean ondoDago(int[][] pBalioak) {
 		boolean ondo = true;
 		int i = 0;
-		while(i<9 && ondo){
+		while(i<tamaina && ondo){
 			int j = 0;
-			while(j<9 && ondo){
+			while(j<tamaina && ondo){
 				if(pBalioak[i][j] != soluzioa[i][j]){
 					ondo = false;
 				}
