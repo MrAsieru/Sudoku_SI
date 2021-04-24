@@ -1,9 +1,10 @@
 package Modeloa;
 
 import Bista.SudokuFrame;
+import Egitura.SudokuLista;
+import Egitura.SudokuaGorde;
 
 import javax.swing.JFrame;
-import java.util.ArrayList;
 import java.util.Observer;
 
 public class Partida {
@@ -55,26 +56,6 @@ public class Partida {
 	 * Gordeta dagoen zailtasunarekin sudoku berria sortzen da.
 	 */
 	public void sudokuBerria() {
-
-		/**
-		SudokuRetrasado sudokuaGuztia = SudokuLista.getSudokuLista().getSudokua(this.zailtasuna);
-		this.sudoku = new Sudoku(sudokuaGuztia.getHasierakoMatrizea(), (Observer) this.sudokuFrame);
-		this.soluzioa = sudokuaGuztia.getSoluzioa();
-
-
-
-		//Matrizea erabaki egingo dugu hasieratik eta ondoren honen matrizeak hartuko ditugu
-		int sudokuMatrizePointer = Irakurlea.getIrakurlea().getZailtazunLerroa(this.zailtasuna);
-
-		//Sudoku berria sortzeko Sudoku klaseari hasierako array-a eman
-		this.sudoku = new Sudoku(Irakurlea.getIrakurlea().getSudokuArrayHasiera(sudokuMatrizePointer), (Observer) this.sudokuFrame);
-
-		//Soluzio matrizea sortu
-		this.soluzioa = Irakurlea.getIrakurlea().getSudokuArrayZuzena(sudokuMatrizePointer);
-
-		System.out.println("[MODELOA.Partida]: Sudoku berria sortuta");
-		 */
-
 		SudokuaGorde sudokua = SudokuLista.getSudokuLista().getSudokuaZailtazunes(zailtasuna);
 		this.sudoku = new Sudoku(sudokua.getHasierakoMatrizea(), (Observer) this.sudokuFrame);
 		this.soluzioa = sudokua.getSoluzioa();

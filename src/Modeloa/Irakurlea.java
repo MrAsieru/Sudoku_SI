@@ -19,90 +19,6 @@ public class Irakurlea {
     }
 
     /**
-    public ArrayList<SudokuRetrasado> getHasierakoSudokuGuztiak(){
-        ArrayList<SudokuRetrasado> sudukuak = new ArrayList<>();
-
-        File txtFitxategia = new File(path);
-        BufferedReader irakurle;
-        try {
-            irakurle = new BufferedReader(new FileReader(txtFitxategia));
-
-            int sudokuZenbat = 0;
-            while (irakurle.readLine()!=null){
-                int zailtasuna = Integer.parseInt(irakurle.readLine());
-                Gelaxka[][] hasieraGelaxkak = new Gelaxka[9][9];
-                int[][] soluzioMatrizea = new int[9][9];
-
-                for (int i = 0; i<9; i++){
-                    char[] lerroa = irakurle.readLine().toCharArray();
-                    for (int z=0; z<9; z++){
-                        Gelaxka gel;
-                        if (lerroa[z]=='0'){
-                            gel = GelaxkaFactory.getInstantzia().gelaxkaSortu(GelaxkaMotak.EDITAGARRIA, i, z, 0);
-                        } else {
-                            gel = GelaxkaFactory.getInstantzia().gelaxkaSortu(GelaxkaMotak.HASIERAKOA, i, z, lerroa[z]-0);
-                        }
-                        hasieraGelaxkak[i][z] = gel;
-                    }
-                }
-
-                for (int i = 0; i<9; i++){
-                    char[] lerroa = irakurle.readLine().toCharArray();
-                    for (int z=0; z<9; z++){
-                        soluzioMatrizea[i][z] = lerroa[z];
-                    }
-                }
-
-                sudukuak.add(new SudokuRetrasado(zailtasuna, hasieraGelaxkak, soluzioMatrizea));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sudukuak;
-    }
-
-    public ArrayList<Integer[][]> getSudokuSoluzioGuztiak(){
-        ArrayList<Integer[][]> sudukuak = new ArrayList<>();
-
-        File txtFitxategia = new File(path);
-        BufferedReader irakurle;
-        try {
-            irakurle = new BufferedReader(new FileReader(txtFitxategia));
-
-            int sudokuZenbat = 0;
-            while (irakurle.readLine()!=null){
-
-                for (int i = 0; i<9; i++){
-                    irakurle.readLine();
-                }
-
-                Integer[][] soluzia = new Integer[9][9];
-
-                for (int i = 0; i<9; i++){
-                    char[] lerroa = irakurle.readLine().toCharArray();
-                    for (int z=0; z<9; z++){
-                        soluzia[i][z] = (lerroa[z] - 0);
-                    }
-                }
-
-                sudukuak.add(soluzia);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sudukuak;
-    }
-     */
-
-
-    @Deprecated
-    /**
      * Metodo honen bidez, matrizearen hasiera lerroa jakinda bere matrizea lortuko dugu.
      * @param hasierakoLerroa
      * @return int[][]
@@ -140,7 +56,6 @@ public class Irakurlea {
         return sudokua;
     }
 
-    @Deprecated
     public int[][] getSudokuArrayZuzena(int hasiera){
         int[][] sudokuZuzendua = getSudokuArrayHasiera(hasiera+tamaina);
         return sudokuZuzendua;
@@ -150,13 +65,11 @@ public class Irakurlea {
      * beste metodo batek lortzen duen zailtazun berdinak dituzten lerroen artean bat hartuko du auzaz
      */
 
-    @Deprecated
     public int getZailtazunLerroa(int zailtazuna){
         ArrayList<Integer> lerroak = this.getZailtazunLerroak(zailtazuna);
         return lerroak.get(new Random().nextInt(lerroak.size()));
     }
 
-    @Deprecated
     /**
      * txt fitxategia irakurriko dugu eta zailtasunaren zenbakia bilatuko dugu.
      * Hau egiteko nahi dugu txt hartu eta karaktere bakarreko zenbakiak bilatuko ditu eta

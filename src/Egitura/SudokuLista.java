@@ -1,4 +1,6 @@
-package Modeloa;
+package Egitura;
+
+import Modeloa.Irakurlea;
 
 import java.util.ArrayList;
 
@@ -9,15 +11,16 @@ public class SudokuLista {
 
     private SudokuLista(){
         this.sudokuak = new ArrayList<>();
-        System.out.printf("Kaixo");
-        ArrayList<Integer> zailtazunLerroak = Irakurlea.getIrakurlea().getZailtazunLerroak(1);
-        System.out.printf("hey");
-        for (int i=1; i<3 && zailtazunLerroak.size()>=0; i++){
+        ArrayList<Integer> zailtazunLerroak;
+        int zailtasuna = 1;
+        do{
+            zailtazunLerroak = Irakurlea.getIrakurlea().getZailtazunLerroak(zailtasuna);
             for (Integer pointer: zailtazunLerroak){
-                addSudoku(new SudokuaGorde(i, Irakurlea.getIrakurlea().getSudokuArrayHasiera(pointer), Irakurlea.getIrakurlea().getSudokuArrayZuzena(pointer)));
+                addSudoku(new SudokuaGorde(zailtasuna, Irakurlea.getIrakurlea().getSudokuArrayHasiera(pointer), Irakurlea.getIrakurlea().getSudokuArrayZuzena(pointer)));
             }
-            zailtazunLerroak = Irakurlea.getIrakurlea().getZailtazunLerroak(i+1);;
+            zailtasuna++;
         }
+        while (zailtazunLerroak.size()>0);
     }
 
     public static SudokuLista getSudokuLista(){
