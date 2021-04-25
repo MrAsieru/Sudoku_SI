@@ -1,4 +1,4 @@
-package Egitura;
+package Modeloa;
 
 public class SudokuaGorde {
     private int     zailtasuna;

@@ -18,11 +18,50 @@ public class Irakurlea {
         return Irakurlea;
     }
 
+    public void getHasierakoSudokuGuztiak(){
+        File txtFitxategia = new File(path);
+        BufferedReader irakurle;
+        try {
+            irakurle = new BufferedReader(new FileReader(txtFitxategia));
+
+            // Sudoku guztiak irakurri
+            while (irakurle.readLine()!=null){
+                int zailtasuna = Integer.parseInt(irakurle.readLine());
+                int[][] hasieraGelaxkak = new int[tamaina][tamaina];
+                int[][] soluzioMatrizea = new int[tamaina][tamaina];
+
+                // Hasierako matrizea
+                for (int i = 0; i<tamaina; i++){
+                    char[] lerroa = irakurle.readLine().toCharArray();
+                    for (int j=0; j<tamaina; j++){
+                        hasieraGelaxkak[i][j] = Character.getNumericValue(lerroa[j]);
+                    }
+                }
+
+                // Soluzioa
+                for (int i = 0; i<tamaina; i++){
+                    char[] lerroa = irakurle.readLine().toCharArray();
+                    for (int j=0; j<tamaina; j++){
+                        soluzioMatrizea[i][j] = Character.getNumericValue(lerroa[j]);
+                    }
+                }
+
+                SudokuLista.getSudokuLista().addSudoku(new SudokuaGorde(zailtasuna, hasieraGelaxkak, soluzioMatrizea));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Metodo honen bidez, matrizearen hasiera lerroa jakinda bere matrizea lortuko dugu.
      * @param hasierakoLerroa
      * @return int[][]
      */
+    @Deprecated
     public int[][] getSudokuArrayHasiera(int hasierakoLerroa){
         int[][] sudokua = new int [tamaina] [tamaina];
 
@@ -55,7 +94,7 @@ public class Irakurlea {
 
         return sudokua;
     }
-
+    @Deprecated
     public int[][] getSudokuArrayZuzena(int hasiera){
         int[][] sudokuZuzendua = getSudokuArrayHasiera(hasiera+tamaina);
         return sudokuZuzendua;
@@ -64,7 +103,7 @@ public class Irakurlea {
     /**
      * beste metodo batek lortzen duen zailtazun berdinak dituzten lerroen artean bat hartuko du auzaz
      */
-
+    @Deprecated
     public int getZailtazunLerroa(int zailtazuna){
         ArrayList<Integer> lerroak = this.getZailtazunLerroak(zailtazuna);
         return lerroak.get(new Random().nextInt(lerroak.size()));
@@ -75,6 +114,7 @@ public class Irakurlea {
      * Hau egiteko nahi dugu txt hartu eta karaktere bakarreko zenbakiak bilatuko ditu eta
      * bat haurkitzen badu gorde egingo du ArrayList batean, gero hau bidaltzeko.
      */
+    @Deprecated
     public ArrayList<Integer> getZailtazunLerroak(int zailtasuna){
         //TODO ez apurtu zailtasuna = 0 izatean
         ArrayList<Integer> lerroak = new ArrayList<>();

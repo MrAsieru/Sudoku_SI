@@ -99,7 +99,6 @@ public class GelaxkaPanela extends JPanel {
 				lblHautagaiak[i][j].setVisible(pMatrizea[i*3+j]);
 			}
 		}
-		System.out.println(this.getBounds());
 	}
 
 	private JLabel getLblZenbakia() {
