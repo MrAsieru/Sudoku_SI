@@ -52,3 +52,7 @@ public class GelaxkaEditagarria extends Gelaxka{
 	 */
 
 }
+
+/** en vez de poner quitar (usuario hautagaiak), kalkulatuHautagaiak kalkula todas las gelaxkaz (cada vez que se cambie un valor)
+ *
+ */

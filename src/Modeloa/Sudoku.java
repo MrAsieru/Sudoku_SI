@@ -101,7 +101,8 @@ public class Sudoku extends Observable{
 	 */
 	public void aldatuGelaxkaHautagaiak(int e, int z, boolean[] pHautagaiak) {
 		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria) {
-			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setHautagiak(pHautagaiak);
+			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setHautagiakErab(pHautagaiak);
+			hautagaiakEguneratu();
 			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
