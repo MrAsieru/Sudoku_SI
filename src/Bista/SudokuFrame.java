@@ -237,18 +237,6 @@ public class SudokuFrame extends JFrame implements Observer{
 		}
 	}
 
-	/**
-	 * Modeloari aukeratuta dagoen gelaxkaren hautagaiak KALKULATZEKO eskatu
-	 */
-	private void eskatuHautagaiakKalkulatu() {
-		if (aukE != -1 && aukZ != -1){
-			System.out.println(String.format("[BISTA.Sudoku]: er:%d zu:%d gelaxkaren hautagaiak kalkulatzeko eskatuta", aukE, aukZ));
-			Partida.getPartida().getSudoku().hautagaiakKalkulatu(aukE, aukZ);
-		} else {
-			JOptionPane.showMessageDialog(contentPane, "Hautagaiak lortzeko gelaxka bat aukeratu", "Errorea", JOptionPane.ERROR_MESSAGE);
-		}
-	}
-
 	@Override
 	public void update(Observable o, Object arg) {
 		if (!isVisible()) setVisible(true);
@@ -645,7 +633,7 @@ public class SudokuFrame extends JFrame implements Observer{
 					int aukera = JOptionPane.showConfirmDialog(contentPane, "Gelaxkako hautagaiak lortu nahi dituzu?", "Hautagaiak lortu", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 					if (aukera == 0) {
 						System.out.println("[KONTROLATZAILEA]: hautagaiak kalkulatzen...");
-						eskatuHautagaiakKalkulatu();
+
 					}
 				}
 			});

@@ -4,7 +4,7 @@ public abstract class Gelaxka {
 	protected int errenkada;
 	protected int zutabe;
 	protected int zenbakia;
-	protected boolean[] hautagiak;
+
 
 	public Gelaxka(int pEr, int pZu, int pBal) {
 		this.errenkada=pEr;

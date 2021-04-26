@@ -26,6 +26,15 @@ public class Sudoku extends Observable{
 			}
 		}
 		//Aldakuntzak bistari notifikatu
+		hautagaiakEguneratu();
+		for (int i = 0; i < this.tamaina; i++){
+			for (int j = 0; j < this.tamaina; j++) {
+				Gelaxka gel = gelaxkaMat[i][j];
+				if (gel instanceof GelaxkaEditagarria && gel.getBalioa() == 0) {
+					((GelaxkaEditagarria) gel).setHautagiakErab(((GelaxkaEditagarria) gel).getHautagaiakProg());
+				}
+			}
+		}
 		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 	}
 
@@ -64,6 +73,7 @@ public class Sudoku extends Observable{
 	public void aldatuGelaxkaBalioa(int e, int z, int pBalioa) {
 		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria){
 			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setZenbakia(pBalioa);
+			hautagaiakEguneratu();
 			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
@@ -98,12 +108,23 @@ public class Sudoku extends Observable{
 		}
 	}
 
+	private void hautagaiakEguneratu() {
+		for (int i = 0; i < tamaina; i++){
+			for (int j = 0; j < tamaina; j++){
+				Gelaxka gel = gelaxkaMat[i][j];
+				if (gel instanceof GelaxkaEditagarria && gel.getBalioa() == 0) {
+					((GelaxkaEditagarria) gel).setHautagiakProg(hautagaiakKalkulatu(i, j));
+				}
+			}
+		}
+	}
+
 	/**
 	 * Bista gelaxka baten hautagaiak kalkulatzeko
 	 * @param pErrenkada
 	 * @param pZutabea
 	 */
-	public void hautagaiakKalkulatu(int pErrenkada, int pZutabea){
+	private boolean[] hautagaiakKalkulatu(int pErrenkada, int pZutabea){
 		System.out.println("[MODELOA] Huatagaiak kalkulatuko ditugu:");
 		String errenkadaSekuentzia = "\t Errenkada: (";
 		String zutabeSekuentzia = "\t Zutabea: (";
@@ -133,10 +154,7 @@ public class Sudoku extends Observable{
 			kuadranteSekuentzia += " " + balioa;
 		}
 
-		System.out.println(errenkadaSekuentzia + " )");
-		System.out.println(zutabeSekuentzia + " )");
-		System.out.println(kuadranteSekuentzia + " )");
-		aldatuGelaxkaHautagaiak(pErrenkada, pZutabea, aukerak);
+		return aukerak;
 	}
 	
 

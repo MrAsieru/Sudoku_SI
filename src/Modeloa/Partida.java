@@ -50,12 +50,15 @@ public class Partida {
 		if (pHanditu) setZailtasuna(zailtasuna+1);
 	}
 
+	public void sudokuBerria() {
+		sudokuBerria(null);
+	}
 	/**
 	 * Gordeta dagoen zailtasunarekin sudoku berria sortzen da.
 	 */
-	public void sudokuBerria() {
+	public void sudokuBerria(Observer pObs) {
 		SudokuaGorde sudokua = SudokuLista.getSudokuLista().getSudokuaZailtazunes(zailtasuna);
-		this.sudoku = new Sudoku(sudokua.getHasierakoMatrizea(), (Observer) this.sudokuFrame);
+		this.sudoku = new Sudoku(sudokua.getHasierakoMatrizea(), (pObs==null)?(Observer) this.sudokuFrame:pObs);
 		this.soluzioa = sudokua.getSoluzioa();
 	}
 
