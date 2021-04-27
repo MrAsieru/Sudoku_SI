@@ -27,8 +27,37 @@ public class SudokuTest implements Observer {
 
 	@Test
 	public void testAldatuGelaxkaBalioa() {
-		fail("Not yet implemented");
-	}
+		
+		int i=4;
+		int j=3;
+	
+		Sudoku sud;
+		int espero = sud.aldatuGelaxkaBalioa(i, j, 3);
+		int emaitza = 3;
+				
+		assertEquals(espero,emaitza);
+		assertNotEquals(espero+1,emaitza);
+		assertNotEquals(espero-1,emaitza);
+		
+		
+		
+		i=1;
+		j=2;
+		int espero = sud.aldatuGelaxkaBalioa(i, j, 5);
+		int emaitza = 5;
+				
+		assertEquals(espero,emaitza);
+		assertNotEquals(espero+1,emaitza);
+		assertNotEquals(espero-1,emaitza);
+		
+		i=8;
+		j=1;
+		int espero = sud.aldatuGelaxkaBalioa(i, j, 3);
+		int emaitza = 5;
+				
+		assertNotEquals(espero,emaitza);
+		assertNotEquals(espero,emaitza);
+	}	
 
 	@Test
 	public void testGelaxkaHautagaiaLortu() {
