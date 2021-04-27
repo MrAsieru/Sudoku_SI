@@ -20,6 +20,10 @@ public class GelaxkaEditagarria extends Gelaxka{
 		}
 	}
 
+	/**
+	 *
+	 * @param hautagiak
+	 */
 	public void setHautagiakErab(boolean[] hautagiak) {
 		hautagiakErab = hautagiak;
 		for (int i = 0; i<hautagiak.length; i++){
@@ -49,7 +53,3 @@ public class GelaxkaEditagarria extends Gelaxka{
 		return hautagiakErab;
 	}
 }
-
-/** en vez de poner quitar (usuario hautagaiak), kalkulatuHautagaiak kalkula todas las gelaxkaz (cada vez que se cambie un valor)
- *
- */
