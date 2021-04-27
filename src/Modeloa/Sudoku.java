@@ -1,8 +1,6 @@
 package Modeloa;
 
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 import Egitura.GelaxkaEgitura;
 
@@ -27,14 +25,6 @@ public class Sudoku extends Observable{
 		}
 		//Aldakuntzak bistari notifikatu
 		hautagaiakEguneratu();
-		for (int i = 0; i < this.tamaina; i++){
-			for (int j = 0; j < this.tamaina; j++) {
-				Gelaxka gel = gelaxkaMat[i][j];
-				if (gel instanceof GelaxkaEditagarria && gel.getBalioa() == 0) {
-					((GelaxkaEditagarria) gel).setHautagiakErab(((GelaxkaEditagarria) gel).getHautagaiakProg());
-				}
-			}
-		}
 		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 	}
 
@@ -88,7 +78,7 @@ public class Sudoku extends Observable{
 	public void gelaxkaHautagaiaLortu(int e, int z){
 		boolean[] hautagaiak = new boolean[9];
 		if (gelaxkaMat[e][z] instanceof GelaxkaEditagarria) {
-			hautagaiak = ((GelaxkaEditagarria) gelaxkaMat[e][z]).getHautagiak();
+			hautagaiak = ((GelaxkaEditagarria) gelaxkaMat[e][z]).getHautagiakErab();
 		}
 		this.bistaNotifikatu(NotifikazioMotak.HAUTAGAIAK_EGUNERATU, hautagaiak);
 	}
@@ -126,11 +116,6 @@ public class Sudoku extends Observable{
 	 * @param pZutabea
 	 */
 	private boolean[] hautagaiakKalkulatu(int pErrenkada, int pZutabea){
-		System.out.println("[MODELOA] Huatagaiak kalkulatuko ditugu:");
-		String errenkadaSekuentzia = "\t Errenkada: (";
-		String zutabeSekuentzia = "\t Zutabea: (";
-		String kuadranteSekuentzia = "\t Kuadrantea: (";
-
 		boolean[] aukerak = new boolean[this.tamaina];
 		for (int i = 0; i<aukerak.length; i++) {aukerak[i] = true;}
 
@@ -139,20 +124,17 @@ public class Sudoku extends Observable{
 			if(gelaxkaMat[pErrenkada][i].getBalioa()!=0){
 				aukerak[gelaxkaMat[pErrenkada][i].getBalioa()-1] = false;
 			}
-			errenkadaSekuentzia += " " + gelaxkaMat[pErrenkada][i].getBalioa();
 		}
 		//Zutabeko zenbakiak deskartatu
 		for (int i = 0; i<this.tamaina; i++){
 			if(gelaxkaMat[i][pZutabea].getBalioa()!=0){
 				aukerak[gelaxkaMat[i][pZutabea].getBalioa()-1] = false;
 			}
-			zutabeSekuentzia += " " + gelaxkaMat[i][pZutabea].getBalioa();
 		}
 		//Kuadranteko zenbakiak deskartatu
 		ArrayList<Integer> kBalioak = getKuadranteBalioak(pErrenkada, pZutabea);
 		for (Integer balioa : kBalioak) {
 			aukerak[balioa-1] = false;
-			kuadranteSekuentzia += " " + balioa;
 		}
 
 		return aukerak;
@@ -174,8 +156,8 @@ public class Sudoku extends Observable{
 		for (int i = 0; i < this.tamaina; i++){
 			for (int j = 0; j < this.tamaina; j++){
 				GelaxkaEgitura gelaxka;
-				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagiak() != null){
-					gelaxka = new GelaxkaEgitura(((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagiak());
+				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getBalioa() == 0){
+					gelaxka = new GelaxkaEgitura(((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagiakErab());
 				} else {
 					gelaxka = new GelaxkaEgitura(this.gelaxkaMat[i][j].getBalioa());
 				}

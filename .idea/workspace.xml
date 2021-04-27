@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="">
+    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="Diagrama eguneratu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bista/SudokuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bista/SudokuFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Gelaxka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Gelaxka.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Partida.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" afterDir="false" />
     </list>
     <list id="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" name="Changes by unaih" comment="">
       <change beforePath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +15,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="EnekoP &lt;49227962+enekop@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="sudoku_lista" />
@@ -30,25 +31,19 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java">
       <ranges>
-        <range start1="3" end1="3" start2="3" end2="6" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="6" end1="6" start2="9" end2="11" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="11" end1="12" start2="16" end2="17" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="15" end1="18" start2="20" end2="24" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="20" end1="20" start2="26" end2="31" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="21" end1="22" start2="32" end2="43" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="24" end1="24" start2="45" end2="49" changelist="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" />
+        <range start1="9" end1="12" start2="9" end2="10" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
+        <range start1="14" end1="14" start2="12" end2="16" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
+        <range start1="20" end1="20" start2="22" end2="26" changelist="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" />
+        <range start1="22" end1="23" start2="28" end2="31" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
+        <range start1="25" end1="25" start2="33" end2="40" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
+        <range start1="26" end1="26" start2="41" end2="48" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
+        <range start1="32" end1="53" start2="54" end2="54" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
+        <range start1="54" end1="58" start2="55" end2="55" changelist="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/src/Modeloa/Sudoku.java">
-      <ranges>
-        <range start1="28" end1="28" start2="28" end2="30" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="66" end1="66" start2="68" end2="69" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="93" end1="94" start2="96" end2="98" changelist="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" />
-        <range start1="99" end1="99" start2="103" end2="126" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="105" end1="106" start2="132" end2="133" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="135" end1="139" start2="162" end2="163" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-      </ranges>
-    </file>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="2" />
   </component>
   <component name="ProjectId" id="1qtmfeQUWOIY0TpwFYCcNN92P2F" />
   <component name="ProjectViewState">
@@ -62,9 +57,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="CodeWithMe" />
   </component>
   <component name="RunManager" selected="Application.Nagusia">
     <configuration name="Nagusia" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -81,15 +79,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -109,8 +105,29 @@
       <option name="presentableId" value="Default" />
       <updated>1617907367260</updated>
       <workItem from="1619334827135" duration="607000" />
-      <workItem from="1619344256077" duration="1578000" />
+      <workItem from="1619344256077" duration="2616000" />
+      <workItem from="1619348113686" duration="493000" />
+      <workItem from="1619348707015" duration="188000" />
+      <workItem from="1619350603896" duration="98000" />
+      <workItem from="1619422501025" duration="2695000" />
+      <workItem from="1619432181731" duration="37000" />
+      <workItem from="1619510939306" duration="4383000" />
     </task>
+    <task id="LOCAL-00001" summary="SudokuLista zuzendu">
+      <created>1619346614675</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619346614675</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Diagrama eguneratu">
+      <created>1619350666198</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619350666198</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,8 +145,31 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="SudokuLista zuzendu" />
+    <MESSAGE value="Diagrama eguneratu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Diagrama eguneratu" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Modeloa/Sudoku.java</url>
+          <line>64</line>
+          <properties class="Modeloa.Sudoku" method="aldatuGelaxkaBalioa">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Sudoku_SI$Nagusia.ic" NAME="Nagusia Coverage Results" MODIFIED="1618995133947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sudoku_SI$Nagusia.ic" NAME="Nagusia Coverage Results" MODIFIED="1619513025113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Sudoku_SI$LoginPanela.ic" NAME="LoginPanela Coverage Results" MODIFIED="1617976328038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Bista.*</FILTER>
     </SUITE>
