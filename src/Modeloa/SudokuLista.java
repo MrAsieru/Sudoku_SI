@@ -25,10 +25,18 @@ public class SudokuLista {
         this.sudokuak.add(pSudoku);
     }
 
-    public SudokuaGorde getSudokuaZailtazunes(int pZailtasuna){
-        if (sudokuak.size() > 0){
+    public SudokuaGorde getSudokuaZailtasuna(int pZailtasuna){
+        if (sudokuak.size() > 0 && 1 <= pZailtasuna && pZailtasuna <= 3){
             List<SudokuaGorde> posibleak = sudokuak.stream().filter(p -> p.getZailtasuna() == pZailtasuna).collect(Collectors.toList());
-            return posibleak.get(new Random().nextInt(posibleak.size()));
+            if (posibleak.size() == 0){
+                Partida.getPartida().zailtasunaHanditu(true);
+                return getSudokuaZailtasuna(pZailtasuna + 1);
+            }
+            else {
+                SudokuaGorde s = posibleak.get(new Random().nextInt(posibleak.size()));
+                sudokuak.remove(s);
+                return s;
+            }
         } else {
             return null;
         }

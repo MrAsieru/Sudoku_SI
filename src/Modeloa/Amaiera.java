@@ -11,7 +11,6 @@ public class Amaiera extends Observable {
 	
 	public void sudokuaHasi() {
 		System.out.println("[MODELOA.Amaiera]: Sudoku berria hasiko da");
-		Partida.getPartida().zailtasunaHanditu(true);
 		Partida.getPartida().sudokuBerria();
 	}
 	

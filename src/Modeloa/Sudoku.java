@@ -24,7 +24,6 @@ public class Sudoku extends Observable{
 			}
 		}
 		//Aldakuntzak bistari notifikatu
-		hautagaiakEguneratu();
 		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 	}
 
@@ -48,6 +47,7 @@ public class Sudoku extends Observable{
 		//Partidari balioak bidali
 		if (Partida.getPartida().ondoDago(balioak)) {
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_ONDO_DAGO);
+			deleteObservers(); //SudokuFrame listatik kendu
 			new Amaiera();
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
@@ -63,7 +63,7 @@ public class Sudoku extends Observable{
 	public void aldatuGelaxkaBalioa(int e, int z, int pBalioa) {
 		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria){
 			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setZenbakia(pBalioa);
-			hautagaiakEguneratu();
+
 			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
@@ -92,7 +92,6 @@ public class Sudoku extends Observable{
 	public void aldatuGelaxkaHautagaiak(int e, int z, boolean[] pHautagaiak) {
 		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria) {
 			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setHautagiakErab(pHautagaiak);
-			hautagaiakEguneratu();
 			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
@@ -132,14 +131,27 @@ public class Sudoku extends Observable{
 			}
 		}
 		//Kuadranteko zenbakiak deskartatu
-		ArrayList<Integer> kBalioak = getKuadranteBalioak(pErrenkada, pZutabea);
-		for (Integer balioa : kBalioak) {
-			aukerak[balioa-1] = false;
+		boolean[] kuadranteBalioak = getKuadranteBalioak(pErrenkada, pZutabea);
+		for (int i = 0; i < kuadranteBalioak.length; i++) {
+			if (kuadranteBalioak[i]) aukerak[i] = false;
 		}
-
 		return aukerak;
 	}
-	
+
+	private boolean[] getKuadranteBalioak(int pErrenkada, int pZutabea){
+		int pKuadrantea = (pErrenkada/3)*3+(pZutabea/3);
+		boolean[] hautagaiak = new boolean[9];
+		int hasiZutabea = pKuadrantea/3 * 3;
+		int hasiErrenkada = pKuadrantea%3 * 3;//3 * 3;
+		for (int errenkada = hasiZutabea; errenkada < hasiZutabea+3; errenkada++){
+			for (int zutabea = hasiErrenkada; zutabea < hasiErrenkada+3; zutabea++){
+				if(this.gelaxkaMat[errenkada][zutabea].getBalioa()!=0){
+					hautagaiak[gelaxkaMat[errenkada][zutabea].getBalioa()-1] = true;
+				}
+			}
+		}
+		return hautagaiak;
+	}
 
 	/********************************************* Set/Get-errak *********************************************************/
 
@@ -182,30 +194,6 @@ public class Sudoku extends Observable{
 		return emaitza;
 	}
 
-
-	/**GelaxkaHautagiak**/
-	private ArrayList<Integer> getKuadranteBalioak(int pErrenkada, int pZutabea){
-		int pKuadrantea = getKuadranteaZenbakia(pErrenkada, pZutabea);
-		ArrayList<Integer> gelaxkak = new ArrayList<>();
-		int hasiZutabea = pKuadrantea/3 * 3;
-		int hasiErrenkada = pKuadrantea%3 * 3;//3 * 3;
-		for (int Errenkada = hasiZutabea; Errenkada < hasiZutabea+3; Errenkada++){
-			for (int Zutabea = hasiErrenkada; Zutabea < hasiErrenkada+3; Zutabea++){
-				if(this.gelaxkaMat[Errenkada][Zutabea].getBalioa()!=0){
-					gelaxkak.add(this.gelaxkaMat[Errenkada][Zutabea].getBalioa());
-				}
-			}
-		}
-		return gelaxkak;
-	}
-
-	private int getKuadranteaZenbakia(int pErrenkada, int pZutabea){
-		int kZerrenda = pErrenkada/3;
-		int kZutabea = pZutabea/3;
-
-		return kZerrenda*3+kZutabea;
-	}
-
 	/*************************************** Bistarekin komunikatu *******************************************************/
 
 	/**
@@ -214,6 +202,8 @@ public class Sudoku extends Observable{
 	 * @param pArg Notifikazioarekin joango diren objektuak
 	 */
 	private void bistaNotifikatu(NotifikazioMotak pMota, Object ... pArg){
+		if(pMota==NotifikazioMotak.TAULA_EGUNERATU) hautagaiakEguneratu();
+
 		Object[] argumentuak = new Object[pArg.length + 1];
 		argumentuak[0] = pMota;
 		for (int i = 0; i < pArg.length; i++){

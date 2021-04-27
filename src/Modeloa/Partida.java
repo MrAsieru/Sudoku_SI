@@ -57,9 +57,13 @@ public class Partida {
 	 * Gordeta dagoen zailtasunarekin sudoku berria sortzen da.
 	 */
 	public void sudokuBerria(Observer pObs) {
-		SudokuaGorde sudokua = SudokuLista.getSudokuLista().getSudokuaZailtazunes(zailtasuna);
-		this.sudoku = new Sudoku(sudokua.getHasierakoMatrizea(), (pObs==null)?(Observer) this.sudokuFrame:pObs);
-		this.soluzioa = sudokua.getSoluzioa();
+		SudokuaGorde sudokua = SudokuLista.getSudokuLista().getSudokuaZailtasuna(zailtasuna);
+		if (sudokua != null) {
+			this.sudoku = new Sudoku(sudokua.getHasierakoMatrizea(), (pObs==null)?(Observer) this.sudokuFrame:pObs);
+			this.soluzioa = sudokua.getSoluzioa();
+		} else {
+			((pObs==null)?(Observer) this.sudokuFrame:pObs).update(null, NotifikazioMotak.EZIN_IZAN_DA_SUDOKUA_SORTU);
+		}
 	}
 
 	public boolean ondoDago(int[][] pBalioak) {

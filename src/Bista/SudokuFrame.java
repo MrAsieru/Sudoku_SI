@@ -250,7 +250,12 @@ public class SudokuFrame extends JFrame implements Observer{
 		// EZIN_DA_BALIOA_ALDATU:			ezer
 		// EZIN_IZAN_DA_SUDOKUA_SORTU:		ezer
 		// HAUTAGAIAK_EGUNERATU:			boolean[]
-		if (o instanceof Sudoku && arg instanceof Object[] && ((Object[])arg).length > 0 && ((Object[])arg)[0] instanceof NotifikazioMotak) {
+		if (o == null && arg instanceof NotifikazioMotak){
+			if (arg == NotifikazioMotak.EZIN_IZAN_DA_SUDOKUA_SORTU) {
+				JOptionPane.showMessageDialog(contentPane, "Ezin izan da sudokua eratu", "Errorea", JOptionPane.ERROR_MESSAGE);
+				System.exit(0);
+			}
+		} else if (o instanceof Sudoku && arg instanceof Object[] && ((Object[])arg).length > 0 && ((Object[])arg)[0] instanceof NotifikazioMotak) {
 			switch((NotifikazioMotak)((Object[])arg)[0]) {
 				case TAULA_EGUNERATU:
 					if (((Object[])arg).length == 3 && ((Object[])arg)[1] instanceof GelaxkaEgitura[][] && ((Object[])arg)[2] instanceof boolean[][]){
@@ -265,10 +270,6 @@ public class SudokuFrame extends JFrame implements Observer{
 					break;
 				case EZIN_DA_BALIOA_ALDATU:
 					JOptionPane.showMessageDialog(contentPane, "Aukeratu duzun gelaxka ezin da aldatu", "Errorea", JOptionPane.ERROR_MESSAGE);
-					break;
-				case EZIN_IZAN_DA_SUDOKUA_SORTU:
-					JOptionPane.showMessageDialog(contentPane, "Ezin da sudokua sortu", "Errorea", JOptionPane.ERROR_MESSAGE);
-					System.exit(0);
 					break;
 				case HAUTAGAIAK_EGUNERATU:
 					if (((Object[])arg)[1] instanceof boolean[]){
