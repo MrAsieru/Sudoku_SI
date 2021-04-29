@@ -1,12 +1,31 @@
 package Modeloa;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 import Bista.AmaieraFrame;
+import Egitura.PuntuazioaEgitura;
 
 public class Amaiera extends Observable {
 	public Amaiera() {
 		addObserver(new AmaieraFrame(this));
+	}
+	
+	public void rankingLortu() {
+		ArrayList<PuntuazioaEgitura> lista;
+		
+		
+		setChanged();
+		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, lista});
+	}
+	
+	public void rankingLortu(int pZailtasuna) {
+		ArrayList<PuntuazioaEgitura> lista;
+		
+		
+		setChanged();
+		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, lista});
 	}
 	
 	public void sudokuaHasi() {
