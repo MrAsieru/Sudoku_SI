@@ -1,4 +1,4 @@
-package Modeloa;
+package Modeloa.Sudokua;
 
 public enum NotifikazioMotak {
 	TAULA_EGUNERATU,

@@ -16,7 +16,7 @@ public class Regex {
     }
 
     public boolean leaderBoardFormatua(String lerroa){
-        return passFullExpression("[^;]+;[1-9]+;[1-9]+", lerroa);
+        return passFullExpression("[^;]+;[0-9]+;[0-9\\.]+", lerroa);
     }
 
     private boolean passFullExpression(String expressionToPass, String expression){

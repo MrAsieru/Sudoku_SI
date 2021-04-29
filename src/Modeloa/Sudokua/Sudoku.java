@@ -5,7 +5,6 @@ import java.util.*;
 import Egitura.GelaxkaEgitura;
 import Modeloa.Amaiera;
 import Modeloa.Gelaxka.*;
-import Modeloa.NotifikazioMotak;
 import Modeloa.Partida;
 
 

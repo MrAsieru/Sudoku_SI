@@ -1,3 +1,8 @@
-//Izena - Puntuak - Zailtazuna
-manolo;1;1
+//Izena - Puntuak (adb 1.1111) - Zailtazuna
+unai;-1;-1
+asier;9999;9999
+Xx_enekoMaster_xX;10;10
+ldopta;10;666666.9
+
+
 

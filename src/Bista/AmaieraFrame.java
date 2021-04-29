@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Egitura.PuntuazioaEgitura;
 import Modeloa.Amaiera;
-import Modeloa.NotifikazioMotak;
+import Modeloa.Sudokua.NotifikazioMotak;
 
 import javax.swing.JTable;
 import javax.swing.JRadioButton;

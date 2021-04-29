@@ -1,6 +1,7 @@
 package Modeloa;
 
 import Bista.SudokuFrame;
+import Modeloa.Sudokua.NotifikazioMotak;
 import Modeloa.Sudokua.Sudoku;
 import Modeloa.Sudokua.SudokuLista;
 import Modeloa.Sudokua.SudokuaGorde;

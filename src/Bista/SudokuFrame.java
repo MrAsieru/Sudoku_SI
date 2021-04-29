@@ -14,7 +14,7 @@ import javax.swing.text.NumberFormatter;
 
 import Egitura.GelaxkaEgitura;
 import Egitura.LaguntzaEgitura;
-import Modeloa.NotifikazioMotak;
+import Modeloa.Sudokua.NotifikazioMotak;
 import Modeloa.Partida;
 import Modeloa.Sudokua.Sudoku;
 
@@ -39,7 +39,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
-import javax.swing.JList;
 
 public class SudokuFrame extends JFrame implements Observer{
 

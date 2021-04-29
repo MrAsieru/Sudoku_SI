@@ -1,12 +1,12 @@
 package Modeloa;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Observable;
+import java.util.stream.Collectors;
 
 import Bista.AmaieraFrame;
 import Egitura.PuntuazioaEgitura;
+import Modeloa.Sudokua.NotifikazioMotak;
 import Modeloa.Support.Irakurlea;
 
 public class Amaiera extends Observable {
@@ -17,8 +17,9 @@ public class Amaiera extends Observable {
 	public void rankingLortu() {
 		List<PuntuazioaEgitura> lista = Irakurlea.getIrakurlea().parseLeaderBoard();
 
-		lista.stream().
-				sorted((PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o1.getPuntuazioa(), o2.getPuntuazioa()));
+		List<PuntuazioaEgitura> listaordenatua = lista.stream().
+				sorted((PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o1.getPuntuazioa(), o2.getPuntuazioa())).
+				collect(Collectors.toList());
 		
 		setChanged();
 		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, lista});
@@ -27,11 +28,11 @@ public class Amaiera extends Observable {
 	public void rankingLortu(int pZailtasuna) {
 		List<PuntuazioaEgitura> lista = Irakurlea.getIrakurlea().parseLeaderBoard();
 
-		lista.stream().
+		List<PuntuazioaEgitura> listaordenatua = lista.stream().
 				filter(p -> p.getZailtasuna()==pZailtasuna).
 				sorted(
-						(PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o1.getPuntuazioa(), o2.getPuntuazioa())
-				);
+						(PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o2.getPuntuazioa(), o1.getPuntuazioa())
+				).collect(Collectors.toList());
 
 		setChanged();
 		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, lista});
