@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="Diagrama eguneratu">
+    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="Hautagaiak egokitu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudoku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sudoku_SI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Sudoku_SI.iml" afterDir="false" />
     </list>
-    <list id="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" name="Changes by unaih" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java" afterDir="false" />
-    </list>
+    <list id="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" name="Changes by unaih" comment="Changes by unaih" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,22 +25,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/Modeloa/GelaxkaEditagarria.java">
-      <ranges>
-        <range start1="9" end1="12" start2="9" end2="10" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="14" end1="14" start2="12" end2="16" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="20" end1="20" start2="22" end2="26" changelist="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" />
-        <range start1="22" end1="23" start2="28" end2="31" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="25" end1="25" start2="33" end2="40" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="26" end1="26" start2="41" end2="48" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="32" end1="53" start2="54" end2="54" changelist="d04e395f-b968-4b2d-b342-136e13cba385" />
-        <range start1="54" end1="58" start2="55" end2="55" changelist="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProblemsViewState">
-    <option name="selectedIndex" value="2" />
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1qtmfeQUWOIY0TpwFYCcNN92P2F" />
   <component name="ProjectViewState">
@@ -90,9 +73,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in Sudoku_SI" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Sudoku_SI" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.SudokuPanela" />
+      <item itemvalue="Application.Nagusia" />
+      <item itemvalue="JUnit.All in Sudoku_SI" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Nagusia" />
+        <item itemvalue="JUnit.All in Sudoku_SI" />
       </list>
     </recent_temporary>
   </component>
@@ -111,7 +108,11 @@
       <workItem from="1619350603896" duration="98000" />
       <workItem from="1619422501025" duration="2695000" />
       <workItem from="1619432181731" duration="37000" />
-      <workItem from="1619510939306" duration="4383000" />
+      <workItem from="1619510939306" duration="6268000" />
+      <workItem from="1619592942289" duration="159000" />
+      <workItem from="1619602741220" duration="37000" />
+      <workItem from="1619602786093" duration="50000" />
+      <workItem from="1619633775442" duration="130000" />
     </task>
     <task id="LOCAL-00001" summary="SudokuLista zuzendu">
       <created>1619346614675</created>
@@ -127,7 +128,21 @@
       <option name="project" value="LOCAL" />
       <updated>1619350666198</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Hautagaiak egokitu">
+      <created>1619517353932</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619517353932</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changes by unaih">
+      <created>1619517357934</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619517357934</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,21 +163,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SudokuLista zuzendu" />
     <MESSAGE value="Diagrama eguneratu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Diagrama eguneratu" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Modeloa/Sudoku.java</url>
-          <line>64</line>
-          <properties class="Modeloa.Sudoku" method="aldatuGelaxkaBalioa">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Hautagaiak egokitu" />
+    <MESSAGE value="Changes by unaih" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by unaih" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -626,6 +626,7 @@ public class SudokuFrame extends JFrame implements Observer{
 	private JButton getBtnAukHautagaiak() {
 		if (btnAukHautagaiak == null) {
 			btnAukHautagaiak = new JButton("Hautagaiak");
+			btnAukHautagaiak.setVisible(false); //2.Sprint-rako
 			btnAukHautagaiak.addActionListener(new ActionListener() {
 
 				@Override
