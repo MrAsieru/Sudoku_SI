@@ -1,4 +1,4 @@
-import Modeloa.Irakurlea;
+import Modeloa.Support.Irakurlea;
 import Modeloa.Login;
 import Modeloa.Partida;
 import Modeloa.Sudokua.SudokuLista;

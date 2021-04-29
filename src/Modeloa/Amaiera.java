@@ -1,11 +1,13 @@
 package Modeloa;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Observable;
 
 import Bista.AmaieraFrame;
 import Egitura.PuntuazioaEgitura;
+import Modeloa.Support.Irakurlea;
 
 public class Amaiera extends Observable {
 	public Amaiera() {
@@ -13,17 +15,24 @@ public class Amaiera extends Observable {
 	}
 	
 	public void rankingLortu() {
-		ArrayList<PuntuazioaEgitura> lista;
-		
+		List<PuntuazioaEgitura> lista = Irakurlea.getIrakurlea().parseLeaderBoard();
+
+		lista.stream().
+				sorted((PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o1.getPuntuazioa(), o2.getPuntuazioa()));
 		
 		setChanged();
 		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, lista});
 	}
 	
 	public void rankingLortu(int pZailtasuna) {
-		ArrayList<PuntuazioaEgitura> lista;
-		
-		
+		List<PuntuazioaEgitura> lista = Irakurlea.getIrakurlea().parseLeaderBoard();
+
+		lista.stream().
+				filter(p -> p.getZailtasuna()==pZailtasuna).
+				sorted(
+						(PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o1.getPuntuazioa(), o2.getPuntuazioa())
+				);
+
 		setChanged();
 		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, lista});
 	}

@@ -1,0 +1,3 @@
+//Izena - Puntuak - Zailtazuna
+manolo;1;1
+

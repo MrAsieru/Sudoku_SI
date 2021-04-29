@@ -7,9 +7,17 @@ public class PuntuazioaEgitura {
 
 	public PuntuazioaEgitura() {}
 
-	public PuntuazioaEgitura(String izena, int zailtasuna, double puntuazioa) {
+	public PuntuazioaEgitura(String izena, int zailtasuna, Double puntuazioa) {
 		this.izena = izena;
 		this.zailtasuna = zailtasuna;
 		this.puntuazioa = puntuazioa;
+	}
+
+	public double getPuntuazioa() {
+		return puntuazioa;
+	}
+
+	public int getZailtasuna() {
+		return zailtasuna;
 	}
 }

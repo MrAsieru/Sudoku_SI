@@ -1,15 +1,18 @@
-package Modeloa;
+package Modeloa.Support;
 
+import Egitura.PuntuazioaEgitura;
 import Modeloa.Sudokua.SudokuLista;
 import Modeloa.Sudokua.SudokuaGorde;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Irakurlea {
     private static Irakurlea Irakurlea;
-    private String path = "res/sudoku.txt";
+    private String sudokuPath = "res/sudoku.txt";
+    private String leaderboardPath = "res/leader_board.txt";
     private final int tamaina = 9;
 
     private Irakurlea(){}
@@ -22,7 +25,7 @@ public class Irakurlea {
     }
 
     public void getHasierakoSudokuGuztiak(){
-        File txtFitxategia = new File(path);
+        File txtFitxategia = new File(sudokuPath);
         BufferedReader irakurle;
         try {
             irakurle = new BufferedReader(new FileReader(txtFitxategia));
@@ -59,6 +62,46 @@ public class Irakurlea {
         }
     }
 
+    public List<PuntuazioaEgitura> parseLeaderBoard(){
+        List<PuntuazioaEgitura> leaderBoard = new ArrayList<>();
+
+        ArrayList<String> ldFitxategia = this.irakurriFitxategia(leaderboardPath);
+        int i = 0;
+        while (++i<ldFitxategia.size()){
+            //Gu nahi dugun formatua badu
+            if(Regex.getRegex().leaderBoardFormatua(ldFitxategia.get(i))){
+                String[] datuak = ldFitxategia.get(i).split(";");
+                //Izena - zailtazuna - puntuak
+                PuntuazioaEgitura puntuazioa = new PuntuazioaEgitura(
+                        datuak[0],
+                        Integer.parseInt(datuak[1]),
+                        Double.parseDouble(datuak[2])
+                );
+                leaderBoard.add(puntuazioa);
+            }
+        }
+        return leaderBoard;
+    }
+
+    private ArrayList<String> irakurriFitxategia(String path){
+        ArrayList<String> testua = new ArrayList<>();
+        try {
+            File txtFitxategia = new File(path);
+            BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
+
+            String lerroa;
+            while ( (lerroa = irakurle.readLine()) != null){
+                testua.add(lerroa);
+            }
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return testua;
+    }
     /**
      * Metodo honen bidez, matrizearen hasiera lerroa jakinda bere matrizea lortuko dugu.
      * @param hasierakoLerroa
@@ -70,7 +113,7 @@ public class Irakurlea {
 
         try{
             int hasieraLerroaZenbakia = hasierakoLerroa;
-            File txtFitxategia = new File(path);
+            File txtFitxategia = new File(sudokuPath);
             BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
 
             try {
@@ -124,7 +167,7 @@ public class Irakurlea {
         int lineCount = 0;
         try{
             //txt fitxategiko zailtazun berdineko matrizeak lortuko ditugu
-            File txtFitxategia = new File(path);
+            File txtFitxategia = new File(sudokuPath);
             BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
 
             String linea;
