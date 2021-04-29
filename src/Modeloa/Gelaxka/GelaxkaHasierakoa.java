@@ -1,4 +1,6 @@
-package Modeloa;
+package Modeloa.Gelaxka;
+
+import Modeloa.Gelaxka.Gelaxka;
 
 public class GelaxkaHasierakoa extends Gelaxka {
 

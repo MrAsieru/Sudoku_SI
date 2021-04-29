@@ -15,7 +15,7 @@ import javax.swing.text.NumberFormatter;
 import Egitura.GelaxkaEgitura;
 import Modeloa.NotifikazioMotak;
 import Modeloa.Partida;
-import Modeloa.Sudoku;
+import Modeloa.Sudokua.Sudoku;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;

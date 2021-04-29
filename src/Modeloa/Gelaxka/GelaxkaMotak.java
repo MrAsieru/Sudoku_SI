@@ -1,4 +1,4 @@
-package Modeloa;
+package Modeloa.Gelaxka;
 
 public enum GelaxkaMotak {
 	HASIERAKOA,

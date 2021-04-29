@@ -1,4 +1,4 @@
-package Modeloa;
+package Modeloa.Gelaxka;
 
 public class GelaxkaFactory {
 	private static GelaxkaFactory instantzia;

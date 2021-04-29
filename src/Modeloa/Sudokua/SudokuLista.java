@@ -1,4 +1,6 @@
-package Modeloa;
+package Modeloa.Sudokua;
+
+import Modeloa.Partida;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,9 @@
 package Modeloa;
 
 import Bista.SudokuFrame;
+import Modeloa.Sudokua.Sudoku;
+import Modeloa.Sudokua.SudokuLista;
+import Modeloa.Sudokua.SudokuaGorde;
 
 import javax.swing.JFrame;
 import java.util.Observer;

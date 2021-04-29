@@ -1,5 +1,8 @@
 package Modeloa;
 
+import Modeloa.Sudokua.SudokuLista;
+import Modeloa.Sudokua.SudokuaGorde;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;

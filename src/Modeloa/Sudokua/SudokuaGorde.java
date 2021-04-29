@@ -1,4 +1,4 @@
-package Modeloa;
+package Modeloa.Sudokua;
 
 public class SudokuaGorde {
     private int     zailtasuna;

@@ -1,4 +1,4 @@
-package Modeloa;
+package Modeloa.Gelaxka;
 
 public abstract class Gelaxka {
 	protected int errenkada;

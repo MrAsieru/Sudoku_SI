@@ -1,6 +1,8 @@
-package Modeloa;
+package Modeloa.Gelaxka;
 
-public class GelaxkaEditagarria extends Gelaxka{
+import Modeloa.Gelaxka.Gelaxka;
+
+public class GelaxkaEditagarria extends Gelaxka {
 	private boolean[] hautagiakErab;
 	private boolean[] hautagaiakProg;
 
