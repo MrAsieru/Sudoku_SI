@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="Hautagaiak egokitu">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sudoku_SI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Sudoku_SI.iml" afterDir="false" />
+    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="3.Sprint-aren egitura garatu">
+      <change afterPath="$PROJECT_DIR$/src/Egitura/LaguntzaEgitura.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Egitura/PuntuazioaEgitura.java" afterDir="false" />
     </list>
     <list id="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" name="Changes by unaih" comment="Changes by unaih" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -46,6 +54,11 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="CodeWithMe" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="Modeloa" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Nagusia">
     <configuration name="Nagusia" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -113,6 +126,7 @@
       <workItem from="1619602741220" duration="37000" />
       <workItem from="1619602786093" duration="50000" />
       <workItem from="1619633775442" duration="130000" />
+      <workItem from="1619713981271" duration="1801000" />
     </task>
     <task id="LOCAL-00001" summary="SudokuLista zuzendu">
       <created>1619346614675</created>
@@ -142,7 +156,21 @@
       <option name="project" value="LOCAL" />
       <updated>1619517357934</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="2.Sprint-a amaitu">
+      <created>1619714145553</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619714145553</updated>
+    </task>
+    <task id="LOCAL-00006" summary="3.Sprint-aren egitura garatu">
+      <created>1619715537113</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1619715537113</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,7 +193,9 @@
     <MESSAGE value="Diagrama eguneratu" />
     <MESSAGE value="Hautagaiak egokitu" />
     <MESSAGE value="Changes by unaih" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by unaih" />
+    <MESSAGE value="2.Sprint-a amaitu" />
+    <MESSAGE value="3.Sprint-aren egitura garatu" />
+    <option name="LAST_COMMIT_MESSAGE" value="3.Sprint-aren egitura garatu" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
