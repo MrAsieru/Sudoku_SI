@@ -9,7 +9,7 @@ import Egitura.PuntuazioaEgitura;
 
 public class Amaiera extends Observable {
 	public Amaiera() {
-		addObserver(new AmaieraFrame(this));
+		new AmaieraFrame(this);
 	}
 	
 	public void rankingLortu() {

@@ -13,6 +13,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.text.NumberFormatter;
 
 import Egitura.GelaxkaEgitura;
+import Egitura.LaguntzaEgitura;
 import Modeloa.NotifikazioMotak;
 import Modeloa.Partida;
 import Modeloa.Sudokua.Sudoku;
@@ -36,6 +37,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JToggleButton;
+import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
+import javax.swing.JList;
 
 public class SudokuFrame extends JFrame implements Observer{
 
@@ -49,7 +53,7 @@ public class SudokuFrame extends JFrame implements Observer{
 	private JPanel pnlAldatu;
 	private JFormattedTextField ftfBalioa;
 	private JPanel pnlAukKonprobatu;
-	private JButton btnKonprobatu;
+	private JButton btnAukKonprobatu;
 	private JButton btnGarbitu;
 	private JPanel pnlGarbitu;
 	private JPanel pnlAukGelaxka;
@@ -60,8 +64,11 @@ public class SudokuFrame extends JFrame implements Observer{
 	private JPanel pnlHautagaiak;
 	private JToggleButton[][] tgbHautagaiak;
 	private JPanel pnlTaulaRatio;
-	private JPanel pnlAukHautagaiak;
-	private JButton btnAukHautagaiak;
+	private JPanel pnlAukLaguntza;
+	private JButton btnAukLaguntza;
+	private JPanel pnlAukLogger;
+	private JScrollPane scpLogger;
+	private JTextPane txpLogger;
 
 
 
@@ -83,7 +90,7 @@ public class SudokuFrame extends JFrame implements Observer{
 		tgbHautagaiak = new JToggleButton[3][3];
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 449, 346);
+		setBounds(100, 100, 558, 434);
 		setIconImage(new ImageIcon("res/icon.png").getImage()); //Icono sudoku by Jeremiah / CC BY
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -250,6 +257,7 @@ public class SudokuFrame extends JFrame implements Observer{
 		// EZIN_DA_BALIOA_ALDATU:			ezer
 		// EZIN_IZAN_DA_SUDOKUA_SORTU:		ezer
 		// HAUTAGAIAK_EGUNERATU:			boolean[]
+		// LAGUNTZA_IRUDIKATU:				LaguntzaEgitura[]
 		if (o == null && arg instanceof NotifikazioMotak){
 			if (arg == NotifikazioMotak.EZIN_IZAN_DA_SUDOKUA_SORTU) {
 				JOptionPane.showMessageDialog(contentPane, "Ezin izan da sudokua eratu", "Errorea", JOptionPane.ERROR_MESSAGE);
@@ -276,6 +284,12 @@ public class SudokuFrame extends JFrame implements Observer{
 						System.out.println("[BISTA.Sudoku]: Hautagaiak eguneratu dira");
 						hautagaiakEguneratu((boolean[]) ((Object[])arg)[1]);
 					} else System.out.println("[BISTA.Sudoku]: HAUTAGAIAK_EGUNERATU ez du eskatutakoa jaso");
+					break;
+				case LAGUNTZA_IRUDIKATU:
+					if (((Object[])arg)[1] instanceof LaguntzaEgitura[]){
+						System.out.println("[BISTA.Sudoku]: Laguntza eguneratu da");
+						laguntzaEguneratu((LaguntzaEgitura[]) ((Object[])arg)[1]);
+					} else System.out.println("[BISTA.Sudoku]: LAGUNTZA_IRUDIKATU ez du eskatutakoa jaso");
 					break;
 				default:
 					break;
@@ -312,6 +326,17 @@ public class SudokuFrame extends JFrame implements Observer{
 			}
 		}
 		System.out.println("[BISTA.Sudoku]: Hautagai matrizea eguneratuta");
+	}
+	
+	private void laguntzaEguneratu(LaguntzaEgitura[] pLista) {
+		String testua = "";
+		for (LaguntzaEgitura le: pLista) {
+			testua += "Estrategia: %s <br>".formatted(le.metodoa);
+			testua += "Gelaxka: (%d,%d) <br>".formatted(le.errenkada+1, le.zutabea+1);
+			testua += "Balioa: %d <br>".formatted(le.balioa);
+			testua += "<br>";
+		}
+		getTxpLogger().setText(testua);
 	}
 
 	//GUI elementuak
@@ -370,9 +395,9 @@ public class SudokuFrame extends JFrame implements Observer{
 			pnlAukerak = new JPanel();
 			GridBagLayout gbl_pnlAukerak = new GridBagLayout();
 			gbl_pnlAukerak.columnWidths = new int[] {69};
-			gbl_pnlAukerak.rowHeights = new int[] {0, 0, 0, 0, 0, 0};
+			gbl_pnlAukerak.rowHeights = new int[] {0, 0, 0, 0};
 			gbl_pnlAukerak.columnWeights = new double[]{1.0};
-			gbl_pnlAukerak.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+			gbl_pnlAukerak.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0};
 			pnlAukerak.setLayout(gbl_pnlAukerak);
 			GridBagConstraints gbc_pnlAukGelaxka = new GridBagConstraints();
 			gbc_pnlAukGelaxka.insets = new Insets(0, 0, 5, 0);
@@ -385,12 +410,18 @@ public class SudokuFrame extends JFrame implements Observer{
 			gbc_pnlAukKonprobatu.gridx = 0;
 			gbc_pnlAukKonprobatu.gridy = 1;
 			pnlAukerak.add(getPnlAukKonprobatu(), gbc_pnlAukKonprobatu);
-			GridBagConstraints gbc_pnlAukHautagaiak = new GridBagConstraints();
-			gbc_pnlAukHautagaiak.insets = new Insets(0, 0, 5, 0);
-			gbc_pnlAukHautagaiak.fill = GridBagConstraints.BOTH;
-			gbc_pnlAukHautagaiak.gridx = 0;
-			gbc_pnlAukHautagaiak.gridy = 2;
-			pnlAukerak.add(getPnlAukHautagaiak(), gbc_pnlAukHautagaiak);
+			GridBagConstraints gbc_pnlAukLaguntza = new GridBagConstraints();
+			gbc_pnlAukLaguntza.insets = new Insets(0, 0, 5, 0);
+			gbc_pnlAukLaguntza.fill = GridBagConstraints.BOTH;
+			gbc_pnlAukLaguntza.gridx = 0;
+			gbc_pnlAukLaguntza.gridy = 2;
+			pnlAukerak.add(getPnlAukLaguntza(), gbc_pnlAukLaguntza);
+			GridBagConstraints gbc_pnlAukLogger = new GridBagConstraints();
+			gbc_pnlAukLogger.insets = new Insets(0, 5, 5, 0);
+			gbc_pnlAukLogger.fill = GridBagConstraints.BOTH;
+			gbc_pnlAukLogger.gridx = 0;
+			gbc_pnlAukLogger.gridy = 3;
+			pnlAukerak.add(getPnlAukLogger(), gbc_pnlAukLogger);
 
 		}
 		return pnlAukerak;
@@ -560,14 +591,14 @@ public class SudokuFrame extends JFrame implements Observer{
 		if (pnlAukKonprobatu == null) {
 			pnlAukKonprobatu = new JPanel();
 			pnlAukKonprobatu.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
-			pnlAukKonprobatu.add(getBtnKonprobatu());
+			pnlAukKonprobatu.add(getBtnAukKonprobatu());
 		}
 		return pnlAukKonprobatu;
 	}
-	private JButton getBtnKonprobatu() {
-		if (btnKonprobatu == null) {
-			btnKonprobatu = new JButton("Konprobatu");
-			btnKonprobatu.addActionListener(new ActionListener() {
+	private JButton getBtnAukKonprobatu() {
+		if (btnAukKonprobatu == null) {
+			btnAukKonprobatu = new JButton("Konprobatu");
+			btnAukKonprobatu.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -576,7 +607,7 @@ public class SudokuFrame extends JFrame implements Observer{
 				}
 			});
 		}
-		return btnKonprobatu;
+		return btnAukKonprobatu;
 	}
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
@@ -616,30 +647,51 @@ public class SudokuFrame extends JFrame implements Observer{
 		});
 		return tgbHaut;
 	}
-	private JPanel getPnlAukHautagaiak() {
-		if (pnlAukHautagaiak == null) {
-			pnlAukHautagaiak = new JPanel();
-			pnlAukHautagaiak.add(getBtnAukHautagaiak());
+	private JPanel getPnlAukLaguntza() {
+		if (pnlAukLaguntza == null) {
+			pnlAukLaguntza = new JPanel();
+			pnlAukLaguntza.add(getBtnAukLaguntza());
 		}
-		return pnlAukHautagaiak;
+		return pnlAukLaguntza;
 	}
-	private JButton getBtnAukHautagaiak() {
-		if (btnAukHautagaiak == null) {
-			btnAukHautagaiak = new JButton("Hautagaiak");
-			btnAukHautagaiak.setVisible(false); //2.Sprint-rako
-			btnAukHautagaiak.addActionListener(new ActionListener() {
+	private JButton getBtnAukLaguntza() {
+		if (btnAukLaguntza == null) {
+			btnAukLaguntza = new JButton("Laguntza");
+			btnAukLaguntza.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("[KONTROLATZAILEA]: btnAukHautagaiak klikatuta");
-					int aukera = JOptionPane.showConfirmDialog(contentPane, "Gelaxkako hautagaiak lortu nahi dituzu?", "Hautagaiak lortu", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+					System.out.println("[KONTROLATZAILEA]: btnAukLaguntza klikatuta");
+					int aukera = JOptionPane.showConfirmDialog(contentPane, "Laguntza lortu nahi duzu?", "Laguntza lortu", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 					if (aukera == 0) {
-						System.out.println("[KONTROLATZAILEA]: hautagaiak kalkulatzen...");
-
+						System.out.println("[KONTROLATZAILEA]: laguntza kalkulatzen...");
+						//TODO sudoku-ri laguntza eskatu Partida.getPartida().getSudoku().laguntza();
 					}
 				}
 			});
 		}
-		return btnAukHautagaiak;
+		return btnAukLaguntza;
+	}
+	private JPanel getPnlAukLogger() {
+		if (pnlAukLogger == null) {
+			pnlAukLogger = new JPanel();
+			pnlAukLogger.setLayout(new BorderLayout(0, 0));
+			pnlAukLogger.add(getScpLogger(), BorderLayout.CENTER);
+		}
+		return pnlAukLogger;
+	}
+	private JScrollPane getScpLogger() {
+		if (scpLogger == null) {
+			scpLogger = new JScrollPane();
+			scpLogger.setViewportView(getTxpLogger());
+		}
+		return scpLogger;
+	}
+	private JTextPane getTxpLogger() {
+		if (txpLogger == null) {
+			txpLogger = new JTextPane();
+			txpLogger.setContentType("text/html");
+		}
+		return txpLogger;
 	}
 }

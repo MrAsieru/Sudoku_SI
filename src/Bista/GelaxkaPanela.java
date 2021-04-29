@@ -104,6 +104,7 @@ public class GelaxkaPanela extends JPanel {
 	private JLabel getLblZenbakia() {
 		if (lblZenbakia == null) {
 			lblZenbakia = new JLabel("");
+			lblZenbakia.setFont(new Font("Dialog", Font.BOLD, 15));
 		}
 		return lblZenbakia;
 	}
@@ -112,7 +113,7 @@ public class GelaxkaPanela extends JPanel {
 			pnlHautagaiak = new JPanel();
 			pnlHautagaiak.setBackground(Color.decode("#FFFFFF"));
 			pnlHautagaiak.setLayout(new GridLayout(3, 3, 4, 0));
-			pnlHautagaiak.setBounds(30,30,30,30);
+			pnlHautagaiak.setBounds(60,60,60,60);
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
 					lblHautagaiak[i][j] = getLblHautagaia((i*3+j+1)+"");
@@ -125,8 +126,8 @@ public class GelaxkaPanela extends JPanel {
 	}
 	private JLabel getLblHautagaia(String pBalioa) {
 		JLabel lblHautagaia = new JLabel(pBalioa);
-		lblHautagaia.setBounds(10,10,10,10);
-		lblHautagaia.setFont(new Font("Dialog", Font.BOLD, 8));
+		lblHautagaia.setBounds(20,20,20,20);
+		lblHautagaia.setFont(new Font("Dialog", Font.BOLD, 10));
 		return lblHautagaia;
 	}
 }
