@@ -1,4 +1,4 @@
-package Modeloa.Estrategiak;
+package Modeloa.SudokuEstrategiak;
 
 public class SoleCandidate implements LaguntzaMetodoa {
 	public Integer laguntza(int pErr, int pZut) {
