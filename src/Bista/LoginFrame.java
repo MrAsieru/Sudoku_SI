@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Modeloa.Login;
+import Modeloa.Support.NotifikazioMotak;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -23,8 +24,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
+import java.util.Observable;
+import java.util.Observer;
 
-public class LoginFrame extends JFrame {
+public class LoginFrame extends JFrame implements Observer {
 
 	private JPanel contentPane;
 	private JPanel pnlDatuak;
@@ -55,6 +58,21 @@ public class LoginFrame extends JFrame {
 		contentPane.add(getPnlHasi(), BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if (o instanceof Login && arg instanceof NotifikazioMotak){
+			switch ((NotifikazioMotak) arg) {
+				case IZENA_BATERAEZINA:
+					JOptionPane.showMessageDialog(contentPane, "Ezin duzu izen hori erabili, beste batekin probatu.", "Errorea", JOptionPane.ERROR_MESSAGE);
+					break;
+				case LOGIN_ZUZENA:
+					setVisible(false);
+					dispose();
+					break;
+			}
+		}
 	}
 
 	private JPanel getPnlDatuak() {
@@ -166,7 +184,6 @@ public class LoginFrame extends JFrame {
 						else if (getRdbZaila().isSelected()) zailtasuna = 3;
 						
 						System.out.println(String.format("[BISTA.Login]: Saio berria hasi, izena:%s, zailtasuna:%d", txfIzena.getText(), zailtasuna));
-						setVisible(false);
 						Login.getInstantzia().logeatu(txfIzena.getText(), zailtasuna);
 					} else JOptionPane.showMessageDialog(contentPane, "Sudokua hasteko izen bat sartu eta zailtasun bat aukeratu!", "Errorea", JOptionPane.ERROR_MESSAGE);
 				}

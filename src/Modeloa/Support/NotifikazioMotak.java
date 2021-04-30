@@ -1,6 +1,8 @@
-package Modeloa.Sudokua;
+package Modeloa.Support;
 
 public enum NotifikazioMotak {
+	IZENA_BATERAEZINA,
+	LOGIN_ZUZENA,
 	TAULA_EGUNERATU,
 	HAUTAGAIAK_EGUNERATU,
 	EMAITZA_ONDO_DAGO,
@@ -8,5 +10,6 @@ public enum NotifikazioMotak {
 	EZIN_IZAN_DA_SUDOKUA_SORTU,
 	EZIN_DA_BALIOA_ALDATU,
 	LAGUNTZA_IRUDIKATU,
-	RANKING_EGUNERATU
+	RANKING_EGUNERATU,
+	AMAIERA_ITXI
 }

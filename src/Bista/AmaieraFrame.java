@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Egitura.PuntuazioaEgitura;
 import Modeloa.Amaiera;
-import Modeloa.Sudokua.NotifikazioMotak;
+import Modeloa.Support.NotifikazioMotak;
 
 import javax.swing.JTable;
 import javax.swing.JRadioButton;
@@ -79,7 +79,6 @@ public class AmaieraFrame extends JFrame implements Observer{
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("Amaiera update o:"+o+" arg:"+arg);
 		if (o instanceof Amaiera && arg instanceof Object[] && ((Object[])arg).length > 0 && ((Object[])arg)[0] instanceof NotifikazioMotak) {
 			switch ((NotifikazioMotak)((Object[])arg)[0]) {
 			case RANKING_EGUNERATU:
@@ -87,7 +86,9 @@ public class AmaieraFrame extends JFrame implements Observer{
 					taulaEguneratu((ArrayList<PuntuazioaEgitura>) ((Object[])arg)[1]);
 				} else System.out.println("[BISTA.Amaiera]: RANKING_EGUNERATU ez du eskatutakoa jaso");
 				break;
-			default:
+			case AMAIERA_ITXI:
+				setVisible(false);
+				dispose();
 				break;
 			}
 		}

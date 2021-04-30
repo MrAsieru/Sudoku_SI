@@ -1,10 +1,13 @@
 package Modeloa;
 
 import java.awt.EventQueue;
+import java.util.Observable;
 
 import Bista.LoginFrame;
+import Modeloa.Support.NotifikazioMotak;
+import Modeloa.Support.Regex;
 
-public class Login {
+public class Login extends Observable {
 	private static Login instantzia;
 	
 	private Login(){
@@ -12,6 +15,7 @@ public class Login {
 			public void run() {
 				try {
 					LoginFrame frame = new LoginFrame();
+					addObserver(frame);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -28,9 +32,16 @@ public class Login {
 	}
 	
 	public void logeatu(String pIzena, int pZailtasuna) {
-		System.out.println(String.format("[MODELOA.Login]: Jokalaria logeatuta: %s %d", pIzena, pZailtasuna));
-		Partida.getPartida().setIzena(pIzena); //Izena gorde
-		Partida.getPartida().setZailtasuna(pZailtasuna); //Zailtasuna gorde
-		Partida.getPartida().sudokuBerria(); //Sudoku berria eratu
+		if (Regex.getRegex().izenFormatua(pIzena)) {
+			setChanged();
+			notifyObservers(NotifikazioMotak.LOGIN_ZUZENA);
+			System.out.println(String.format("[MODELOA.Login]: Jokalaria logeatuta: %s %d", pIzena, pZailtasuna));
+			Partida.getPartida().setIzena(pIzena); //Izena gorde
+			Partida.getPartida().setZailtasuna(pZailtasuna); //Zailtasuna gorde
+			Partida.getPartida().sudokuBerria(); //Sudoku berria eratu
+		} else {
+			setChanged();
+			notifyObservers(NotifikazioMotak.IZENA_BATERAEZINA);
+		}
 	}
 }

@@ -102,6 +102,10 @@ public class Irakurlea {
         }
         return testua;
     }
+
+    public void rankingGorde(String pIzena, int pZailtasuna, double pPuntuazioa) {
+
+    }
     /**
      * Metodo honen bidez, matrizearen hasiera lerroa jakinda bere matrizea lortuko dugu.
      * @param hasierakoLerroa

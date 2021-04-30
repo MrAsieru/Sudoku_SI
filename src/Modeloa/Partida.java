@@ -1,12 +1,15 @@
 package Modeloa;
 
 import Bista.SudokuFrame;
-import Modeloa.Sudokua.NotifikazioMotak;
+import Modeloa.Support.Irakurlea;
+import Modeloa.Support.NotifikazioMotak;
 import Modeloa.Sudokua.Sudoku;
 import Modeloa.Sudokua.SudokuLista;
 import Modeloa.Sudokua.SudokuaGorde;
 
 import javax.swing.JFrame;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Observer;
 
 public class Partida {
@@ -17,6 +20,8 @@ public class Partida {
 	private int zailtasuna;
 	private final int tamaina = 9;
 	private String izena;
+	private Instant sudokuHasiera;
+	public int laguntzaKant;
 
 	private Partida(){
 		this.sudokuFrame = new SudokuFrame();
@@ -65,9 +70,15 @@ public class Partida {
 		if (sudokua != null) {
 			this.sudoku = new Sudoku(sudokua.getHasierakoMatrizea(), (pObs==null)?(Observer) this.sudokuFrame:pObs);
 			this.soluzioa = sudokua.getSoluzioa();
+			laguntzaKant = 0;
+			sudokuHasiera = Instant.now();
 		} else {
 			((pObs==null)?(Observer) this.sudokuFrame:pObs).update(null, NotifikazioMotak.EZIN_IZAN_DA_SUDOKUA_SORTU);
 		}
+	}
+
+	public void laguntzaEskatuta() { //TODO laguntza eskatzean honi deitu
+		laguntzaKant++;
 	}
 
 	public boolean ondoDago(int[][] pBalioak) {
@@ -84,6 +95,12 @@ public class Partida {
 			i++;
 		}
 		System.out.println("[MODELOA.Partida]: "+((ondo)?"sudokua ondo ebatzi da":"sudokua ez da ondo ebatzi"));
+		if (ondo) Irakurlea.getIrakurlea().rankingGorde(izena, zailtasuna, puntuazioaKalkulatu());
 		return ondo;
+	}
+
+	private double puntuazioaKalkulatu(){
+		long denbora = Duration.between(sudokuHasiera, Instant.now()).toSeconds();
+		return (30000*zailtasuna/(denbora+(30*laguntzaKant)));
 	}
 }

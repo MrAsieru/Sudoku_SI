@@ -15,6 +15,10 @@ public class Regex {
         return r;
     }
 
+    public boolean izenFormatua(String pIzena) {
+        return passFullExpression("^[a-z0-9]*$", pIzena);
+    }
+
     public boolean leaderBoardFormatua(String lerroa){
         return passFullExpression("[^;]+;[0-9]+;[0-9\\.]+", lerroa);
     }

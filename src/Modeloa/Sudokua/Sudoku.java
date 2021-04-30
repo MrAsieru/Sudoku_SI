@@ -6,6 +6,7 @@ import Egitura.GelaxkaEgitura;
 import Modeloa.Amaiera;
 import Modeloa.Gelaxka.*;
 import Modeloa.Partida;
+import Modeloa.Support.NotifikazioMotak;
 
 
 public class Sudoku extends Observable{

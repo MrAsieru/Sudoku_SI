@@ -14,7 +14,7 @@ import javax.swing.text.NumberFormatter;
 
 import Egitura.GelaxkaEgitura;
 import Egitura.LaguntzaEgitura;
-import Modeloa.Sudokua.NotifikazioMotak;
+import Modeloa.Support.NotifikazioMotak;
 import Modeloa.Partida;
 import Modeloa.Sudokua.Sudoku;
 

@@ -1,8 +1,8 @@
 //Izena - Puntuak (adb 1.1111) - Zailtazuna
-unai;-1;-1
-asier;9999;9999
-Xx_enekoMaster_xX;10;10
-ldopta;10;666666.9
+unai;1;1.1111
+asier;2;9999
+Xx_enekoMaster_xX;3;10
+ldopta;2;10
 
 
 

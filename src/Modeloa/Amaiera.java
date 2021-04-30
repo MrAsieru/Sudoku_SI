@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import Bista.AmaieraFrame;
 import Egitura.PuntuazioaEgitura;
-import Modeloa.Sudokua.NotifikazioMotak;
+import Modeloa.Support.NotifikazioMotak;
 import Modeloa.Support.Irakurlea;
 
 public class Amaiera extends Observable {
@@ -18,11 +18,12 @@ public class Amaiera extends Observable {
 		List<PuntuazioaEgitura> lista = Irakurlea.getIrakurlea().parseLeaderBoard();
 
 		List<PuntuazioaEgitura> listaordenatua = lista.stream().
-				sorted((PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o1.getPuntuazioa(), o2.getPuntuazioa())).
+				sorted((PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o2.getPuntuazioa(), o1.getPuntuazioa())).
+				limit(10).
 				collect(Collectors.toList());
 		
 		setChanged();
-		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, lista});
+		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, listaordenatua});
 	}
 	
 	public void rankingLortu(int pZailtasuna) {
@@ -30,16 +31,18 @@ public class Amaiera extends Observable {
 
 		List<PuntuazioaEgitura> listaordenatua = lista.stream().
 				filter(p -> p.getZailtasuna()==pZailtasuna).
-				sorted(
-						(PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o2.getPuntuazioa(), o1.getPuntuazioa())
-				).collect(Collectors.toList());
+				sorted((PuntuazioaEgitura o1, PuntuazioaEgitura o2) -> Double.compare(o2.getPuntuazioa(), o1.getPuntuazioa())).
+				limit(10).
+				collect(Collectors.toList());
 
 		setChanged();
-		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, lista});
+		notifyObservers(new Object[] {NotifikazioMotak.RANKING_EGUNERATU, listaordenatua});
 	}
 	
 	public void sudokuaHasi() {
 		System.out.println("[MODELOA.Amaiera]: Sudoku berria hasiko da");
+		setChanged();
+		notifyObservers(NotifikazioMotak.AMAIERA_ITXI);
 		Partida.getPartida().sudokuBerria();
 	}
 	
