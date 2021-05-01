@@ -1,5 +1,7 @@
 package Egitura;
 
+import java.util.ArrayList;
+
 public class GelaxkaEgitura {
 	public Integer balioa;
 	public boolean[] hautagaiak;

@@ -5,4 +5,8 @@ public class UniqueCandidate implements LaguntzaMetodoa {
 		//TODO
 		return null;
 	}
+
+	public String getMetodoIzena(){
+		return "Unique Candidate";
+	}
 }

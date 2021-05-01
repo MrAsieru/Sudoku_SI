@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="feat: hasierako inplementazioak ezarri">
+    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="quizas deberia parar">
+      <change afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/ListaStrategiak.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/leader_board.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/leader_board.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bista/AmaieraFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bista/AmaieraFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bista/SudokuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bista/SudokuFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Amaiera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Amaiera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/NotifikazioMotak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudokua/NotifikazioMotak.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Partida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Egitura/GelaxkaEgitura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Egitura/GelaxkaEgitura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/EremuIterazioa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/EremuIterazioa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LaguntzaMetodoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LaguntzaMetodoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LerroIterazioa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LerroIterazioa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/SoleCandidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/SoleCandidate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/UniqueCandidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/UniqueCandidate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudokua/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudokua/Sudoku.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Support/Regex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Support/Regex.java" afterDir="false" />
     </list>
     <list id="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" name="Changes by unaih" comment="Changes by unaih" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,9 +51,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1qtmfeQUWOIY0TpwFYCcNN92P2F" />
   <component name="ProjectLevelVcsManager">
@@ -208,7 +206,21 @@
       <option name="project" value="LOCAL" />
       <updated>1619725757391</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: implementazioak probatu eta zuzendu. Ondo doaz! momentuz....">
+      <created>1619727887216</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619727887216</updated>
+    </task>
+    <task id="LOCAL-00010" summary="quizas deberia parar">
+      <created>1619728007245</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1619728007245</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +263,9 @@
     <MESSAGE value="3.Sprint-aren egitura garatu" />
     <MESSAGE value="feat: klaseak ordenatu" />
     <MESSAGE value="feat: hasierako inplementazioak ezarri" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: hasierako inplementazioak ezarri" />
+    <MESSAGE value="feat: implementazioak probatu eta zuzendu. Ondo doaz! momentuz...." />
+    <MESSAGE value="quizas deberia parar" />
+    <option name="LAST_COMMIT_MESSAGE" value="quizas deberia parar" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

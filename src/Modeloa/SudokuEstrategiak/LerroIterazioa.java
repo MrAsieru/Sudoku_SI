@@ -5,4 +5,8 @@ public class LerroIterazioa implements LaguntzaMetodoa {
 		//TODO
 		return null;
 	}
+
+	public String getMetodoIzena(){
+		return "Lerro Iterazioa";
+	}
 }

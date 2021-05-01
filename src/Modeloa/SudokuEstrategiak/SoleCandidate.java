@@ -5,4 +5,8 @@ public class SoleCandidate implements LaguntzaMetodoa {
 		//TODO
 		return null;
 	}
+
+	public String getMetodoIzena(){
+		return "Sole Candidate";
+	}
 }

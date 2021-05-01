@@ -3,9 +3,11 @@ package Modeloa.Sudokua;
 import java.util.*;
 
 import Egitura.GelaxkaEgitura;
+import Egitura.LaguntzaEgitura;
 import Modeloa.Amaiera;
 import Modeloa.Gelaxka.*;
 import Modeloa.Partida;
+import Modeloa.SudokuEstrategiak.ListaStrategiak;
 import Modeloa.Support.NotifikazioMotak;
 
 
@@ -38,6 +40,7 @@ public class Sudoku extends Observable{
 	 * Bista sudokua ondo ebatzita badagoen jakiteko
 	 */
 	public void ondoDago() {
+
 		System.out.println("[MODELOA]: Sudokua konprobatuko da");
 		int[][] balioak = new int[this.tamaina][this.tamaina];
 
@@ -157,6 +160,11 @@ public class Sudoku extends Observable{
 		return hautagaiak;
 	}
 
+	public void laguntzaKalkulatu(){
+		ArrayList<LaguntzaEgitura> laguntzak = ListaStrategiak.getListaStrategiak().kalkulatuLaguntzak();
+		bistaNotifikatu(NotifikazioMotak.LAGUNTZA_IRUDIKATU, laguntzak.toArray());
+	}
+
 	/********************************************* Set/Get-errak *********************************************************/
 
 	public int getTamaina() {
@@ -164,7 +172,7 @@ public class Sudoku extends Observable{
 	}
 
 	/**GelaxkaBalioak**/
-	private GelaxkaEgitura[][] getGelaxkaBalioak(){
+	public GelaxkaEgitura[][] getGelaxkaBalioak(){
 		// ToDo
 		// Balio bakarra bada: new GelaxkaEgitura(pBalioa); non pBalioa : Integer
 		// Hautagaiak baditu: new GelaxkaEgitura(pHautagaiak); non pHautagaiak : boolean[]
