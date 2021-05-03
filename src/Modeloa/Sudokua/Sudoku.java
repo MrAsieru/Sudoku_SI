@@ -125,23 +125,12 @@ public class Sudoku extends Observable{
 		boolean[] aukerak = new boolean[this.tamaina];
 		for (int i = 0; i<aukerak.length; i++) {aukerak[i] = true;}
 
-		//TODO
-		//Errenkada zenbakiak deskartatu
-		for (int i = 0; i<this.tamaina; i++){
-			if(gelaxkaMat[pErrenkada][i].getBalioa()!=0){
-				aukerak[gelaxkaMat[pErrenkada][i].getBalioa()-1] = false;
-			}
-		}
-		//Zutabeko zenbakiak deskartatu
-		for (int i = 0; i<this.tamaina; i++){
-			if(gelaxkaMat[i][pZutabea].getBalioa()!=0){
-				aukerak[gelaxkaMat[i][pZutabea].getBalioa()-1] = false;
-			}
-		}
-		//Kuadranteko zenbakiak deskartatu
-		boolean[] kuadranteBalioak = getKuadranteBalioak(pErrenkada, pZutabea);
-		for (int i = 0; i < kuadranteBalioak.length; i++) {
-			if (kuadranteBalioak[i]) aukerak[i] = false;
+		boolean[] zutabeAukerak = this.zutabeHautagaiak(pZutabea);
+		boolean[] errenkadaAukerak = this.errenkadaHautagaiak(pErrenkada);
+		boolean[] kuadranteAukerak = this.eremuHautagaiak(pErrenkada, pZutabea);
+
+		for (int i = 0; i<aukerak.length; i++){
+			aukerak[i] = zutabeAukerak[i] && errenkadaAukerak[i] && kuadranteAukerak[i];
 		}
 		return aukerak;
 	}
@@ -170,6 +159,7 @@ public class Sudoku extends Observable{
 
 	public boolean[] eremuHautagaiak(int pErr, int pZut){
 		boolean[] hautagaiak = new boolean[9];
+		for (int i = 0; i<hautagaiak.length; i++) {hautagaiak[i] = true;}
 		boolean[] kuadranteBalioak = getKuadranteBalioak(pErr, pZut);
 		for (int i = 0; i < kuadranteBalioak.length; i++) {
 			if (kuadranteBalioak[i]) hautagaiak[i] = false;
