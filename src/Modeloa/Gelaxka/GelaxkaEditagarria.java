@@ -54,4 +54,8 @@ public class GelaxkaEditagarria extends Gelaxka {
 	public boolean[] getHautagiakErab() {
 		return hautagiakErab;
 	}
+
+	public boolean[] getHautagaiakProg() {
+		return hautagaiakProg;
+	}
 }
