@@ -32,9 +32,7 @@ public class ListaStrategiak {
             for (int i = 0; i<Partida.getPartida().getSudoku().getTamaina(); i++){
                 for (int j = 0; j<Partida.getPartida().getSudoku().getTamaina(); j++){
                     Integer erantzuna = laguntza.laguntza(i,j);
-                    if (erantzuna!=null) laguntzak.add(
-                            new LaguntzaEgitura(i, j, erantzuna, laguntza.getMetodoIzena())
-                    );
+                    if (erantzuna!=null) laguntzak.add(new LaguntzaEgitura(i, j, erantzuna, laguntza.getMetodoIzena()));
                 }
             }
         }

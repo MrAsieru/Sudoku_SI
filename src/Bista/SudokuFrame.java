@@ -664,7 +664,7 @@ public class SudokuFrame extends JFrame implements Observer{
 					int aukera = JOptionPane.showConfirmDialog(contentPane, "Laguntza lortu nahi duzu?", "Laguntza lortu", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 					if (aukera == 0) {
 						System.out.println("[KONTROLATZAILEA]: laguntza kalkulatzen...");
-						//TODO sudoku-ri laguntza eskatu Partida.getPartida().getSudoku().laguntza();
+						Partida.getPartida().getSudoku().laguntzaKalkulatu();
 					}
 				}
 			});
