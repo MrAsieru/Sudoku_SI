@@ -39,7 +39,7 @@ public class EremuEtaZutLerIterazioa implements LaguntzaMetodoa {
 
 					if (zutabea != -1) {
 						for (int g = 0; g < 9; g++){
-							if (matrizeHutsak[g][zutabea] && (g < err || err+2 < g)) {
+							if (matrizeHutsak[g][zutabea] && (g < err || err+2 < g) && hautagaiaGuztiak[g][zutabea][b]) {
 								laguntzak.add("Estrategia: Eremu eta Zut. iter.<br>" +
 										"Gelaxka: (%d, %d)<br>".formatted(g+1, zutabea+1) +
 										"%d hautagaitik kendu<br>".formatted(b+1));
@@ -63,10 +63,10 @@ public class EremuEtaZutLerIterazioa implements LaguntzaMetodoa {
 
 					if (errenkada != -1) {
 						for (int g = 0; g < 9; g++){
-							if (matrizeHutsak[errenkada][g] && (g < zut || zut+2 < g)) {
+							if (matrizeHutsak[errenkada][g] && (g < zut || zut+2 < g) && hautagaiaGuztiak[errenkada][g][b]) {
 								laguntzak.add("Estrategia: Eremu eta Err. iter.<br>" +
 										"Gelaxka: (%d, %d)<br>".formatted(errenkada+1, g+1) +
-										"%d hautagaitik kendu".formatted(b+1));
+										"%d hautagaitik kendu<br>".formatted(b+1));
 								aldaketak.add(new AldaketaEgitura(errenkada, g, -1, b));
 							}
 						}

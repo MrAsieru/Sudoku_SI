@@ -93,7 +93,7 @@ public class UnekoSudokua extends Observable{
 	public void gelaxkaHautagaiaLortu(int e, int z){
 		boolean[] hautagaiak = new boolean[9];
 		if (gelaxkaMat[e][z] instanceof GelaxkaEditagarria) {
-			hautagaiak = ((GelaxkaEditagarria) gelaxkaMat[e][z]).getHautagiakErab();
+			hautagaiak = ((GelaxkaEditagarria) gelaxkaMat[e][z]).getHautagaiakErab();
 		}
 		this.bistaNotifikatu(NotifikazioMotak.HAUTAGAIAK_EGUNERATU, hautagaiak);
 	}
@@ -209,9 +209,9 @@ public class UnekoSudokua extends Observable{
 
 	private void laguntzaGelaxkatikHautagaiaKendu(int e, int z, int pHautagaia) {
 		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria && 0 <= pHautagaia && pHautagaia <= 8) {
-			boolean[] hautagaiakTmp = ((GelaxkaEditagarria) this.gelaxkaMat[e][z]).getHautagaiakProg();
+			boolean[] hautagaiakTmp = ((GelaxkaEditagarria) this.gelaxkaMat[e][z]).getHautagaiakErab();
 			hautagaiakTmp[pHautagaia] = false;
-			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setHautagiakProg(hautagaiakTmp);
+			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setHautagiakErab(hautagaiakTmp);
 		}
 	}
 
@@ -231,7 +231,7 @@ public class UnekoSudokua extends Observable{
 			for (int j = 0; j < this.tamaina; j++){
 				GelaxkaEgitura gelaxka;
 				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getBalioa() == 0){
-					gelaxka = new GelaxkaEgitura(((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagiakErab());
+					gelaxka = new GelaxkaEgitura(((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagaiakErab());
 				} else {
 					gelaxka = new GelaxkaEgitura(this.gelaxkaMat[i][j].getBalioa());
 				}
@@ -246,7 +246,7 @@ public class UnekoSudokua extends Observable{
 		for (int i = 0; i < this.tamaina; i++){
 			for (int j = 0; j < this.tamaina; j++){
 				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getBalioa() == 0){
-					hautagaiGuztiak[i][j] = ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagiakErab();
+					hautagaiGuztiak[i][j] = ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagaiakErab();
 				}
 			}
 		}
