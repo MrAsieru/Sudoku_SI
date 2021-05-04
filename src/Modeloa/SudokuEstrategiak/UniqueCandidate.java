@@ -1,9 +1,14 @@
 package Modeloa.SudokuEstrategiak;
 
+import Egitura.AldaketaEgitura;
+import Egitura.LaguntzaEgitura;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class UniqueCandidate implements LaguntzaMetodoa {
-	public Integer laguntza(int pErr, int pZut) {
-		//TODO
-		return null;
+	public LaguntzaEgitura laguntzaKalkulatu() {
+		return new LaguntzaEgitura(new ArrayList<String>(), new ArrayList<AldaketaEgitura>());
 	}
 
 	public String getMetodoIzena(){

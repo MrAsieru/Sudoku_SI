@@ -1,9 +1,14 @@
 package Modeloa.SudokuEstrategiak;
 
+import Egitura.AldaketaEgitura;
+import Egitura.LaguntzaEgitura;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class EremuIterazioa implements LaguntzaMetodoa {
-	public Integer laguntza(int pErr, int pZut) {
-		//TODO
-		return 1;
+	public LaguntzaEgitura laguntzaKalkulatu() {
+		return new LaguntzaEgitura(new ArrayList<String>(), new ArrayList<AldaketaEgitura>());
 	}
 
 	public String getMetodoIzena(){

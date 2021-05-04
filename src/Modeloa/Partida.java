@@ -3,7 +3,7 @@ package Modeloa;
 import Bista.SudokuFrame;
 import Modeloa.Support.Irakurlea;
 import Modeloa.Support.NotifikazioMotak;
-import Modeloa.Sudokua.Sudoku;
+import Modeloa.Sudokua.UnekoSudokua;
 import Modeloa.Sudokua.SudokuLista;
 import Modeloa.Sudokua.SudokuaGorde;
 
@@ -14,8 +14,6 @@ import java.util.Observer;
 
 public class Partida {
 	private static Partida instantzia;
-	private JFrame sudokuFrame;
-	private Sudoku sudoku;
 	private int[][] soluzioa;
 	private int zailtasuna;
 	private final int tamaina = 9;
@@ -24,7 +22,8 @@ public class Partida {
 	public int laguntzaKant;
 
 	private Partida(){
-		this.sudokuFrame = new SudokuFrame();
+		Observer sudokuFrame = new SudokuFrame();
+		UnekoSudokua.getInstantzia().addObserver(sudokuFrame);
 	}
 
 	public static Partida getPartida(){
@@ -47,10 +46,6 @@ public class Partida {
 
 	}
 
-	public Sudoku getSudoku(){
-		return this.sudoku;
-	}
-
 	/**
 	 * Partida erabiltzen ari den zailtasuna handitzeko
 	 * @param pHanditu true handitu nahi bada, false bestela
@@ -58,22 +53,18 @@ public class Partida {
 	public void zailtasunaHanditu(boolean pHanditu) {
 		if (pHanditu) setZailtasuna(zailtasuna+1);
 	}
-
-	public void sudokuBerria() {
-		sudokuBerria(null);
-	}
 	/**
 	 * Gordeta dagoen zailtasunarekin sudoku berria sortzen da.
 	 */
-	public void sudokuBerria(Observer pObs) {
+	public void sudokuBerria() {
 		SudokuaGorde sudokua = SudokuLista.getSudokuLista().getSudokuaZailtasuna(zailtasuna);
 		if (sudokua != null) {
-			this.sudoku = new Sudoku(sudokua.getHasierakoMatrizea(), (pObs==null)?(Observer) this.sudokuFrame:pObs);
+			UnekoSudokua.getInstantzia().sudokuaSortu(sudokua.getHasierakoMatrizea());
 			this.soluzioa = sudokua.getSoluzioa();
 			laguntzaKant = 0;
 			sudokuHasiera = Instant.now();
 		} else {
-			((pObs==null)?(Observer) this.sudokuFrame:pObs).update(null, NotifikazioMotak.EZIN_IZAN_DA_SUDOKUA_SORTU);
+			UnekoSudokua.getInstantzia().sudokuaEzinSortu();
 		}
 	}
 

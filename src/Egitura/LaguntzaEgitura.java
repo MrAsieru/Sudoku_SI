@@ -1,17 +1,15 @@
 package Egitura;
 
+import java.util.List;
+
 public class LaguntzaEgitura {
-	public int errenkada;
-	public int zutabea;
-	public int balioa;
-	public String metodoa;
+	public List<String> logger;
+	public List<AldaketaEgitura> aldaketak;
 
 	public LaguntzaEgitura() {}
 
-	public LaguntzaEgitura(int errenkada, int zutabea, int balioa, String metodoa) {
-		this.errenkada = errenkada;
-		this.zutabea = zutabea;
-		this.balioa = balioa;
-		this.metodoa = metodoa;
+	public LaguntzaEgitura(List<String> logger, List<AldaketaEgitura> aldaketak) {
+		this.logger = logger;
+		this.aldaketak = aldaketak;
 	}
 }

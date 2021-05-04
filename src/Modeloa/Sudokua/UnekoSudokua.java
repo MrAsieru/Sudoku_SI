@@ -2,6 +2,7 @@ package Modeloa.Sudokua;
 
 import java.util.*;
 
+import Egitura.AldaketaEgitura;
 import Egitura.GelaxkaEgitura;
 import Egitura.LaguntzaEgitura;
 import Modeloa.Amaiera;
@@ -11,12 +12,19 @@ import Modeloa.SudokuEstrategiak.ListaStrategiak;
 import Modeloa.Support.NotifikazioMotak;
 
 
-public class Sudoku extends Observable{
+public class UnekoSudokua extends Observable{
 	private Gelaxka[][] gelaxkaMat;
 	private final int tamaina = 9; //9x9 bada 9, 25x25 bada 25
+	private static UnekoSudokua instantzia;
 
-	public Sudoku(int[][] pGelaxkak, Observer pObs) {
-		this.addObserver(pObs);
+	private UnekoSudokua(){}
+
+	public static UnekoSudokua getInstantzia() {
+		if (instantzia == null) instantzia = new UnekoSudokua();
+		return instantzia;
+	}
+
+	public void sudokuaSortu(int[][] pGelaxkak) {
 		this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];
 
 		//Gelaxka matrizea sortu
@@ -30,6 +38,7 @@ public class Sudoku extends Observable{
 			}
 		}
 		//Aldakuntzak bistari notifikatu
+		hautagaiakEguneratu();
 		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 	}
 
@@ -54,7 +63,6 @@ public class Sudoku extends Observable{
 		//Partidari balioak bidali
 		if (Partida.getPartida().ondoDago(balioak)) {
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_ONDO_DAGO);
-			deleteObservers(); //SudokuFrame listatik kendu
 			new Amaiera();
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EMAITZA_TXARTO_DAGO);
@@ -70,7 +78,7 @@ public class Sudoku extends Observable{
 	public void aldatuGelaxkaBalioa(int e, int z, int pBalioa) {
 		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria){
 			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setZenbakia(pBalioa);
-
+			hautagaiakEguneratu();
 			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
@@ -99,6 +107,7 @@ public class Sudoku extends Observable{
 	public void aldatuGelaxkaHautagaiak(int e, int z, boolean[] pHautagaiak) {
 		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria) {
 			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setHautagiakErab(pHautagaiak);
+			hautagaiakEguneratu();
 			this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 		} else {
 			this.bistaNotifikatu(NotifikazioMotak.EZIN_DA_BALIOA_ALDATU);
@@ -183,8 +192,27 @@ public class Sudoku extends Observable{
 	}
 
 	public void laguntzaKalkulatu(){
-		ArrayList<LaguntzaEgitura> laguntzak = ListaStrategiak.getListaStrategiak().kalkulatuLaguntzak();
-		bistaNotifikatu(NotifikazioMotak.LAGUNTZA_IRUDIKATU, laguntzak.toArray());
+		LaguntzaEgitura laguntzak = ListaStrategiak.getListaStrategiak().kalkulatuLaguntzak();
+		for (AldaketaEgitura ald: laguntzak.aldaketak) {
+			if (ald.balioa != -1) laguntzaGelaxkaBalioaIpini(ald.errenkada, ald.zutabea, ald.balioa);
+			else if (ald.hautagaia != -1) laguntzaGelaxkatikHautagaiaKendu(ald.errenkada, ald.zutabea, ald.hautagaia);
+		}
+		this.bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
+		bistaNotifikatu(NotifikazioMotak.LAGUNTZA_IRUDIKATU, laguntzak.logger);
+	}
+
+	private void laguntzaGelaxkaBalioaIpini(int e, int z, int pBalioa){
+		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria){
+			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setZenbakia(pBalioa);
+		}
+	}
+
+	private void laguntzaGelaxkatikHautagaiaKendu(int e, int z, int pHautagaia) {
+		if (this.gelaxkaMat[e][z] instanceof GelaxkaEditagarria && 0 <= pHautagaia && pHautagaia <= 8) {
+			boolean[] hautagaiakTmp = ((GelaxkaEditagarria) this.gelaxkaMat[e][z]).getHautagaiakProg();
+			hautagaiakTmp[pHautagaia] = false;
+			((GelaxkaEditagarria) this.gelaxkaMat[e][z]).setHautagiakProg(hautagaiakTmp);
+		}
 	}
 
 	/********************************************* Set/Get-errak *********************************************************/
@@ -213,6 +241,18 @@ public class Sudoku extends Observable{
 		return emaitza;
 	}
 
+	public boolean[][][] getHautagaiakProg() {
+		boolean[][][] hautagaiGuztiak = new boolean[9][9][9];
+		for (int i = 0; i < this.tamaina; i++){
+			for (int j = 0; j < this.tamaina; j++){
+				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getBalioa() == 0){
+					hautagaiGuztiak[i][j] = ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagiakErab();
+				}
+			}
+		}
+		return hautagaiGuztiak;
+	}
+
 	/**
 	 * Sudokuaren hasieran zeuden balioak lortzeko maskara baten bitartez:
 	 * true: Hasierako balio bat zen, false: Ez zen hasierako balio bat (hutsik zegoen)
@@ -230,13 +270,16 @@ public class Sudoku extends Observable{
 
 	/*************************************** Bistarekin komunikatu *******************************************************/
 
+	public void sudokuaEzinSortu(){
+		bistaNotifikatu(NotifikazioMotak.EZIN_IZAN_DA_SUDOKUA_SORTU);
+	}
+
 	/**
 	 * Modeloa Bistarekin komunikatzeko
 	 * @param pMota Bidali nahi den notifikazioa
 	 * @param pArg Notifikazioarekin joango diren objektuak
 	 */
 	private void bistaNotifikatu(NotifikazioMotak pMota, Object ... pArg){
-		if(pMota==NotifikazioMotak.TAULA_EGUNERATU) hautagaiakEguneratu();
 
 		Object[] argumentuak = new Object[pArg.length + 1];
 		argumentuak[0] = pMota;
