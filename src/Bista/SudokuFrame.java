@@ -379,9 +379,9 @@ public class SudokuFrame extends JFrame implements Observer{
 		if (pnlAukerak == null) {
 			pnlAukerak = new JPanel();
 			GridBagLayout gbl_pnlAukerak = new GridBagLayout();
-			gbl_pnlAukerak.columnWidths = new int[] {69};
+			gbl_pnlAukerak.columnWidths = new int[] {244};
 			gbl_pnlAukerak.rowHeights = new int[] {0, 0, 0, 0};
-			gbl_pnlAukerak.columnWeights = new double[]{1.0};
+			gbl_pnlAukerak.columnWeights = new double[]{0.0};
 			gbl_pnlAukerak.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0};
 			pnlAukerak.setLayout(gbl_pnlAukerak);
 			GridBagConstraints gbc_pnlAukGelaxka = new GridBagConstraints();
