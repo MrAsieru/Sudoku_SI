@@ -9,10 +9,7 @@ import Modeloa.Sudokua.*;
 
 public class SoleCandidate implements LaguntzaMetodoa {
 	public LaguntzaEgitura laguntzaKalkulatu() {
-		Boolean[][] matrizeHutsak = new Boolean[9][9];
-		for (int i = 0; i < 9; i++){
-			matrizeHutsak[i] = Arrays.stream(UnekoSudokua.getInstantzia().getGelaxkaBalioak()[i]).map(p -> (p.balioa == null || p.balioa == 0)).toArray(t -> new Boolean[t]);
-		}
+		Boolean[][] matrizeHutsak = UnekoSudokua.getInstantzia().getGelaxkaHutsak();
 		List<String> laguntzak = new ArrayList<>();
 		List<AldaketaEgitura> aldaketak = new ArrayList<>();
 		for (int i = 0; i< UnekoSudokua.getInstantzia().getTamaina(); i++){

@@ -11,10 +11,10 @@ public class ListaStrategiak {
 
     private ListaStrategiak(){
         strategiak = new ArrayList<>();
-        strategiak.add(new EremuIterazioa());
-        strategiak.add(new EremuEtaZutLerIterazioa());
         strategiak.add(new SoleCandidate());
         strategiak.add(new UniqueCandidate());
+        strategiak.add(new EremuEtaZutLerIterazioa());
+        strategiak.add(new EremuEremuIterazioa());
     }
 
     public static ListaStrategiak getListaStrategiak(){

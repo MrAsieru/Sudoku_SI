@@ -14,10 +14,7 @@ import java.util.Random;
 public class EremuEtaZutLerIterazioa implements LaguntzaMetodoa {
 	public LaguntzaEgitura laguntzaKalkulatu() {
 		boolean[][][] hautagaiaGuztiak = UnekoSudokua.getInstantzia().getHautagaiakProg();
-		Boolean[][] matrizeHutsak = new Boolean[9][9];
-		for (int i = 0; i < 9; i++){
-			matrizeHutsak[i] = Arrays.stream(UnekoSudokua.getInstantzia().getGelaxkaBalioak()[i]).map(p -> (p.balioa == null || p.balioa == 0)).toArray(t -> new Boolean[t]);
-		}
+		Boolean[][] matrizeHutsak = UnekoSudokua.getInstantzia().getGelaxkaHutsak();
 
 		ArrayList<String> laguntzak = new ArrayList<>();
 		List<AldaketaEgitura> aldaketak = new ArrayList<>();
