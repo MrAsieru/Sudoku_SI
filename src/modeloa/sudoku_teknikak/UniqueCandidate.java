@@ -119,24 +119,101 @@ public class UniqueCandidate implements LaguntzaTeknika {
 		help3 = UnekoSudokua.getInstantzia().eremuHautagaiak(pErr, pZut);
 		boolean ema=false;
 
-		int c=0;
-		while(c<9){
-			int d=0;
-			if(d==c) {
-				d++;
+		int c=this.eremua(pErr, pZut);
+		if(c==0) {
+			int z=3;
+			int z2=6;
+			int e=3;
+			int e2=6;
+			if(help3[c] && !help3[z] && !help3[z2] && !help3[e] && !help3[e2]) {
+				ema=true;
 			}
-			while(d<c || (d>c && d<9)) {
-				if(!help3[d] && help3[c]) {
-					ema=true;
-				}
-				if(d+1==c) {
-					d=d+2;
-				}else {
-					d++;
-				}
+			
+		} else if(c==1) {
+			int z_1=4;
+			int z_12=7;
+			int e_1=0;
+			int e_12=2;
+			if(help3[c] && !help3[z_1] && !help3[z_12] && !help3[e_1] && !help3[e_12]) {
+				ema=true;
 			}
-				c++;
+			
+		} else if(c==2) {
+			int z_2=5;
+			int z_22=8;
+			int e_2=0;
+			int e_22=1;
+			if(help3[c] && !help3[z_2] && !help3[z_22] && !help3[e_2] && !help3[e_22]) {
+				ema=true;
+			}
+			
+		}else if(c==3) {
+			int z_3=0;
+			int z_32=6;
+			int e_3=4;
+			int e_32=5;
+			if(help3[c] && !help3[z_3] && !help3[z_32] && !help3[e_3] && !help3[e_32]) {
+				ema=true;
+			}
+			
+		}else if(c==4) {
+			int z_4=1;
+			int z_42=7;
+			int e_4=3;
+			int e_42=5;
+			if(help3[c] && !help3[z_4] && !help3[z_42] && !help3[e_4] && !help3[e_42]) {
+				ema=true;
+			}
+			
+		}else if(c==5) {
+			int z_5=2;
+			int z_52=8;
+			int e_5=3;
+			int e_52=4;
+			if(help3[c] && !help3[z_5] && !help3[z_52] && !help3[e_5] && !help3[e_52]) {
+				ema=true;
+			}
+			
+		}else if(c==6) {
+			int z_6=0;
+			int z_62=3;
+			int e_6=7;
+			int e_62=8;
+			if(help3[c] && !help3[z_6] && !help3[z_62] && !help3[e_6] && !help3[e_62]) {
+				ema=true;
+			}
+			
+		}else if(c==7) {
+			int z_7=1;
+			int z_72=4;
+			int e_7=6;
+			int e_72=8;
+			if(help3[c] && !help3[z_7] && !help3[z_72] && !help3[e_7] && !help3[e_72]) {
+				ema=true;
+			}
+			
+		}else {
+			int z_8=2;
+			int z_82=5;
+			int e_8=6;
+			int e_82=7;
+			if(help3[c] && !help3[z_8] && !help3[z_82] && !help3[e_8] && !help3[e_82]) {
+				ema=true;
+			}
+			
 		}
+		return ema;
+	}
+	
+	private int eremua(int pErr, int pZut) {
+		int ema1;
+		int ema2;
+		int ema;
+		
+		ema1= pErr%3;
+		ema2= pZut%3;
+		ema=ema1+ema2;
+		
 		return ema;
 	}
 }
