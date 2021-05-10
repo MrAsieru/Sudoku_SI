@@ -1,6 +1,13 @@
 package modeloa.sudokua;
 
+import java.io.IOException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import egitura.AldaketaEgitura;
 import egitura.GelaxkaEgitura;
@@ -17,7 +24,18 @@ public class UnekoSudokua extends Observable{
 	private final int tamaina = 9; //9x9 bada 9, 25x25 bada 25
 	private static UnekoSudokua instantzia;
 
-	private UnekoSudokua(){}
+	private UnekoSudokua(){
+		try{
+			Logger.getLogger(this.getClass().getName()).setUseParentHandlers(false);
+			Logger.getLogger(this.getClass().getName()).
+					addHandler(new FileHandler(String.format("log/partida_%s.log",
+							DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
+									.withZone(ZoneId.systemDefault()).format(new Date().toInstant())), true));
+			Logger.getLogger(this.getClass().getName()).setLevel(Level.INFO);
+		} catch (IOException e) {
+			System.out.println("Ezin da logger-a sortu");
+		}
+	}
 
 	public static UnekoSudokua getInstantzia() {
 		if (instantzia == null) instantzia = new UnekoSudokua();

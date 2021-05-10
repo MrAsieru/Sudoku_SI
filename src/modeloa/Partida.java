@@ -1,6 +1,7 @@
 package modeloa;
 
 import bista.SudokuFrame;
+import egitura.PuntuazioaEgitura;
 import modeloa.support.Irakurlea;
 import modeloa.sudokua.UnekoSudokua;
 import modeloa.sudokua.SudokuLista;
@@ -9,6 +10,7 @@ import modeloa.sudokua.SudokuaGorde;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Observer;
+import java.util.logging.Logger;
 
 public class Partida {
 	private static Partida instantzia;
@@ -80,7 +82,7 @@ public class Partida {
 			i++;
 		}
 		System.out.println("[MODELOA.Partida]: "+((ondo)?"sudokua ondo ebatzi da":"sudokua ez da ondo ebatzi"));
-		if (ondo) Irakurlea.getIrakurlea().rankingGorde(izena, zailtasuna, puntuazioaKalkulatu());
+		if (ondo) Irakurlea.getIrakurlea().rankingGorde(new PuntuazioaEgitura(izena, zailtasuna, puntuazioaKalkulatu()));
 		return ondo;
 	}
 

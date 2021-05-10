@@ -3,6 +3,3 @@ unai;1;1.1111
 asier;2;9999
 Xx_enekoMaster_xX;3;10
 ldopta;2;10
-
-
-

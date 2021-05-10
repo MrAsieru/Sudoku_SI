@@ -103,9 +103,14 @@ public class Irakurlea {
         return testua;
     }
 
-    public void rankingGorde(String pIzena, int pZailtasuna, double pPuntuazioa) {
-        BufferedWriter idazlea = new BufferedWriter(new FileWriter(rankingPath, true));
-    	idazlea.append(puntuazioa.izen + puntuazioa.zailtasuna + puntuazioa.puntuazioa);
+    public void rankingGorde(PuntuazioaEgitura pPuntuazioa) {
+        try{
+            BufferedWriter idazlea = new BufferedWriter(new FileWriter(rankingPath, true));
+            idazlea.append("\n"+pPuntuazioa.izena +";"+ pPuntuazioa.zailtasuna +";"+ pPuntuazioa.puntuazioa);
+            idazlea.close();
+        } catch (IOException e) {
+            System.out.println("Ezin izan da puntuazioa gorde");
+        }
     }
     /**
      * Metodo honen bidez, matrizearen hasiera lerroa jakinda bere matrizea lortuko dugu.

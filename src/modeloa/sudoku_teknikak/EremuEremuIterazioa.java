@@ -6,6 +6,8 @@ import modeloa.sudokua.UnekoSudokua;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EremuEremuIterazioa implements LaguntzaTeknika {
 	public LaguntzaEgitura laguntzaKalkulatu() {
@@ -37,6 +39,8 @@ public class EremuEremuIterazioa implements LaguntzaTeknika {
 											String.format("Gelaxka: (%d, %d)<br>", g+1, zut+1) +
 											String.format("%d hautagaitik kendu<br>", b+1));
 									aldaketak.add(new AldaketaEgitura(g, zut, -1, b));
+									Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName()).
+											log(Level.INFO, String.format("[Laguntza] Eremu eta eremu iterazioa erabiliz (%d, %d) gelaxkatik %d hautagaia kendu", g+1, zut+1, b+1));
 								}
 							}
 						}
