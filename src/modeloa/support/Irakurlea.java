@@ -104,7 +104,8 @@ public class Irakurlea {
     }
 
     public void rankingGorde(String pIzena, int pZailtasuna, double pPuntuazioa) {
-
+        BufferedWriter idazlea = new BufferedWriter(new FileWriter(rankingPath, true));
+    	idazlea.append(puntuazioa.izen + puntuazioa.zailtasuna + puntuazioa.puntuazioa);
     }
     /**
      * Metodo honen bidez, matrizearen hasiera lerroa jakinda bere matrizea lortuko dugu.
