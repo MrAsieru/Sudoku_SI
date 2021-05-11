@@ -5,9 +5,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 import egitura.AldaketaEgitura;
 import egitura.GelaxkaEgitura;
@@ -26,12 +24,13 @@ public class UnekoSudokua extends Observable{
 
 	private UnekoSudokua(){
 		try{
-			Logger.getLogger(this.getClass().getName()).setUseParentHandlers(false);
-			Logger.getLogger(this.getClass().getName()).
-					addHandler(new FileHandler(String.format("log/partida_%s.log",
-							DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
-									.withZone(ZoneId.systemDefault()).format(new Date().toInstant())), true));
-			Logger.getLogger(this.getClass().getName()).setLevel(Level.INFO);
+			//Logger hasieratu
+			Logger.getLogger(this.getClass().getName()).setUseParentHandlers(true);
+			FileHandler fh = new FileHandler(String.format("log/partida_%s.log",
+					DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
+							.withZone(ZoneId.systemDefault()).format(new Date().toInstant())));
+			Logger.getLogger(this.getClass().getName()).addHandler(fh);
+			fh.setFormatter(new SimpleFormatter());
 		} catch (IOException e) {
 			System.out.println("Ezin da logger-a sortu");
 		}

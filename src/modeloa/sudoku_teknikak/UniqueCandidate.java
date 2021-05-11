@@ -8,6 +8,7 @@ import modeloa.sudokua.UnekoSudokua;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class UniqueCandidate implements LaguntzaTeknika {
 		private boolean[][][] nirehautagaiak;
@@ -32,6 +33,8 @@ public class UniqueCandidate implements LaguntzaTeknika {
 								String.format("Gelaxka: (%d, %d)<br>", j+1, k+1) +
 								String.format("Balioa: %d<br>", h));
 						aldaketak.add(new AldaketaEgitura(j, k, h, -1));
+						Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName()).
+								info(String.format("[Laguntza] Unique candidate erabiliz (%d, %d) gelaxkan %d balioa ipini da.", j+1, k+1, h+1));
 					}
 					h++;
 				}

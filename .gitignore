@@ -8,4 +8,5 @@
 /Diagramak/SEKUENTZIA_DIAGRAMA_AMAITUTA.vpp.*
 /SEKUENTZIA_DIAGRAMA_AMAITUTA.vpp.*
 /Diagramak/.Sudoku.vpp.lck
-/log/
+/log/*.log
+/log/*.log.lck

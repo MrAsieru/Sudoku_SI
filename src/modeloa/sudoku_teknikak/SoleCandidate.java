@@ -1,6 +1,7 @@
 package modeloa.sudoku_teknikak;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import egitura.AldaketaEgitura;
 import egitura.LaguntzaEgitura;
@@ -19,6 +20,8 @@ public class SoleCandidate implements LaguntzaTeknika {
 							String.format("Gelaxka: (%d, %d)<br>", i+1, j+1) +
 							String.format("Balioa: %d<br>", emaitza));
 					aldaketak.add(new AldaketaEgitura(i, j, emaitza, -1));
+					Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName()).
+							info(String.format("[Laguntza] Sole candidate erabiliz (%d, %d) gelaxkan %d balioa ipini da.", i+1, j+1, emaitza));
 				}
 			}
 		}
