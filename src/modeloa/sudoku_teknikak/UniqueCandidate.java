@@ -50,7 +50,7 @@ public class UniqueCandidate implements LaguntzaTeknika {
 		
 		int i=0;
 		while(i<9 && ema) {
-			if((i==pZut && !nirehautagaiak[i][pZut][pBal]) || (i!=pZut && nirehautagaiak[i][pZut][pBal])) {
+			if((i==pErr && !nirehautagaiak[pErr][i][pBal]) || (i!=pErr && nirehautagaiak[pErr][i][pBal])) {
 				ema=false;
 			}
 			i++;
@@ -63,7 +63,7 @@ public class UniqueCandidate implements LaguntzaTeknika {
 		
 		int i=0;
 		while(i<9 && ema) {
-			if((i==pErr && !nirehautagaiak[pErr][i][pBal]) || (i!=pErr && nirehautagaiak[pErr][i][pBal])) {
+			if((i==pZut && !nirehautagaiak[i][pZut][pBal]) || (i!=pZut && nirehautagaiak[i][pZut][pBal])) {
 				ema=false;
 			}
 			i++;
@@ -101,7 +101,7 @@ public class UniqueCandidate implements LaguntzaTeknika {
 				jmax=9;
 			}
 			while(j<jmax && ema) {
-				if((i!=pErr &&  j!=pZut && nirehautagaiak[i][j][pBal]) || (i==pErr &&  j==pZut && !nirehautagaiak[i][j][pBal])) {
+				if(((i!=pErr ||  j!=pZut) && nirehautagaiak[i][j][pBal]) || (i==pErr &&  j==pZut && !nirehautagaiak[i][j][pBal])) {
 					ema=false;
 				}
 				j++;
