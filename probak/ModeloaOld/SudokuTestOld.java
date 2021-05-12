@@ -1,4 +1,4 @@
-package Modeloa;
+package ModeloaOld;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SudokuTest implements Observer {
+public class SudokuTestOld implements Observer {
 
 	@Before
 	public void setUp() throws Exception {

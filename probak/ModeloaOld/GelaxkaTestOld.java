@@ -1,4 +1,4 @@
-package Modeloa;
+package ModeloaOld;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GelaxkaTest {
+public class GelaxkaTestOld {
 
 	@Before
 	public void setUp() throws Exception {

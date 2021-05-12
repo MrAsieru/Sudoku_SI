@@ -1,4 +1,4 @@
-package Modeloa;
+package ModeloaOld;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -8,8 +8,9 @@ import java.util.Observer;
 
 import Egitura.GelaxkaEgitura;
 import junit.framework.TestCase;
+import modeloa.Partida;
 
-public class TestSudoku extends TestCase implements Observer{
+public class TestSudokuOld extends TestCase implements Observer{
 
 	protected void setUp() throws Exception {
 		super.setUp();
