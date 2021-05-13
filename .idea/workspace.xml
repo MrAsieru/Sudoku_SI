@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="quizas deberia parar">
-      <change afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/ListaStrategiak.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Egitura/GelaxkaEgitura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Egitura/GelaxkaEgitura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/EremuIterazioa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/EremuIterazioa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LaguntzaMetodoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LaguntzaMetodoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LerroIterazioa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LerroIterazioa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/SoleCandidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/SoleCandidate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/UniqueCandidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/UniqueCandidate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudokua/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudokua/Sudoku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/probak/Modeloa/UnekoSudokuaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/probak/Modeloa/UnekoSudokuaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modeloa/sudokua/UnekoSudokua.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modeloa/sudokua/UnekoSudokua.java" afterDir="false" />
     </list>
     <list id="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" name="Changes by unaih" comment="Changes by unaih" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +32,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sudoku_lista" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -82,7 +76,7 @@
       <recent name="Modeloa" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Nagusia">
+  <component name="RunManager" selected="JUnit.UnekoSudokuaTest.sudokuaSortuetaGelaxkaBalioakLortu">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -116,13 +110,48 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UnekoSudokuaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Sudoku_SI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Modeloa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Modeloa" />
+      <option name="MAIN_CLASS_NAME" value="Modeloa.UnekoSudokuaTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UnekoSudokuaTest.sudokuaSortuetaGelaxkaBalioakLortu" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Sudoku_SI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Modeloa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Modeloa" />
+      <option name="MAIN_CLASS_NAME" value="Modeloa.UnekoSudokuaTest" />
+      <option name="METHOD_NAME" value="sudokuaSortuetaGelaxkaBalioakLortu" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.SudokuPanela" />
       <item itemvalue="Application.Nagusia" />
       <item itemvalue="JUnit.All in Sudoku_SI" />
+      <item itemvalue="JUnit.UnekoSudokuaTest" />
+      <item itemvalue="JUnit.UnekoSudokuaTest.sudokuaSortuetaGelaxkaBalioakLortu" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UnekoSudokuaTest.sudokuaSortuetaGelaxkaBalioakLortu" />
+        <item itemvalue="JUnit.UnekoSudokuaTest" />
         <item itemvalue="Application.Nagusia" />
         <item itemvalue="JUnit.All in Sudoku_SI" />
       </list>

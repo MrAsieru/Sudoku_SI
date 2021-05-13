@@ -239,9 +239,6 @@ public class UnekoSudokua extends Observable{
 
 	/**GelaxkaBalioak**/
 	public GelaxkaEgitura[][] getGelaxkaBalioak(){
-		// ToDo
-		// Balio bakarra bada: new GelaxkaEgitura(pBalioa); non pBalioa : Integer
-		// Hautagaiak baditu: new GelaxkaEgitura(pHautagaiak); non pHautagaiak : boolean[]
 		GelaxkaEgitura[][] emaitza = new GelaxkaEgitura[this.tamaina][this.tamaina];
 		for (int i = 0; i < this.tamaina; i++){
 			for (int j = 0; j < this.tamaina; j++){
