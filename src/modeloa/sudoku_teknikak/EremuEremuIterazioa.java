@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 public class EremuEremuIterazioa implements LaguntzaTeknika {
 	public LaguntzaEgitura laguntzaKalkulatu() {
+		Logger logger = Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName());
 		boolean[][][] hautagaiaGuztiak = UnekoSudokua.getInstantzia().getHautagaiakProg();
 		int[][] konbinaketak = new int[][] {{0,1,2}, {0,2,1}, {1,2,0}}; //Eremuen arteko konbinaketak. Azken zenbakia aldatu beharreko eremua da
 		Boolean[][] matrizeHutsak = UnekoSudokua.getInstantzia().getGelaxkaHutsak(); // Gelaxka hutsen (balio barik) matrizea
@@ -39,8 +40,7 @@ public class EremuEremuIterazioa implements LaguntzaTeknika {
 											String.format("Gelaxka: (%d, %d)<br>", g+1, zut+1) +
 											String.format("%d hautagaitik kendu<br>", b+1));
 									aldaketak.add(new AldaketaEgitura(g, zut, -1, b));
-									Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName()).
-											info(String.format("[Laguntza] Eremu eta eremu iterazioa erabiliz (%d, %d) gelaxkatik %d hautagaia kendu", g+1, zut+1, b+1));
+									logger.info(String.format("[Laguntza] Eremu eta eremu iterazioa erabiliz (%d, %d) gelaxkatik %d hautagaia kendu", g+1, zut+1, b+1));
 								}
 							}
 						}
@@ -66,8 +66,7 @@ public class EremuEremuIterazioa implements LaguntzaTeknika {
 											String.format("Gelaxka: (%d, %d)<br>", err+1, g+1) +
 											String.format("%d hautagaitik kendu<br>", b+1));
 									aldaketak.add(new AldaketaEgitura(err, g, -1, b));
-									Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName()).
-											info(String.format("[Laguntza] Eremu eta eremu iterazioa erabiliz (%d, %d) gelaxkatik %d hautagaia kendu", err+1, g+1, b+1));
+									logger.info(String.format("[Laguntza] Eremu eta eremu iterazioa erabiliz (%d, %d) gelaxkatik %d hautagaia kendu", err+1, g+1, b+1));
 								}
 							}
 						}

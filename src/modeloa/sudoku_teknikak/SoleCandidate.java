@@ -9,6 +9,7 @@ import modeloa.sudokua.*;
 
 public class SoleCandidate implements LaguntzaTeknika {
 	public LaguntzaEgitura laguntzaKalkulatu() {
+		Logger logger = Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName());
 		Boolean[][] matrizeHutsak = UnekoSudokua.getInstantzia().getGelaxkaHutsak();
 		List<String> laguntzak = new ArrayList<>();
 		List<AldaketaEgitura> aldaketak = new ArrayList<>();
@@ -20,8 +21,7 @@ public class SoleCandidate implements LaguntzaTeknika {
 							String.format("Gelaxka: (%d, %d)<br>", i+1, j+1) +
 							String.format("Balioa: %d<br>", emaitza));
 					aldaketak.add(new AldaketaEgitura(i, j, emaitza, -1));
-					Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName()).
-							info(String.format("[Laguntza] Sole candidate erabiliz (%d, %d) gelaxkan %d balioa ipini da.", i+1, j+1, emaitza));
+					logger.info(String.format("[Laguntza] Sole candidate erabiliz (%d, %d) gelaxkan %d balioa ipini da.", i+1, j+1, emaitza));
 				}
 			}
 		}

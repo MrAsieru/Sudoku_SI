@@ -14,7 +14,7 @@ public class UniqueCandidate implements LaguntzaTeknika {
 		private boolean[][][] nirehautagaiak;
 		
 	public LaguntzaEgitura laguntzaKalkulatu() {
-		
+		Logger logger = Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName());
 		nirehautagaiak= UnekoSudokua.getInstantzia().getHautagaiakProg();
 		Boolean[][] matrizeHutsak = UnekoSudokua.getInstantzia().getGelaxkaHutsak();
 		
@@ -31,10 +31,9 @@ public class UniqueCandidate implements LaguntzaTeknika {
 					if(this.errenkadaBegiratu(j,k,h) || this.zutabeaBegiratu(j,k,h) || this.eremuaBegiratu(j,k, h)) {
 						laguntzak.add("Teknika: Unique<br>" +
 								String.format("Gelaxka: (%d, %d)<br>", j+1, k+1) +
-								String.format("Balioa: %d<br>", h));
-						aldaketak.add(new AldaketaEgitura(j, k, h, -1));
-						Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName()).
-								info(String.format("[Laguntza] Unique candidate erabiliz (%d, %d) gelaxkan %d balioa ipini da.", j+1, k+1, h+1));
+								String.format("Balioa: %d<br>", h+1));
+						aldaketak.add(new AldaketaEgitura(j, k, h+1, -1));
+						logger.info(String.format("[Laguntza] Unique candidate erabiliz (%d, %d) gelaxkan %d balioa ipini da.", j+1, k+1, h+1));
 					}
 					h++;
 				}

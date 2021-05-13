@@ -25,11 +25,12 @@ public class UnekoSudokua extends Observable{
 	private UnekoSudokua(){
 		try{
 			//Logger hasieratu
-			Logger.getLogger(this.getClass().getName()).setUseParentHandlers(true);
+			Logger logger = Logger.getLogger(this.getClass().getName());
+			logger.setUseParentHandlers(true);
 			FileHandler fh = new FileHandler(String.format("log/partida_%s.log",
 					DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
 							.withZone(ZoneId.systemDefault()).format(new Date().toInstant())));
-			Logger.getLogger(this.getClass().getName()).addHandler(fh);
+			logger.addHandler(fh);
 			fh.setFormatter(new SimpleFormatter());
 		} catch (IOException e) {
 			System.out.println("Ezin da logger-a sortu");

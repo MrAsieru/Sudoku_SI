@@ -282,10 +282,7 @@ public class SudokuFrame extends JFrame implements Observer{
 			}
 		}
 	}
-	
-	private void izenburuaEguneratu(String pIzena, int pZailtasuna) {
-		setTitle(String.format("Sudoku: %s jolasten %d. zailtasunarekin", pIzena, pZailtasuna));
-	}
+
 	//GUI taula aldatu
 	private void taulaEguneratu(GelaxkaEgitura[][] pBal, boolean[][] pHasMask) {
 		for (int er = 0; er < 9; er++) {
