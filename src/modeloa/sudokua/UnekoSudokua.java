@@ -144,7 +144,7 @@ public class UnekoSudokua extends Observable{
 	 * @param pErrenkada
 	 * @param pZutabea
 	 */
-	private boolean[] hautagaiakKalkulatu(int pErrenkada, int pZutabea){
+	public boolean[] hautagaiakKalkulatu(int pErrenkada, int pZutabea){
 		boolean[] aukerak = new boolean[this.tamaina];
 		for (int i = 0; i<aukerak.length; i++) {aukerak[i] = true;}
 
