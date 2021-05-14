@@ -49,7 +49,7 @@ public class UniqueCandidate implements LaguntzaTeknika {
 		
 		int i=0;
 		while(i<9 && ema) {
-			if((i==pErr && !nirehautagaiak[pErr][i][pBal]) || (i!=pErr && nirehautagaiak[pErr][i][pBal])) {
+			if((i==pZut && !nirehautagaiak[pErr][i][pBal]) || (i!=pZut && nirehautagaiak[pErr][i][pBal])) {
 				ema=false;
 			}
 			i++;
@@ -62,7 +62,7 @@ public class UniqueCandidate implements LaguntzaTeknika {
 		
 		int i=0;
 		while(i<9 && ema) {
-			if((i==pZut && !nirehautagaiak[i][pZut][pBal]) || (i!=pZut && nirehautagaiak[i][pZut][pBal])) {
+			if((i==pErr && !nirehautagaiak[i][pZut][pBal]) || (i!=pErr && nirehautagaiak[i][pZut][pBal])) {
 				ema=false;
 			}
 			i++;
