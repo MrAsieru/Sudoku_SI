@@ -88,6 +88,6 @@ public class Partida {
 
 	private double puntuazioaKalkulatu(){
 		long denbora = Duration.between(sudokuHasiera, Instant.now()).getSeconds();
-		return (30000*zailtasuna/(denbora+(30*laguntzaKant)));
+		return (30000.0*zailtasuna/(denbora+(30.0*laguntzaKant)));
 	}
 }

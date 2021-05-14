@@ -160,7 +160,7 @@ public class SudokuFrame extends JFrame implements Observer{
 			ertzakGarbitu();
 			aukZ = pZu;
 			aukE = pEr;
-			gelaxkaMatrizea[aukE][aukZ].setBorder(new LineBorder(Color.RED, 1));
+			gelaxkaMatrizea[aukE][aukZ].setBorder(new LineBorder(Color.RED, 3));
 			eskatuHautagaiakEguneratu(pEr, pZu);
 
 			System.out.println("[BISTA.Sudoku]: Gelaxka aukeratuta - er:"+aukE+", zu:"+aukZ);
