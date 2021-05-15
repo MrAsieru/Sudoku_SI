@@ -1,6 +1,5 @@
 package modeloa;
 
-import bista.SudokuFrame;
 import egitura.PuntuazioaEgitura;
 import modeloa.support.Irakurlea;
 import modeloa.sudokua.UnekoSudokua;
@@ -9,8 +8,6 @@ import modeloa.sudokua.SudokuaGorde;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Observer;
-import java.util.logging.Logger;
 
 public class Partida {
 	private static Partida instantzia;

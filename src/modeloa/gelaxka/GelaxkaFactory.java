@@ -12,15 +12,15 @@ public class GelaxkaFactory {
 		return instantzia;
 	}
 
-	public Gelaxka gelaxkaSortu(GelaxkaMotak pMota, int pEr, int pZu, int pZenbakia){
+	public Gelaxka gelaxkaSortu(GelaxkaMotak pMota, int pZenbakia){
 		Gelaxka emaitza;
 
 		switch (pMota){
 			case HASIERAKOA:
-				emaitza = new GelaxkaHasierakoa(pEr, pZu, pZenbakia);
+				emaitza = new GelaxkaHasierakoa(pZenbakia);
 				break;
 			case EDITAGARRIA:
-				emaitza = new GelaxkaEditagarria(pEr, pZu, pZenbakia);
+				emaitza = new GelaxkaEditagarria(pZenbakia);
 				break;
 			default:
 				emaitza = null;

@@ -33,7 +33,7 @@ public class SoleCandidate implements LaguntzaTeknika {
 		boolean [] errenkadaHaut= new boolean[9];
 		boolean [] zutabeHaut= new boolean[9];
 		boolean [] eremuHaut= new boolean[9];
-		ArrayList <Integer> aukerak = new ArrayList<Integer>();
+		ArrayList <Integer> aukerak = new ArrayList<>();
 		errenkadaHaut = UnekoSudokua.getInstantzia().errenkadaHautagaiak(pErr);
 	    zutabeHaut = UnekoSudokua.getInstantzia().zutabeHautagaiak(pZut);
 		eremuHaut = UnekoSudokua.getInstantzia().eremuHautagaiak(pErr, pZut);

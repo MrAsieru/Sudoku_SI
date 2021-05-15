@@ -28,10 +28,4 @@ public class Regex {
         Matcher match = pattern.matcher(expression);
         return match.matches();
     }
-
-    private boolean lookForExpression(String expressionToPass, String expression){
-        Pattern pattern = Pattern.compile(expressionToPass, Pattern.CASE_INSENSITIVE);
-        Matcher match = pattern.matcher(expression);
-        return match.find();
-    }
 }

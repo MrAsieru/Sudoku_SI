@@ -3,7 +3,6 @@ package modeloa.sudokua;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -62,7 +61,7 @@ public class UnekoSudokua extends Observable{
 				int balioa = pGelaxkak[i][j];
 				Gelaxka gelaxka = GelaxkaFactory.getInstantzia().gelaxkaSortu(
 						(balioa != 0) ? GelaxkaMotak.HASIERAKOA : GelaxkaMotak.EDITAGARRIA,
-						j, i, balioa);
+						balioa);
 				this.gelaxkaMat[i][j] = gelaxka;
 			}
 		}
@@ -273,7 +272,7 @@ public class UnekoSudokua extends Observable{
 		for (int i = 0; i < this.tamaina; i++){
 			for (int j = 0; j < this.tamaina; j++){
 				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getBalioa() == 0){
-					hautagaiGuztiak[i][j] = ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagaiakErab();
+					hautagaiGuztiak[i][j] = ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagaiakProg();
 				}
 			}
 		}

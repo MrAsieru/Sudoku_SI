@@ -1,12 +1,10 @@
 package modeloa.sudoku_teknikak;
 
 import egitura.AldaketaEgitura;
-import egitura.GelaxkaEgitura;
 import egitura.LaguntzaEgitura;
 import modeloa.sudokua.UnekoSudokua;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -28,7 +26,7 @@ public class UniqueCandidate implements LaguntzaTeknika {
 				int h=0;
 				
 				while(h<UnekoSudokua.getInstantzia().getTamaina()) {
-					if(this.errenkadaBegiratu(j,k,h) || this.zutabeaBegiratu(j,k,h) || this.eremuaBegiratu(j,k, h)) {
+					if(matrizeHutsak[j][k] && (this.errenkadaBegiratu(j,k,h) || this.zutabeaBegiratu(j,k,h) || this.eremuaBegiratu(j,k, h))) {
 						laguntzak.add("Teknika: Unique<br>" +
 								String.format("Gelaxka: (%d, %d)<br>", j+1, k+1) +
 								String.format("Balioa: %d<br>", h+1));

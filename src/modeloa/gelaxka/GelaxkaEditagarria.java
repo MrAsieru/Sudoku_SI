@@ -4,8 +4,8 @@ public class GelaxkaEditagarria extends Gelaxka {
 	private boolean[] hautagiakErab;
 	private boolean[] hautagaiakProg;
 
-	public GelaxkaEditagarria(int pEr, int pZu, int pBal) {
-		super(pEr, pZu, pBal);
+	public GelaxkaEditagarria(int pBal) {
+		super(pBal);
 		hautagiakErab = new boolean[9];
 		hautagaiakProg = new boolean[9];
 	}
