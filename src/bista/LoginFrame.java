@@ -49,7 +49,7 @@ public class LoginFrame extends JFrame implements Observer {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 417, 160);
 		setTitle("Sudoku");
-		setIconImage(new ImageIcon("res/icon.png").getImage()); //Icono sudoku by Jeremiah / CC BY
+		setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage()); //Icono sudoku by Jeremiah / CC BY
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

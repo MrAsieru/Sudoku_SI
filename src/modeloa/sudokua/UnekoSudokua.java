@@ -1,6 +1,8 @@
 package modeloa.sudokua;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -27,12 +29,21 @@ public class UnekoSudokua extends Observable{
 			//Logger hasieratu
 			Logger logger = Logger.getLogger(this.getClass().getName());
 			logger.setUseParentHandlers(true);
-			FileHandler fh = new FileHandler(String.format("log/partida_%s.log",
+			String kokapena = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).
+					getParentFile().getAbsolutePath()+"/log";
+
+			// Konprobatu log karpeta existitzen den
+			File logKokapena = new File(kokapena);
+			if (!logKokapena.exists()) logKokapena.mkdirs();
+
+			FileHandler fh = new FileHandler(String.format("%s/partida_%s.log",
+					kokapena,
 					DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
 							.withZone(ZoneId.systemDefault()).format(new Date().toInstant())));
 			logger.addHandler(fh);
 			fh.setFormatter(new SimpleFormatter());
-		} catch (IOException e) {
+
+		} catch (IOException | URISyntaxException e) {
 			System.out.println("Ezin da logger-a sortu");
 		}
 	}
@@ -240,7 +251,6 @@ public class UnekoSudokua extends Observable{
 
 	/**GelaxkaBalioak**/
 	public GelaxkaEgitura[][] getGelaxkaBalioak(){
-		// ToDo
 		// Balio bakarra bada: new GelaxkaEgitura(pBalioa); non pBalioa : Integer
 		// Hautagaiak baditu: new GelaxkaEgitura(pHautagaiak); non pHautagaiak : boolean[]
 		GelaxkaEgitura[][] emaitza = new GelaxkaEgitura[this.tamaina][this.tamaina];

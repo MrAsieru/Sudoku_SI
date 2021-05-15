@@ -10,22 +10,13 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import egitura.PuntuazioaEgitura;
 import modeloa.Amaiera;
 import modeloa.support.NotifikazioMotak;
-
-import javax.swing.JTable;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 
 public class AmaieraFrame extends JFrame implements Observer{
 
@@ -59,6 +50,7 @@ public class AmaieraFrame extends JFrame implements Observer{
 		amaieraModeloa.addObserver(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 352);
+		setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage()); //Icono sudoku by Jeremiah / CC BY
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -189,7 +181,6 @@ public class AmaieraFrame extends JFrame implements Observer{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("[KONTROLATZAILEA]: btnBerriaCancel klikatuta");
-					System.out.println(getBounds());
 					amaieraModeloa.programaAmaitu();
 				}
 			});

@@ -81,7 +81,7 @@ public class SudokuFrame extends JFrame implements Observer{
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 725, 524);
-		setIconImage(new ImageIcon("res/icon.png").getImage()); //Icono sudoku by Jeremiah / CC BY
+		setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage()); //Icono sudoku by Jeremiah / CC BY
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -645,8 +645,6 @@ public class SudokuFrame extends JFrame implements Observer{
 						System.out.println("[KONTROLATZAILEA]: laguntza kalkulatzen...");
 						UnekoSudokua.getInstantzia().laguntzaKalkulatu();
 					}
-					System.out.println(getScpLogger().getBounds());
-					System.out.println(getBounds());
 				}
 			});
 		}

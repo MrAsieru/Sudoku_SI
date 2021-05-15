@@ -5,17 +5,28 @@ import modeloa.sudokua.SudokuLista;
 import modeloa.sudokua.SudokuaGorde;
 
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Irakurlea {
     private static Irakurlea irakurlea;
-    private String sudokuPath = "res/sudoku.txt";
-    private String rankingPath = "res/ranking.txt";
+    private String rankingPath;
     private final int tamaina = 9;
 
-    private Irakurlea(){}
+    private Irakurlea(){
+        try {
+            rankingPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).
+                    getParentFile().getAbsolutePath()+"/ranking.txt";
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static Irakurlea getIrakurlea() {
         if (irakurlea ==null){
@@ -25,10 +36,9 @@ public class Irakurlea {
     }
 
     public void getHasierakoSudokuGuztiak(){
-        File txtFitxategia = new File(sudokuPath);
         BufferedReader irakurle;
         try {
-            irakurle = new BufferedReader(new FileReader(txtFitxategia));
+            irakurle = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/sudoku.txt")));
 
             // Sudoku guztiak irakurri
             while (irakurle.readLine()!=null){
@@ -65,7 +75,7 @@ public class Irakurlea {
     public List<PuntuazioaEgitura> parseRanking(){
         List<PuntuazioaEgitura> ranking = new ArrayList<>();
 
-        ArrayList<String> ldFitxategia = this.irakurriFitxategia(rankingPath);
+        ArrayList<String> ldFitxategia = this.irakurriRankingFitxategia();
         int i = 0;
         while (++i<ldFitxategia.size()){
             //Gu nahi dugun formatua badu
@@ -83,11 +93,11 @@ public class Irakurlea {
         return ranking;
     }
 
-    private ArrayList<String> irakurriFitxategia(String path){
+    private ArrayList<String> irakurriRankingFitxategia(){
         ArrayList<String> testua = new ArrayList<>();
         try {
-            File txtFitxategia = new File(path);
-            BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
+            rankingKonprobatu();
+            BufferedReader irakurle = new BufferedReader(new FileReader(rankingPath));
 
             String lerroa;
             while ( (lerroa = irakurle.readLine()) != null){
@@ -105,6 +115,7 @@ public class Irakurlea {
 
     public void rankingGorde(PuntuazioaEgitura pPuntuazioa) {
         try{
+            rankingKonprobatu();
             BufferedWriter idazlea = new BufferedWriter(new FileWriter(rankingPath, true));
             idazlea.append("\n"+pPuntuazioa.izena +";"+ pPuntuazioa.zailtasuna +";"+ String.format("%.4f", pPuntuazioa.puntuazioa));
             idazlea.close();
@@ -112,87 +123,16 @@ public class Irakurlea {
             System.out.println("Ezin izan da puntuazioa gorde");
         }
     }
-    /**
-     * Metodo honen bidez, matrizearen hasiera lerroa jakinda bere matrizea lortuko dugu.
-     * @param hasierakoLerroa
-     * @return int[][]
-     */
-    @Deprecated
-    public int[][] getSudokuArrayHasiera(int hasierakoLerroa){
-        int[][] sudokua = new int [tamaina] [tamaina];
 
-        try{
-            int hasieraLerroaZenbakia = hasierakoLerroa;
-            File txtFitxategia = new File(sudokuPath);
-            BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
-
+    private void rankingKonprobatu() {
+        File logKokapena = new File(rankingPath);
+        if (!logKokapena.exists()){
             try {
-                String lerroa = irakurle.readLine();
-
-                while (hasieraLerroaZenbakia-- != 0) {
-                    lerroa = irakurle.readLine();
-                }
-
-                lerroa = irakurle.readLine();
-                for (int i = 0; i<tamaina; i++){
-                    for(int j = 0; j<tamaina; j++){
-
-                        sudokua[i][j] = Character.getNumericValue(lerroa.toCharArray()[j]);
-
-                    }
-
-                    lerroa = irakurle.readLine();
-                }
-            }
-            catch (IOException avast){avast.printStackTrace();}
-        }
-        catch (FileNotFoundException panda){panda.printStackTrace();}
-
-        return sudokua;
-    }
-    @Deprecated
-    public int[][] getSudokuArrayZuzena(int hasiera){
-        return getSudokuArrayHasiera(hasiera+tamaina);
-    }
-
-    /**
-     * beste metodo batek lortzen duen zailtazun berdinak dituzten lerroen artean bat hartuko du auzaz
-     */
-    @Deprecated
-    public int getZailtazunLerroa(int zailtazuna){
-        ArrayList<Integer> lerroak = this.getZailtazunLerroak(zailtazuna);
-        return lerroak.get(new Random().nextInt(lerroak.size()));
-    }
-
-    /**
-     * txt fitxategia irakurriko dugu eta zailtasunaren zenbakia bilatuko dugu.
-     * Hau egiteko nahi dugu txt hartu eta karaktere bakarreko zenbakiak bilatuko ditu eta
-     * bat haurkitzen badu gorde egingo du ArrayList batean, gero hau bidaltzeko.
-     */
-    @Deprecated
-    public ArrayList<Integer> getZailtazunLerroak(int zailtasuna){
-        //TODO ez apurtu zailtasuna = 0 izatean
-        ArrayList<Integer> lerroak = new ArrayList<>();
-        int lineCount = 0;
-        try{
-            //txt fitxategiko zailtazun berdineko matrizeak lortuko ditugu
-            File txtFitxategia = new File(sudokuPath);
-            BufferedReader irakurle = new BufferedReader(new FileReader(txtFitxategia));
-
-            String linea;
-            while ((linea = irakurle.readLine()) != null){
-                if (linea.length()==1 && linea.equals(zailtasuna + "")){
-                    lerroak.add(lineCount);
-                }
-                lineCount++;
+                Files.copy(getClass().getResourceAsStream("/ranking.txt"),
+                        Paths.get(rankingPath));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        catch (IOException e){
-            System.out.println("Ez da lortu txt fitxategia.");
-            e.printStackTrace();
-        }
-
-        //matrizea zoriz hartuko dugu eta bidali
-        return lerroak;
     }
 }

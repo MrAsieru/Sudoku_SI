@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Sudoku_SI:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="quizas deberia parar">
-      <change afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/ListaStrategiak.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="Test-ak konpondu">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Sudoku_SI_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Egitura/GelaxkaEgitura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Egitura/GelaxkaEgitura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/EremuIterazioa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/EremuIterazioa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LaguntzaMetodoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LaguntzaMetodoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LerroIterazioa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/LerroIterazioa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/SoleCandidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/SoleCandidate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/UniqueCandidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/SudokuEstrategiak/UniqueCandidate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modeloa/Sudokua/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modeloa/Sudokua/Sudoku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sudoku_SI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Sudoku_SI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bista/AmaieraFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bista/AmaieraFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bista/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bista/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bista/SudokuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bista/SudokuFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modeloa/sudokua/UnekoSudokua.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modeloa/sudokua/UnekoSudokua.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modeloa/support/Irakurlea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modeloa/support/Irakurlea.java" afterDir="false" />
     </list>
     <list id="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" name="Changes by unaih" comment="Changes by unaih" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,13 +70,15 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/res" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="CodeWithMe" />
@@ -83,17 +89,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Nagusia">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Nagusia" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Nagusia" />
       <module name="Sudoku_SI" />
@@ -104,6 +99,19 @@
     <configuration name="SudokuPanela" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Bista.SudokuPanela" />
       <module name="Sudoku_SI" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -272,11 +280,11 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Sudoku_SI$SudokuPanela.ic" NAME="SudokuPanela Coverage Results" MODIFIED="1618081936713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Sudoku_SI$t.ic" NAME="t Coverage Results" MODIFIED="1619116198150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sudoku_SI$Nagusia.ic" NAME="Nagusia Coverage Results" MODIFIED="1619513025113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Sudoku_SI$LoginPanela.ic" NAME="LoginPanela Coverage Results" MODIFIED="1617976328038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Bista.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Sudoku_SI$Nagusia.ic" NAME="Nagusia Coverage Results" MODIFIED="1619513025113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sudoku_SI$SudokuPanela.ic" NAME="SudokuPanela Coverage Results" MODIFIED="1618081936713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sudoku_SI$t.ic" NAME="t Coverage Results" MODIFIED="1619116198150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
