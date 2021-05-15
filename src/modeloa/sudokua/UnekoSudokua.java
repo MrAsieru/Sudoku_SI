@@ -191,25 +191,16 @@ public class UnekoSudokua extends Observable{
 		return hautagaiak;
 	}
 
-	public boolean[] eremuHautagaiak(int pErr, int pZut){
+	public boolean[] eremuHautagaiak(int pErr, int pZut) {
+		int pKuadrantea = (pErr/3)*3+(pZut/3);
 		boolean[] hautagaiak = new boolean[9];
 		for (int i = 0; i<hautagaiak.length; i++) {hautagaiak[i] = true;}
-		boolean[] kuadranteBalioak = getKuadranteBalioak(pErr, pZut);
-		for (int i = 0; i < kuadranteBalioak.length; i++) {
-			if (kuadranteBalioak[i]) hautagaiak[i] = false;
-		}
-		return hautagaiak;
-	}
-
-	private boolean[] getKuadranteBalioak(int pErrenkada, int pZutabea){
-		int pKuadrantea = (pErrenkada/3)*3+(pZutabea/3);
-		boolean[] hautagaiak = new boolean[9];
 		int hasiZutabea = pKuadrantea/3 * 3;
 		int hasiErrenkada = pKuadrantea%3 * 3;//3 * 3;
 		for (int errenkada = hasiZutabea; errenkada < hasiZutabea+3; errenkada++){
 			for (int zutabea = hasiErrenkada; zutabea < hasiErrenkada+3; zutabea++){
 				if(this.gelaxkaMat[errenkada][zutabea].getBalioa()!=0){
-					hautagaiak[gelaxkaMat[errenkada][zutabea].getBalioa()-1] = true;
+					hautagaiak[gelaxkaMat[errenkada][zutabea].getBalioa()-1] = false;
 				}
 			}
 		}
