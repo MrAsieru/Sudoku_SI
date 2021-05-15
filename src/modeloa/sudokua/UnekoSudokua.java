@@ -53,20 +53,22 @@ public class UnekoSudokua extends Observable{
 	}
 
 	public void sudokuaSortu(int[][] pGelaxkak) {
-		this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];
+		if(pGelaxkak!=null && pGelaxkak.length==this.tamaina) {
+			this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];
 
-		//Gelaxka matrizea sortu
-		for (int i = 0; i < this.tamaina; i++) {
-			for (int j = 0; j < this.tamaina; j++) {
-				int balioa = pGelaxkak[i][j];
-				Gelaxka gelaxka = GelaxkaFactory.getInstantzia().gelaxkaSortu(
-						(balioa != 0) ? GelaxkaMotak.HASIERAKOA : GelaxkaMotak.EDITAGARRIA,
-						balioa);
-				this.gelaxkaMat[i][j] = gelaxka;
+			//Gelaxka matrizea sortu
+			for (int i = 0; i < this.tamaina; i++) {
+				for (int j = 0; j < this.tamaina; j++) {
+					int balioa = pGelaxkak[i][j];
+					Gelaxka gelaxka = GelaxkaFactory.getInstantzia().gelaxkaSortu(
+							(balioa != 0) ? GelaxkaMotak.HASIERAKOA : GelaxkaMotak.EDITAGARRIA,
+							balioa);
+					this.gelaxkaMat[i][j] = gelaxka;
+				}
 			}
+			//Aldakuntzak bistari notifikatu
+			bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 		}
-		//Aldakuntzak bistari notifikatu
-		bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
 	}
 
 
@@ -155,7 +157,7 @@ public class UnekoSudokua extends Observable{
 	 * @param pErrenkada
 	 * @param pZutabea
 	 */
-	private boolean[] hautagaiakKalkulatu(int pErrenkada, int pZutabea){
+	public boolean[] hautagaiakKalkulatu(int pErrenkada, int pZutabea){
 		boolean[] aukerak = new boolean[this.tamaina];
 		for (int i = 0; i<aukerak.length; i++) {aukerak[i] = true;}
 
@@ -243,16 +245,19 @@ public class UnekoSudokua extends Observable{
 	public GelaxkaEgitura[][] getGelaxkaBalioak(){
 		// Balio bakarra bada: new GelaxkaEgitura(pBalioa); non pBalioa : Integer
 		// Hautagaiak baditu: new GelaxkaEgitura(pHautagaiak); non pHautagaiak : boolean[]
-		GelaxkaEgitura[][] emaitza = new GelaxkaEgitura[this.tamaina][this.tamaina];
-		for (int i = 0; i < this.tamaina; i++){
-			for (int j = 0; j < this.tamaina; j++){
-				GelaxkaEgitura gelaxka;
-				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getBalioa() == 0){
-					gelaxka = new GelaxkaEgitura(((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagaiakErab());
-				} else {
-					gelaxka = new GelaxkaEgitura(this.gelaxkaMat[i][j].getBalioa());
+		GelaxkaEgitura[][] emaitza = null;
+		if (gelaxkaMat!=null) {
+			emaitza = new GelaxkaEgitura[this.tamaina][this.tamaina];
+			for (int i = 0; i < this.tamaina; i++) {
+				for (int j = 0; j < this.tamaina; j++) {
+					GelaxkaEgitura gelaxka;
+					if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getBalioa() == 0) {
+						gelaxka = new GelaxkaEgitura(((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagaiakErab());
+					} else {
+						gelaxka = new GelaxkaEgitura(this.gelaxkaMat[i][j].getBalioa());
+					}
+					emaitza[i][j] = gelaxka;
 				}
-				emaitza[i][j] = gelaxka;
 			}
 		}
 		return emaitza;
