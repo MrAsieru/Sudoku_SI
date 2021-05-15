@@ -1,36 +1,13 @@
 package Modeloa;
 
 import egitura.GelaxkaEgitura;
-import modeloa.sudokua.SudokuaGorde;
 import modeloa.sudokua.UnekoSudokua;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
 class UnekoSudokuaTest {
-
-    int[][] hasi;
-    int[][] fin;
-    SudokuaGorde sudokuaGorde;
-    int zail;
-
-    @Before
-    protected void setUp() throws Exception {
-        zail=1;
-
-        hasi=new int[][] {{9,4,0,3,0,1,7,8,5},{0,8,5,6,4,7,1,0,9},{1,0,2,9,5,8,4,6,0},
-                {5,1,0,4,7,2,3,0,6},{6,9,4,1,8,0,0,7,2},{2,0,7,5,6,9,8,1,0},
-                {0,0,9,8,1,6,2,3,7},{7,6,1,2,3,4,9,0,0},{8,0,3,7,9,5,6,0,1}};
-
-        fin = new int[][] {{9,4,6,3,2,1,7,8,5},{3,8,5,6,4,7,1,2,9},{1,7,2,9,5,8,4,6,3},
-                {5,1,8,4,7,2,3,9,6},{6,9,4,1,8,3,5,7,2},{2,3,7,5,6,9,8,1,4},
-                {4,5,9,8,1,6,2,3,7},{7,6,1,2,3,4,9,5,8},{8,2,3,7,9,5,6,4,1}};
-
-        sudokuaGorde = new SudokuaGorde(zail, hasi, fin);
-    }
 
     @Test
     void getInstantzia() {
@@ -84,7 +61,6 @@ class UnekoSudokuaTest {
     @org.junit.jupiter.api.Test
     void errenkadaHautagaiak() {
         UnekoSudokua sudokua = UnekoSudokua.getInstantzia();
-        boolean[] hautagaiak;
 
         sudokua.sudokuaSortu(new int[][] {
                 {9,4,6,3,2,1,7,8,5},{3,8,5,6,4,7,1,2,9},{1,7,2,9,5,8,4,6,3},
@@ -268,7 +244,7 @@ class UnekoSudokuaTest {
             8 0 3   7 9 5   6 0 1   2,4 erre
          */
         //                              1      2,     3,      4,     5,     6,     7,     8,     9
-        assertArrayEquals(new boolean[] {false, false, true,  false, false, false, false, false, false}, sudokua.hautagaiakKalkulatu(2,0));
+        assertArrayEquals(new boolean[] {false, false, true,  false, false, false, false, false, false}, sudokua.hautagaiakKalkulatu(1,0));
         //                              1      2,     3,      4,     5,     6,     7,     8,     9
         assertArrayEquals(new boolean[] {false, false, false,  true, false, false, false, false, false}, sudokua.hautagaiakKalkulatu(8,7));
 
@@ -321,40 +297,61 @@ class UnekoSudokuaTest {
     }
 
 
-//    @org.junit.jupiter.api.Test
-//    void aldatuGelaxkaHautagaiak() {
-//        UnekoSudokua sudokua = UnekoSudokua.getInstantzia();
-//
-//        sudokua.sudokuaSortu(new int[][] {{9,4,6,3,2,1,7,8,5}});
-//        sudokua.aldatuGelaxkaBalioa(0,0,-1);
-//        assertEquals(new GelaxkaEgitura[][] {{
-//                        new GelaxkaEgitura(9),
-//                        new GelaxkaEgitura(4),
-//                        new GelaxkaEgitura(6),
-//                        new GelaxkaEgitura(3),
-//                        new GelaxkaEgitura(2),
-//                        new GelaxkaEgitura(1),
-//                        new GelaxkaEgitura(7),
-//                        new GelaxkaEgitura(8),
-//                        new GelaxkaEgitura(5)
-//                }},
-//                sudokua.getGelaxkaBalioak());
-//    }
+    @Test
+    void aldatuGelaxkaHautagaiak() {
+        UnekoSudokua sudokua = UnekoSudokua.getInstantzia();
+
+        sudokua.sudokuaSortu(new int[][]{
+                {9,4,0,3,0,1,7,8,5},{0,8,5,6,4,7,1,0,9},{1,0,2,9,5,8,4,6,0},
+                {5,1,0,4,7,2,3,0,6},{6,9,4,1,8,0,0,7,2},{2,0,7,5,6,9,8,1,0},
+                {0,0,9,8,1,6,2,3,7},{7,6,1,2,3,4,9,0,0},{8,0,3,7,9,5,6,0,1}});
+        sudokua.aldatuGelaxkaHautagaiak(0,0, new boolean[]
+                {false, false, false, false, false, false, false, false, false,});
+        assertTrue(gelaxkaHautagaiakKonparatu(sudokua.getHautagaiakProg()[0][0], new boolean[]
+                {false, false, false, false, false, false, false, false, false,}));
+
+        sudokua.sudokuaSortu(new int[][]{
+                {9,4,0,3,0,1,7,8,5},{0,8,5,6,4,7,1,0,9},{1,0,2,9,5,8,4,6,0},
+                {5,1,0,4,7,2,3,0,6},{6,9,4,1,8,0,0,7,2},{2,0,7,5,6,9,8,1,0},
+                {0,0,9,8,1,6,2,3,7},{7,6,1,2,3,4,9,0,0},{8,0,3,7,9,5,6,0,1}});
+        sudokua.aldatuGelaxkaHautagaiak(1,0, new boolean[]
+                {false, false, false,  false, false, false, false, false, false});
+        assertTrue(gelaxkaHautagaiakKonparatu(sudokua.getHautagaiakProg()[1][0], new boolean[]
+                {false, false, false,  false, false, false, false, false, false}));
+
+        sudokua.sudokuaSortu(new int[][]{
+                {9,4,0,3,0,1,7,8,5},{0,8,5,6,4,7,1,0,9},{1,0,2,9,5,8,4,6,0},
+                {5,1,0,4,7,2,3,0,6},{6,9,4,1,8,0,0,7,2},{2,0,7,5,6,9,8,1,0},
+                {0,0,9,8,1,6,2,3,7},{7,6,1,2,3,4,9,0,0},{8,0,3,7,9,5,6,0,1}});
+        sudokua.aldatuGelaxkaHautagaiak(1,0, new boolean[]
+                {true, true, true,  true, true, true, true, true, true});
+        assertTrue(gelaxkaHautagaiakKonparatu(sudokua.getHautagaiakProg()[1][0], new boolean[]
+                {false, false, true,  false, false, false, false, false, false}));
+
+
+    }
     
     private boolean gelaxkaBalioakKonparatu(GelaxkaEgitura[][] benetakoa, int[][] esperotakoa){
         boolean ondo = true;
-        int i = 0;
-        while (i < 9 && ondo){
-            int j = 0;
-            while (j < 9 && ondo) {
+        int i = -1;
+        while (++i < 9 && ondo){
+            int j = -1;
+            while (++j < 9 && ondo) {
                 if (benetakoa[i][j].balioa == null) {
                     if (esperotakoa[i][j] != 0) ondo = false;
                 } else {
                     if (benetakoa[i][j].balioa != esperotakoa[i][j]) ondo = false;
                 }
-                j++;
             }
-            i++;
+        }
+        return ondo;
+    }
+
+    private boolean gelaxkaHautagaiakKonparatu(boolean[] benetakoa, boolean[] esperotakoa){
+        boolean ondo = true;
+        int i = -1;
+        while (++i < 9 && ondo){
+            if (benetakoa[i]!=esperotakoa[i]) ondo=false;
         }
         return ondo;
     }
