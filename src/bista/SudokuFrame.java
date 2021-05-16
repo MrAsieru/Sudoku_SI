@@ -250,11 +250,13 @@ public class SudokuFrame extends JFrame implements Observer{
 		if (o instanceof UnekoSudokua && arg instanceof Object[] && ((Object[])arg).length > 0 && ((Object[])arg)[0] instanceof NotifikazioMotak) {
 			switch((NotifikazioMotak)((Object[])arg)[0]) {
 				case TAULA_EGUNERATU:
-					if (((Object[])arg).length == 3 && ((Object[])arg)[1] instanceof GelaxkaEgitura[][] && ((Object[])arg)[2] instanceof boolean[][]){
+					if (((Object[])arg).length >= 3 && ((Object[])arg)[1] instanceof GelaxkaEgitura[][] && ((Object[])arg)[2] instanceof boolean[][]){
+						if (((Object[])arg).length == 4 && ((Object[])arg)[3] instanceof Integer) setTitle(String.format("Zailtasuna: %d", ((Object[])arg)[3]));
 						taulaEguneratu((GelaxkaEgitura[][]) ((Object[])arg)[1], (boolean[][]) ((Object[])arg)[2]);
 					} else System.out.println("[BISTA.Sudoku]: TAULA_EGUNERATU ez du eskatutakoa jaso");
 					break;
 				case EMAITZA_ONDO_DAGO:
+					laguntzaEguneratu(new ArrayList<>());
 					setVisible(false);
 					break;
 				case EMAITZA_TXARTO_DAGO:

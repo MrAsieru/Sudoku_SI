@@ -52,7 +52,7 @@ public class Partida {
 	public void sudokuBerria() {
 		SudokuaGorde sudokua = SudokuLista.getSudokuLista().getSudokua(zailtasuna);
 		if (sudokua != null) {
-			UnekoSudokua.getInstantzia().sudokuaSortu(sudokua.getHasierakoMatrizea());
+			UnekoSudokua.getInstantzia().sudokuaSortu(sudokua.getHasierakoMatrizea(), zailtasuna);
 			this.soluzioa = sudokua.getSoluzioa();
 			laguntzaKant = 0;
 			sudokuHasiera = Instant.now();

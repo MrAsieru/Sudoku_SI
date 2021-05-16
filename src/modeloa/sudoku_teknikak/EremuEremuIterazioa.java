@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 public class EremuEremuIterazioa implements LaguntzaTeknika {
 	public LaguntzaEgitura laguntzaKalkulatu() {
 		Logger logger = Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName());
-		boolean[][][] hautagaiaGuztiak = UnekoSudokua.getInstantzia().getHautagaiakProg();
+		boolean[][][] hautagaiaGuztiakProg = UnekoSudokua.getInstantzia().getHautagaiakProg();
+		boolean[][][] hautagaiaGuztiakErab = UnekoSudokua.getInstantzia().getHautagaiakErab();
 		int[][] konbinaketak = new int[][] {{0,1,2}, {0,2,1}, {1,2,0}}; //Eremuen arteko konbinaketak. Azken zenbakia aldatu beharreko eremua da
 		Boolean[][] matrizeHutsak = UnekoSudokua.getInstantzia().getGelaxkaHutsak(); // Gelaxka hutsen (balio barik) matrizea
 
@@ -25,8 +26,8 @@ public class EremuEremuIterazioa implements LaguntzaTeknika {
 		for (int j = 0; j < 3; j++){ // Eremuen zutabeak
 			for (int[] konb : konbinaketak) { // Zutabe bateko eremu konbinaketak
 				for (int b = 0; b < 9; b++) { // Balio bakoitzeko 1-9
-					boolean[] tmp1 = eremuZutabeak(konb[0], j, b, hautagaiaGuztiak); // 1.Eremua: 0-Ezkerra, 1-Erdi, 2-Eskuina
-					boolean[] tmp2 = eremuZutabeak(konb[1], j, b, hautagaiaGuztiak); // 2.Eremua
+					boolean[] tmp1 = eremuZutabeak(konb[0], j, b, hautagaiaGuztiakProg); // 1.Eremua: 0-Ezkerra, 1-Erdi, 2-Eskuina
+					boolean[] tmp2 = eremuZutabeak(konb[1], j, b, hautagaiaGuztiakProg); // 2.Eremua
 
 					int[] zutabeak = aldatzekoErrenkadaZutabea(tmp1, tmp2, j);
 					
@@ -34,7 +35,7 @@ public class EremuEremuIterazioa implements LaguntzaTeknika {
 					if (zutabeak != null) { //Zutabeak aurkitu badira
 						for (int zut : zutabeak) { // Zutabe bakoitzeko
 							for (int g = konb[2]*3; g < konb[2]*3+3; g++){ // Errenkada bakoitzeko
-								if (matrizeHutsak[g][zut] && hautagaiaGuztiak[g][zut][b]) { // Baldin balioa ez badu eta hautagaia jarrita badago
+								if (matrizeHutsak[g][zut] && hautagaiaGuztiakProg[g][zut][b] && hautagaiaGuztiakErab[g][zut][b]) { // Baldin balioa ez badu eta hautagaia jarrita badago
 									laguntzak.add("Teknika: Eremu eta eremu iter.<br>" +
 											String.format("Gelaxka: (%d, %d)<br>", g+1, zut+1) +
 											String.format("%d hautagaitik kendu<br>", b+1));
@@ -52,15 +53,15 @@ public class EremuEremuIterazioa implements LaguntzaTeknika {
 		for (int i = 0; i < 3; i++){ // Eremuen errenkadak
 			for (int[] konb : konbinaketak) { // Errenkada bateko eremu konbinaketak
 				for (int b = 0; b < 9; b++) { // Balio bakoitzeko 1-9
-					boolean[] tmp1 = eremuErrenkadak(i, konb[0], b, hautagaiaGuztiak); // 1.Eremua: 0-Goi, 1-Erdi, 2-Behe
-					boolean[] tmp2 = eremuErrenkadak(i, konb[1], b, hautagaiaGuztiak); // 2.Eremua
+					boolean[] tmp1 = eremuErrenkadak(i, konb[0], b, hautagaiaGuztiakProg); // 1.Eremua: 0-Goi, 1-Erdi, 2-Behe
+					boolean[] tmp2 = eremuErrenkadak(i, konb[1], b, hautagaiaGuztiakProg); // 2.Eremua
 
 					int[] errenkadak = aldatzekoErrenkadaZutabea(tmp1, tmp2, i);
 
 					if (errenkadak != null) { //Errenkadak aurkitu badira
 						for (int err : errenkadak) { // Errenkada bakoitzeko
 							for (int g = konb[2]*3; g < konb[2]*3+3; g++){ // Zutabe bakoitzeko
-								if (matrizeHutsak[err][g] && hautagaiaGuztiak[err][g][b]) { // Baldin balioa ez badu eta hautagaia jarrita badago
+								if (matrizeHutsak[err][g] && hautagaiaGuztiakProg[err][g][b] && hautagaiaGuztiakErab[err][g][b]) { // Baldin balioa ez badu eta hautagaia jarrita badago
 									laguntzak.add("Teknika: Eremu eta eremu iter.<br>" +
 											String.format("Gelaxka: (%d, %d)<br>", err+1, g+1) +
 											String.format("%d hautagaitik kendu<br>", b+1));

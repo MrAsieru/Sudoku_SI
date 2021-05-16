@@ -53,6 +53,10 @@ public class UnekoSudokua extends Observable{
 	}
 
 	public void sudokuaSortu(int[][] pGelaxkak) {
+		sudokuaSortu(pGelaxkak, 0);
+	}
+
+	public void sudokuaSortu(int[][] pGelaxkak, Integer pZailtasuna) {
 		if(pGelaxkak!=null && pGelaxkak.length==this.tamaina) {
 			this.gelaxkaMat = new Gelaxka[this.tamaina][this.tamaina];
 
@@ -67,7 +71,7 @@ public class UnekoSudokua extends Observable{
 				}
 			}
 			//Aldakuntzak bistari notifikatu
-			bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara());
+			bistaNotifikatu(NotifikazioMotak.TAULA_EGUNERATU, getGelaxkaBalioak(), getHasierakoBalioMaskara(), pZailtasuna);
 		}
 	}
 
@@ -269,6 +273,18 @@ public class UnekoSudokua extends Observable{
 			for (int j = 0; j < this.tamaina; j++){
 				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getBalioa() == 0){
 					hautagaiGuztiak[i][j] = ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagaiakProg();
+				}
+			}
+		}
+		return hautagaiGuztiak;
+	}
+
+	public boolean[][][] getHautagaiakErab() {
+		boolean[][][] hautagaiGuztiak = new boolean[9][9][9];
+		for (int i = 0; i < this.tamaina; i++){
+			for (int j = 0; j < this.tamaina; j++){
+				if (this.gelaxkaMat[i][j] instanceof GelaxkaEditagarria && ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getBalioa() == 0){
+					hautagaiGuztiak[i][j] = ((GelaxkaEditagarria) this.gelaxkaMat[i][j]).getHautagaiakErab();
 				}
 			}
 		}

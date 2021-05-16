@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 public class EremuEtaZutLerIterazioa implements LaguntzaTeknika {
 	public LaguntzaEgitura laguntzaKalkulatu() {
 		Logger logger = Logger.getLogger(UnekoSudokua.getInstantzia().getClass().getName());
-		boolean[][][] hautagaiaGuztiak = UnekoSudokua.getInstantzia().getHautagaiakProg();
+		boolean[][][] hautagaiaGuztiakProg = UnekoSudokua.getInstantzia().getHautagaiakProg();
+		boolean[][][] hautagaiaGuztiakErab = UnekoSudokua.getInstantzia().getHautagaiakErab();
 		Boolean[][] matrizeHutsak = UnekoSudokua.getInstantzia().getGelaxkaHutsak();
 
 		ArrayList<String> laguntzak = new ArrayList<>();
@@ -23,9 +24,9 @@ public class EremuEtaZutLerIterazioa implements LaguntzaTeknika {
 				//Zutabeak
 				for (int b = 0; b < 9; b++) { //Balio bakoitzeko
 					//Errenkada bakoitza konprobatu
-					boolean ezkerra = hautagaiaGuztiak[err][zut][b] || hautagaiaGuztiak[err+1][zut][b] || hautagaiaGuztiak[err+2][zut][b];
-					boolean erdi = hautagaiaGuztiak[err][zut+1][b] || hautagaiaGuztiak[err+1][zut+1][b] || hautagaiaGuztiak[err+2][zut+1][b];
-					boolean eskuina = hautagaiaGuztiak[err][zut+2][b] || hautagaiaGuztiak[err+1][zut+2][b] || hautagaiaGuztiak[err+2][zut+2][b];
+					boolean ezkerra = hautagaiaGuztiakProg[err][zut][b] || hautagaiaGuztiakProg[err+1][zut][b] || hautagaiaGuztiakProg[err+2][zut][b];
+					boolean erdi = hautagaiaGuztiakProg[err][zut+1][b] || hautagaiaGuztiakProg[err+1][zut+1][b] || hautagaiaGuztiakProg[err+2][zut+1][b];
+					boolean eskuina = hautagaiaGuztiakProg[err][zut+2][b] || hautagaiaGuztiakProg[err+1][zut+2][b] || hautagaiaGuztiakProg[err+2][zut+2][b];
 
 					int zutabea = -1;
 					if (ezkerra && !erdi && !eskuina) zutabea = zut; //Bakarrik ezkerrekoa
@@ -34,7 +35,7 @@ public class EremuEtaZutLerIterazioa implements LaguntzaTeknika {
 
 					if (zutabea != -1) {
 						for (int g = 0; g < 9; g++){
-							if (matrizeHutsak[g][zutabea] && (g < err || err+2 < g) && hautagaiaGuztiak[g][zutabea][b]) {
+							if (matrizeHutsak[g][zutabea] && (g < err || err+2 < g) && hautagaiaGuztiakProg[g][zutabea][b] && hautagaiaGuztiakErab[g][zutabea][b]) {
 								laguntzak.add("Teknika: Eremu eta Zut. iter.<br>" +
 										String.format("Gelaxka: (%d, %d)<br>", g+1, zutabea+1) +
 										String.format("%d hautagaitik kendu<br>", b+1));
@@ -48,9 +49,9 @@ public class EremuEtaZutLerIterazioa implements LaguntzaTeknika {
 				//Errenkadak
 				for (int b = 0; b < 9; b++) { //Balio bakoitzeko
 					//Errenkada bakoitza konprobatu
-					boolean goi = hautagaiaGuztiak[err][zut][b] || hautagaiaGuztiak[err][zut+1][b] || hautagaiaGuztiak[err][zut+2][b];
-					boolean erdi = hautagaiaGuztiak[err+1][zut][b] || hautagaiaGuztiak[err+1][zut+1][b] || hautagaiaGuztiak[err+1][zut+2][b];
-					boolean behe = hautagaiaGuztiak[err+2][zut][b] || hautagaiaGuztiak[err+2][zut+1][b] || hautagaiaGuztiak[err+2][zut+2][b];
+					boolean goi = hautagaiaGuztiakProg[err][zut][b] || hautagaiaGuztiakProg[err][zut+1][b] || hautagaiaGuztiakProg[err][zut+2][b];
+					boolean erdi = hautagaiaGuztiakProg[err+1][zut][b] || hautagaiaGuztiakProg[err+1][zut+1][b] || hautagaiaGuztiakProg[err+1][zut+2][b];
+					boolean behe = hautagaiaGuztiakProg[err+2][zut][b] || hautagaiaGuztiakProg[err+2][zut+1][b] || hautagaiaGuztiakProg[err+2][zut+2][b];
 
 					int errenkada = -1;
 					if (goi && !erdi && !behe) errenkada = err; //Bakarrik goikoa
@@ -59,7 +60,7 @@ public class EremuEtaZutLerIterazioa implements LaguntzaTeknika {
 
 					if (errenkada != -1) {
 						for (int g = 0; g < 9; g++){
-							if (matrizeHutsak[errenkada][g] && (g < zut || zut+2 < g) && hautagaiaGuztiak[errenkada][g][b]) {
+							if (matrizeHutsak[errenkada][g] && (g < zut || zut+2 < g) && hautagaiaGuztiakProg[errenkada][g][b] && hautagaiaGuztiakErab[errenkada][g][b]) {
 								laguntzak.add("Teknika: Eremu eta Err. iter.<br>" +
 										String.format("Gelaxka: (%d, %d)<br>", errenkada+1, g+1) +
 										String.format("%d hautagaitik kendu<br>", b+1));
