@@ -9,16 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="Test-ak konpondu">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Sudoku_SI_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="d04e395f-b968-4b2d-b342-136e13cba385" name="Default Changelist" comment="Diagramak eguneratu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sudoku_SI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Sudoku_SI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bista/AmaieraFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bista/AmaieraFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bista/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bista/LoginFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bista/SudokuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bista/SudokuFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modeloa/sudokua/UnekoSudokua.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modeloa/sudokua/UnekoSudokua.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modeloa/support/Irakurlea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modeloa/support/Irakurlea.java" afterDir="false" />
     </list>
     <list id="86de303c-62cc-4d31-b7fc-4461f8b6a0d2" name="Changes by unaih" comment="Changes by unaih" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +68,7 @@
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/res" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -89,7 +81,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Nagusia">
-    <configuration name="Nagusia" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Nagusia" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Nagusia" />
       <module name="Sudoku_SI" />
       <method v="2">
@@ -99,19 +91,6 @@
     <configuration name="SudokuPanela" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Bista.SudokuPanela" />
       <module name="Sudoku_SI" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -157,6 +136,9 @@
       <workItem from="1619602786093" duration="50000" />
       <workItem from="1619633775442" duration="130000" />
       <workItem from="1619713981271" duration="1801000" />
+      <workItem from="1621152582314" duration="1316000" />
+      <workItem from="1621153912406" duration="10008000" />
+      <workItem from="1621175244256" duration="601000" />
     </task>
     <task id="LOCAL-00001" summary="SudokuLista zuzendu">
       <created>1619346614675</created>
@@ -228,7 +210,21 @@
       <option name="project" value="LOCAL" />
       <updated>1619728007245</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Hainbat aldaketa:&#10;&#10;- Tekniketan erabiltzailearen hautagaiak erabili aldaketak ez errepikatzeko&#10;- Lehioan zailtasuna ipini&#10;- Sudoku berriak gehitu&#10;- Sudokuak ondo dauden konprobatzeko Python programa bat implementatu">
+      <created>1621163622645</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1621163622645</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Diagramak eguneratu">
+      <created>1621164903589</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1621164903589</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,7 +269,21 @@
     <MESSAGE value="feat: hasierako inplementazioak ezarri" />
     <MESSAGE value="feat: implementazioak probatu eta zuzendu. Ondo doaz! momentuz...." />
     <MESSAGE value="quizas deberia parar" />
-    <option name="LAST_COMMIT_MESSAGE" value="quizas deberia parar" />
+    <MESSAGE value="Hainbat aldaketa:&#10;&#10;- Tekniketan erabiltzailearen hautagaiak erabili aldaketak ez errepikatzeko&#10;- Lehioan zailtasuna ipini&#10;- Sudoku berriak gehitu&#10;- Sudokuak ondo dauden konprobatzeko Python programa bat implementatu" />
+    <MESSAGE value="Diagramak eguneratu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Diagramak eguneratu" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="g==3 &amp;&amp; zutabea==1" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/modeloa/sudoku_teknikak/EremuEtaZutLerIterazioa.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

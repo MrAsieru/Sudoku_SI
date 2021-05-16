@@ -147,7 +147,7 @@ public class AmaieraFrame extends JFrame implements Observer{
 	}
 	private JLabel getLblPartidaBerria2() {
 		if (lblPartidaBerria2 == null) {
-			lblPartidaBerria2 = new JLabel("Hurrengo zailtasuneko sudokua kargatuko da.");
+			lblPartidaBerria2 = new JLabel("Zailtasun bereko sudoku bat kargatuko da.");
 			lblPartidaBerria2.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return lblPartidaBerria2;

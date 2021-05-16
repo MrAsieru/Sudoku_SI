@@ -1,3 +1,5 @@
 //Izena;Zailtasuna;Puntuak
 MrAsieru;3;491.8033
 TheRock;2;234.9869
+Rojo3100;2;440.8033
+ElBicho;1;540.9364
